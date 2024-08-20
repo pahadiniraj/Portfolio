@@ -40,15 +40,25 @@ const FloatingDockMobile = ({
   items: { title: string; icon: React.ReactNode; href: string }[];
   className?: string;
 }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   const pathname = usePathname();
+
+  const handleLinkClick = () => {
+    setOpen(false);
+  };
+
   return (
-    <div className={cn("relative block md:hidden", className)}>
+    <div
+      className={cn(
+        "relative   md:hidden  flex justify-center items-center flex-col ",
+        className
+      )}
+    >
       <AnimatePresence>
         {open && (
           <motion.div
             layoutId="nav"
-            className="absolute bottom-full mb-2 inset-x-0 flex flex-col gap-2"
+            className="mb-2 inset-x-0 flex flex-row gap-3 "
           >
             {items.map((item, idx) => (
               <motion.div
@@ -67,14 +77,18 @@ const FloatingDockMobile = ({
                 }}
                 transition={{ delay: (items.length - 1 - idx) * 0.05 }}
               >
+                <div className="text-xs flex justify-center items-center">
+                  {item.title}
+                </div>
                 <Link
                   href={item.href}
                   key={item.title}
+                  onClick={handleLinkClick}
                   className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center"
                 >
                   <div
-                    className={`h-4 w-4 ${
-                      pathname.startsWith(item.href) ? "text-green-500" : ""
+                    className={`h-6 w-6 ${
+                      pathname.endsWith(item.href) ? "text-purple-400" : ""
                     }`}
                   >
                     {item.icon}
@@ -87,14 +101,13 @@ const FloatingDockMobile = ({
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center"
+        className="h-11 w-11 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center"
       >
-        <IconLayoutNavbarCollapse className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
+        <IconLayoutNavbarCollapse className=" text-neutral-500 dark:text-neutral-400" />
       </button>
     </div>
   );
 };
-
 const FloatingDockDesktop = ({
   items,
   className,
@@ -202,8 +215,8 @@ function IconContainer({
         </AnimatePresence>
         <motion.div
           style={{ width: widthIcon, height: heightIcon }}
-          className={`flex items-center justify-center ${
-            pathname.endsWith(href) ? " text-purple-500" : ""
+          className={`flex items-center justify-center text-xl ${
+            pathname.endsWith(href) ? " text-purple-400" : ""
           }
          `}
         >

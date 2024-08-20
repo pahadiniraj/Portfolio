@@ -4,7 +4,9 @@ import { FloatingDockDemo } from "../UI/Components/FlotingDocComp";
 const Navbar = () => {
   return (
     <>
-      <FloatingDockDemo />
+      <div className="fixed  bottom-5 w-full left-0 md:static">
+        <FloatingDockDemo />
+      </div>
     </>
   );
 };
