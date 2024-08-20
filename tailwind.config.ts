@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        custom: "1px 0 8px white",
+      },
       colors: {
         primary: "#1D4ED8", // Custom primary color
         secondary: "#9333EA", // Custom secondary color
@@ -25,6 +28,8 @@ const config: Config = {
         cursive: ["Dancing Script", "cursive"], // Cursive font for specific text
       },
       fontSize: {
+        xxs: ".65rem", // 12px
+
         xs: ".75rem", // 12px
         sm: ".875rem", // 14px
         base: "1rem", // 16px
