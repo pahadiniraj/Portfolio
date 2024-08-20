@@ -1,5 +1,11 @@
-import Image from "next/image";
+"use client";
+
+import HomeComponent from "@/Components/Home/Home";
 
 export default function Home() {
-  return <>Home</>;
+  return (
+    <>
+      <HomeComponent />
+    </>
+  );
 }
