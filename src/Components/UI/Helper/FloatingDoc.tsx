@@ -1,5 +1,6 @@
 import { cn } from "../../../Utils/cn";
-import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
+import { TbLayoutNavbarCollapseFilled } from "react-icons/tb";
+
 import {
   AnimatePresence,
   MotionValue,
@@ -40,7 +41,7 @@ const FloatingDockMobile = ({
   items: { title: string; icon: React.ReactNode; href: string }[];
   className?: string;
 }) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   const handleLinkClick = () => {
@@ -48,18 +49,10 @@ const FloatingDockMobile = ({
   };
 
   return (
-    <div
-      className={cn(
-        "relative   md:hidden  flex justify-center items-center flex-col ",
-        className
-      )}
-    >
+    <div className={cn(" md:hidden  ", className)}>
       <AnimatePresence>
         {open && (
-          <motion.div
-            layoutId="nav"
-            className="mb-2 inset-x-0 flex flex-row gap-3 "
-          >
+          <motion.div layoutId="nav" className="mb-2  flex flex-col gap-3 ">
             {items.map((item, idx) => (
               <motion.div
                 key={item.title}
@@ -77,17 +70,14 @@ const FloatingDockMobile = ({
                 }}
                 transition={{ delay: (items.length - 1 - idx) * 0.05 }}
               >
-                <div className="text-xs flex justify-center items-center">
-                  {item.title}
-                </div>
                 <Link
                   href={item.href}
                   key={item.title}
                   onClick={handleLinkClick}
-                  className="h-10 w-10 rounded-full bg-gray-50 dark:bg-neutral-900 flex items-center justify-center"
+                  className=" h-12 w-12  border border-gray-500 rounded-full dark:bg-neutral-900 flex items-center justify-center"
                 >
                   <div
-                    className={`h-6 w-6 ${
+                    className={`h-6 w-6  ${
                       pathname.endsWith(item.href) ? "text-purple-400" : ""
                     }`}
                   >
@@ -101,9 +91,24 @@ const FloatingDockMobile = ({
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className="h-11 w-11 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center"
+        className="h-12 w-12 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center"
       >
-        <IconLayoutNavbarCollapse className=" text-neutral-500 dark:text-neutral-400" />
+        <motion.div
+          animate={{
+            y: [0, -3, 0], // Move up and down
+          }}
+          transition={{
+            repeat: Infinity, // Loop the animation
+            repeatType: "loop", // Loop type
+            duration: 1.5, // Duration of one loop
+            ease: "easeInOut", // Smooth easing
+            restSpeed: "0.1",
+          }}
+          whileHover={{ y: 0 }} // Stop jumping on hover
+          className="text-neutral-500 dark:text-neutral-400"
+        >
+          <TbLayoutNavbarCollapseFilled className=" text-white text-3xl " />
+        </motion.div>
       </button>
     </div>
   );

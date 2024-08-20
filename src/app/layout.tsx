@@ -23,19 +23,18 @@ export default function RootLayout({
         <title>Niraj's Portfolio</title>
       </head>
       <body
-        className={`${inter.className} md:container md:px-10  md:mx-auto md:bg-white flex flex-col gap-4 justify-center items-center h-screen relative `}
+        className={`${inter.className} md:container md:px-10  md:mx-auto  md:flex md:justify-center md:flex-col gap-4 justify-center items-center h-screen bg-pink-200 relative `}
       >
         <main
-          className="bg-black md:rounded-2xl  w-full h-full md:w-[900px] md:h-[420px] 
+          className="bg-black md:rounded-2xl p-2 w-full  md:w-[900px] md:h-[400px] 
          "
         >
           {children}
         </main>
-        <header className="absolute bottom-4 md:static">
+        <header className="  md:static">
           <Navbar />
         </header>
       </body>
     </html>
   );
 }
-// h-[370px] w-[1000px]

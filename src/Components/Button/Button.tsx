@@ -9,13 +9,19 @@ interface buttonProps {
   text?: string;
 }
 
-const Button: React.FC<buttonProps> = ({ onClick, className, text }) => {
+const Button: React.FC<buttonProps> = ({
+  onClick,
+  className,
+  children,
+  text,
+}) => {
   return (
     <button
       onClick={onClick}
-      className={`${className}  transition-transform duration-300 ease-in-out active:scale-90`}
+      className={`${className}  transition duration-300 ease-linear active:scale-90  hover:shadow-custom`}
     >
       {text}
+      {children}
     </button>
   );
 };
