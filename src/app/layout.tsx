@@ -26,7 +26,7 @@ export default function RootLayout({
         className={`${inter.className} md:container md:px-10  md:mx-auto  md:flex md:justify-center md:flex-col gap-4 justify-center items-center h-screen bg-pink-200 relative `}
       >
         <main
-          className="bg-black md:rounded-2xl p-2 w-full  md:w-[900px] md:h-[400px] 
+          className="bg-black md:rounded-2xl flex justify-center items-center w-full  md:w-[900px] md:h-[400px] 
          "
         >
           {children}
