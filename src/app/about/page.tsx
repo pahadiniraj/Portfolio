@@ -1,7 +1,12 @@
+import About from "@/Components/About/About";
 import React from "react";
 
 const page = () => {
-  return <div>hellowowo</div>;
+  return (
+    <>
+      <About />
+    </>
+  );
 };
 
 export default page;
