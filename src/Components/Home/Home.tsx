@@ -41,7 +41,6 @@ const HomeComponent = () => {
         </section>
         <div className="flex-col gap-5 flex justify-center md:justify-start md:flex-row">
           <HomeButtons />
-
           <SocialLinks />
         </div>
       </div>

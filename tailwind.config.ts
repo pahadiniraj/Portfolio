@@ -42,7 +42,8 @@ const config: Config = {
         "6xl": "4rem", // 64px
       },
       backgroundImage: {
-        "btn-gradient": "linear-gradient(to bottom left, #00C9FF, #92FE9D)",
+        "btn-gradient":
+          "linear-gradient(to bottom left, #59C173, #a17fe0, #5D26C1)",
       },
       backgroundClip: {
         text: "text",
