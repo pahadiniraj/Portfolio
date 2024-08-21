@@ -74,11 +74,11 @@ const FloatingDockMobile = ({
                   href={item.href}
                   key={item.title}
                   onClick={handleLinkClick}
-                  className=" h-12 w-12  border border-gray-500 rounded-full dark:bg-neutral-900 flex items-center justify-center"
+                  className=" h-12 w-12 bg-btn-gradient rounded-full flex items-center justify-center"
                 >
                   <div
                     className={`h-6 w-6  ${
-                      pathname.endsWith(item.href) ? "text-purple-400" : ""
+                      pathname.endsWith(item.href) ? "text-white" : "text-black"
                     }`}
                   >
                     {item.icon}
