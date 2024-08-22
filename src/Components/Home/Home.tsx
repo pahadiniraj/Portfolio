@@ -9,14 +9,14 @@ import { ReactTyped } from "react-typed";
 const HomeComponent = () => {
   return (
     <div className="flex flex-col md:flex-row md:justify-center md:gap-4  ">
-      <div className="md:w-2/6  order-1 md:order-2 p-4    flex flex-col gap-4 justify-center items-center ">
+      <div className="md:w-2/6 w-full h-full order-1 md:order-2 p-4    flex flex-col gap-4 justify-center items-center ">
         <h1 className="text-center text-2xl font-bold md:hidden">
           Niraj's Portfolio
         </h1>
         <Image
           src={profile}
           alt="Niraj Pahadi Photo"
-          className="w-full rounded-xl  "
+          className="w-full rounded-3xl  "
         />
       </div>
       <div className="md:w-3/5 order-2 md:order-1 pl-4 py-2 md:pl-0 flex flex-col gap-4 md:gap-6 justify-center">

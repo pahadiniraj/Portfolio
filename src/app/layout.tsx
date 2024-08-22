@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/Components/Navbar/Navbar";
+import RootLayoutClient from "@/Components/RootLayout/RootLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,27 +14,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en">
-      <head>
-        <meta />
-        <title>Niraj's Portfolio</title>
-      </head>
-      <body
-        className={`${inter.className} md:container md:px-10  md:mx-auto  md:flex md:justify-center md:flex-col gap-4 justify-center items-center h-screen bg-pink-200 relative `}
-      >
-        <main
-          className="bg-black md:rounded-2xl flex justify-center items-center w-full  md:w-[900px] md:h-[400px] 
-         "
-        >
-          {children}
-        </main>
-        <header className="  md:static">
+      <body className={`${inter.className} `}>
+        <main className="h-screen justify-center md:flex items-center flex-col gap-5 md:overflow-x-hidden ">
+          <RootLayoutClient>{children}</RootLayoutClient>
           <Navbar />
-        </header>
+        </main>
       </body>
     </html>
   );
