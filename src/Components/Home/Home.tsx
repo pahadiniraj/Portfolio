@@ -8,7 +8,7 @@ import { ReactTyped } from "react-typed";
 
 const HomeComponent = () => {
   return (
-    <div className="flex flex-col md:flex-row md:justify-center md:p-2  overflow-auto">
+    <div className="flex flex-col md:flex-row md:justify-center md:p-2 ">
       <div className="md:w-2/6 w-full h-full order-1 md:order-2 p-4    flex flex-col gap-4 justify-center items-center  ">
         <h1 className="text-center text-2xl font-bold md:hidden">
           Niraj's Portfolio
@@ -39,7 +39,7 @@ const HomeComponent = () => {
             <span className="font-bold">Software Development</span>
           </p>
         </section>
-        <div className="flex-col gap-5 flex justify-center md:justify-start md:flex-row">
+        <div className="flex-col gap-5 flex justify-center md:justify-start md:flex-row pb-5">
           <HomeButtons />
           <SocialLinks />
         </div>

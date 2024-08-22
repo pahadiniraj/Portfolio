@@ -18,9 +18,10 @@ const RootLayoutClient = ({ children }: { children: React.ReactNode }) => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
             transition={{ type: "spring", stiffness: 250, damping: 40 }}
-            className="rounded-[50px] flex justify-center items-center shadow-custom w-[900px] max-h-[400px] overflow-auto bg-black  overflow-y-scroll"
           >
-            {children}
+            <div className="rounded-[50px] flex justify-center items-center shadow-custom w-[900px] max-h-[400px] overflow-auto bg-black  ">
+              {children}
+            </div>
           </motion.div>
         </AnimatePresence>
       ) : (

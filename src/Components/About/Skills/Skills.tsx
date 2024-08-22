@@ -26,7 +26,7 @@ const Skills: React.FC = () => {
     const skillsToShow = showAll ? skillsData : skillsData.slice(0, 2);
     return skillsToShow.map((value, index) => (
       <div key={index} className="mb-3">
-        {value.name}
+        <div className="font-semibold">{value.name}</div>
         {value.line1}
         {value.line2}
       </div>
@@ -35,7 +35,7 @@ const Skills: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-3 p-2 md:p-0">
-      <div className="flex gap-3 justify-center items-center md:items-start md:justify-start ">
+      <div className="flex gap-5 justify-center items-center md:items-start md:justify-start mb-2 ">
         {categories.map((value, index) => (
           <Button
             key={index}
@@ -57,7 +57,7 @@ const Skills: React.FC = () => {
           <button
             onClick={() => setShowAll(!showAll)}
             className={`text-xs font-bold mt-2 transition duration-300 ease-linear active:scale-90 ${
-              showAll ? "text-primary" : "text-gray-600"
+              showAll ? "text-blue-500" : "text-white"
             }`}
           >
             {showAll ? "Show Less" : "Show More"}

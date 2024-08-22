@@ -13,33 +13,32 @@ const config: Config = {
         custom: "1px 0 8px white",
       },
       colors: {
-        primary: "#1D4ED8", // Custom primary color
-        secondary: "#9333EA", // Custom secondary color
-        accent: "#F59E0B", // Custom accent color
-        muted: "#6B7280", // Custom muted color
-        success: "#10B981", // Custom success color
-        danger: "#EF4444", // Custom danger color
-        warning: "#FBBF24", // Custom warning color
-        info: "#3B82F6", // Custom info color
+        primary: "#1D4ED8",
+        secondary: "#9333EA",
+        accent: "#F59E0B",
+        muted: "#6B7280",
+        success: "#10B981",
+        danger: "#EF4444",
+        warning: "#FBBF24",
+        info: "#3B82F6",
       },
       fontFamily: {
-        sans: ["Open Sans", "sans-serif"], // Default font for general text
-        heading: ["Poppins", "sans-serif"], // Font for headings
-        cursive: ["Dancing Script", "cursive"], // Cursive font for specific text
+        sans: ["Open Sans", "sans-serif"],
+        heading: ["Poppins", "sans-serif"],
+        cursive: ["Dancing Script", "cursive"],
       },
       fontSize: {
-        xxs: ".65rem", // 12px
-
-        xs: ".75rem", // 12px
-        sm: ".875rem", // 14px
-        base: "1rem", // 16px
-        lg: "1.125rem", // 18px
-        xl: "1.25rem", // 20px
-        "2xl": "1.5rem", // 24px
-        "3xl": "1.875rem", // 30px
-        "4xl": "2.25rem", // 36px
-        "5xl": "3rem", // 48px
-        "6xl": "4rem", // 64px
+        xxs: ".65rem",
+        xs: ".75rem",
+        sm: ".875rem",
+        base: "1rem",
+        lg: "1.125rem",
+        xl: "1.25rem",
+        "2xl": "1.5rem",
+        "3xl": "1.875rem",
+        "4xl": "2.25rem",
+        "5xl": "3rem",
+        "6xl": "4rem",
       },
       backgroundImage: {
         "btn-gradient":
@@ -53,13 +52,6 @@ const config: Config = {
       },
     },
   },
-  variants: {
-    extend: {
-      backgroundImage: ["responsive", "hover"],
-      backgroundClip: ["responsive", "hover"],
-      textFillColor: ["responsive", "hover"],
-    },
-  },
   plugins: [
     function ({ addUtilities }: PluginAPI) {
       addUtilities({
@@ -69,7 +61,15 @@ const config: Config = {
           "-webkit-text-fill-color": "transparent",
         },
         ".text-glow": {
-          textShadow: "0 0 10px rgba(255, 255, 255, 0.7)", // Glow effect
+          textShadow: "0 0 10px rgba(255, 255, 255, 0.7)",
+        },
+        ".scrollbar-hide": {
+          /* Hide scrollbar for Firefox, IE, Edge */
+          scrollbarWidth: "none",
+          /* Hide scrollbar for Chrome, Safari and Opera */
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
         },
       });
     },
