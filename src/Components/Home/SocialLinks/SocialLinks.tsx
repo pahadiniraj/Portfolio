@@ -28,7 +28,7 @@ const SocialLinks: React.FC = () => {
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative text-white text-2xl group "
+              className="relative text-white text-[23px] group "
             >
               {item.icon}
               <span className="absolute top-7  left-0 w-0 h-0.5 rounded-sm bg-white transition-all duration-300 ease-in-out group-hover:w-full " />

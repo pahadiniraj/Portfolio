@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} `}>
-        <main className="h-screen justify-center md:flex items-center flex-col gap-5 md:overflow-x-hidden ">
+        <main className="h-screen justify-center md:flex items-center flex-col gap-5 md:overflow-x-hidden bg-black md:bg-transparent">
           <RootLayoutClient>{children}</RootLayoutClient>
           <Navbar />
         </main>
