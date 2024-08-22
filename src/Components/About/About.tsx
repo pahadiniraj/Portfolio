@@ -21,7 +21,7 @@ const About = () => {
       <div className="md:w-3/5 order-1 pl-4 md:pl-0 flex flex-col  md:py-5 py-4  md:max-h-[400px] md:overflow-auto scrollbar-hide pr-5 ">
         <section>
           <p className="text-sm font-semibold">About me</p>
-          <h1 className="md:text-4xl font-bold text-2xl">
+          <h1 className="md:text-3xl font-bold text-2xl">
             2 Year's Experience,
           </h1>
           <HeroHighlightDemo text="on FullStack Development" />

@@ -1,9 +1,34 @@
 import React from "react";
-import { FaFacebookSquare } from "react-icons/fa";
+import { FaFacebookSquare, FaLinkedin } from "react-icons/fa";
 import { FaSquareGithub } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
+const iconVariants = {
+  hidden: {
+    opacity: 0,
+    scale: 0.2,
+    y: 20,
+  },
+  visible: (index: number) => ({
+    opacity: 1,
+    scale: 2, // Increased scale for the pop effect
+    y: 0,
+    transition: {
+      delay: index * 0.3, // Staggered delay for each icon
+      duration: 0.7,
+      ease: "easeOut",
+      bounce: 0.3,
+    },
+  }),
+};
 
 const SocialLinks: React.FC = () => {
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Trigger animation only once
+    threshold: 0.1, // Trigger when 10% of the component is visible
+  });
+
   const data = [
     {
       url: "https://www.facebook.com/profile.php?id=100089208278456",
@@ -21,18 +46,22 @@ const SocialLinks: React.FC = () => {
 
   return (
     <div className="flex items-end mb-1 ml-2">
-      <ul className="flex gap-2">
+      <ul className="flex gap-2" ref={ref}>
         {data.map((item, index) => (
           <li key={index}>
-            <a
+            <motion.a
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative text-white text-[23px] group "
+              className="relative text-white text-[23px] group"
+              variants={iconVariants}
+              initial="hidden"
+              animate={inView ? "visible" : "hidden"}
+              custom={index}
             >
               {item.icon}
-              <span className="absolute top-7  left-0 w-0 h-0.5 rounded-sm bg-white transition-all duration-300 ease-in-out group-hover:w-full " />
-            </a>
+              <span className="absolute top-7 left-0 w-0 h-0.5 rounded-sm bg-white transition-all duration-300 ease-in-out group-hover:w-full" />
+            </motion.a>
           </li>
         ))}
       </ul>
