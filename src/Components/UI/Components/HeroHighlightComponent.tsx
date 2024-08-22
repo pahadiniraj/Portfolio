@@ -23,7 +23,7 @@ export function HeroHighlightDemo({ text }: HeroHighlightDemoProps) {
         }}
         className=" font-bold text-neutral-700 dark:text-white   "
       >
-        <Highlight className="text-black dark:text-white text-2xl">
+        <Highlight className="text-black dark:text-white md:text-4xl text-2xl p-1">
           {text}
         </Highlight>
       </motion.h1>

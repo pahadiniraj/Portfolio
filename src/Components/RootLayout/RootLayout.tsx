@@ -6,7 +6,7 @@ import useMediaQuery from "../useMediaQuery/useMedia";
 
 const RootLayoutClient = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
-  const isMd = useMediaQuery("(min-width: 768px)"); // Change the query to match your 'md' breakpoint
+  const isMd = useMediaQuery("(min-width: 768px)"); // Adjust the query as needed
 
   return (
     <>
@@ -18,7 +18,7 @@ const RootLayoutClient = ({ children }: { children: React.ReactNode }) => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
             transition={{ type: "spring", stiffness: 250, damping: 40 }}
-            className="rounded-[50px] flex justify-center items-center shadow-custom w-[900px] h-[370px]   overflow-hidden bg-black"
+            className="rounded-[50px] flex justify-center items-center shadow-custom w-[900px] max-h-[400px] overflow-auto bg-black  overflow-y-scroll"
           >
             {children}
           </motion.div>
@@ -29,7 +29,7 @@ const RootLayoutClient = ({ children }: { children: React.ReactNode }) => {
           initial={{ opacity: 0, x: "-100vw" }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ type: "spring", stiffness: 250, damping: 40 }}
-          className=" md:flex md:justify-center md:items-center shadow-custom md:w-[900px] md:h-[500px] pb-4  overflow-hidden bg-black"
+          className="flex justify-center items-center  w-full  bg-black"
         >
           {children}
         </motion.div>
