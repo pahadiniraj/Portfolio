@@ -35,7 +35,7 @@ const Skills: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-3 p-2 md:p-0">
-      <div className="flex gap-5 justify-center items-center md:items-start md:justify-start mb-2 ">
+      <div className="flex gap-3 justify-center items-center md:items-start md:justify-start mb-2 ">
         {categories.map((value, index) => (
           <Button
             key={index}

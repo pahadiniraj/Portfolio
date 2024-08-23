@@ -74,11 +74,13 @@ const FloatingDockMobile = ({
                   href={item.href}
                   key={item.title}
                   onClick={handleLinkClick}
-                  className=" h-12 w-12 bg-btn-gradient rounded-full flex items-center justify-center"
+                  className=" h-14 w-14 border-gray-400 border  bg-black shadow-white rounded-full flex items-center justify-center shadow-inner-md "
                 >
                   <div
-                    className={`h-6 w-6  ${
-                      pathname.endsWith(item.href) ? "text-white" : "text-black"
+                    className={`h-7 w-7   ${
+                      pathname.endsWith(item.href)
+                        ? "text-purple-500"
+                        : "text-white"
                     }`}
                   >
                     {item.icon}
@@ -91,7 +93,7 @@ const FloatingDockMobile = ({
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className="h-12 w-12 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center"
+        className="h-14 w-14 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center"
       >
         <motion.div
           animate={{

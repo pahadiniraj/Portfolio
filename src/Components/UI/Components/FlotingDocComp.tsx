@@ -19,7 +19,7 @@ export function FloatingDockDemo() {
 
     {
       title: "About",
-      icon: <IconTerminal2 className="h-full w-full " />,
+      icon: <IconTerminal2 className="h-full w-full" />,
       href: "/about",
     },
     {

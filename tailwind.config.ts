@@ -11,6 +11,7 @@ const config: Config = {
     extend: {
       boxShadow: {
         custom: "1px 0 8px white",
+        "inner-md": "inset 4px 2px 7px rgba(0, 0, 0, 0.5)",
       },
       colors: {
         primary: "#1D4ED8",
@@ -41,8 +42,7 @@ const config: Config = {
         "6xl": "4rem",
       },
       backgroundImage: {
-        "btn-gradient":
-          "linear-gradient(to bottom left, #59C173, #a17fe0, #5D26C1)",
+        "btn-gradient": "linear-gradient(to bottom left, #614385,  #516395)",
       },
       backgroundClip: {
         text: "text",
