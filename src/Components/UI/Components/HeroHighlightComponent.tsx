@@ -3,9 +3,10 @@ import { HeroHighlight, Highlight } from "../Helper/HeroHighlight";
 
 interface HeroHighlightDemoProps {
   text: string;
+  className?: string;
 }
 
-export function HeroHighlightDemo({ text }: HeroHighlightDemoProps) {
+export function HeroHighlightDemo({ text, className }: HeroHighlightDemoProps) {
   return (
     <HeroHighlight>
       <motion.h1
@@ -23,7 +24,9 @@ export function HeroHighlightDemo({ text }: HeroHighlightDemoProps) {
         }}
         className=" font-bold text-neutral-700 dark:text-white   "
       >
-        <Highlight className="text-black dark:text-white md:text-4xl text-2xl p-1">
+        <Highlight
+          className={`text-black dark:text-white md:text-3xl text-2xl p-1 ${className}`}
+        >
           {text}
         </Highlight>
       </motion.h1>

@@ -30,21 +30,9 @@ export const WebDev = [
     name: "Portfolio",
     description: "Hello From the new world",
   },
-  {
-    image: img5,
-    category: "graphicdesign",
-    name: "Portfolio",
-    description: "Hello From the new world",
-  },
 
   {
     image: img4,
-    category: "digitalmarketing",
-    name: "Portfolio",
-    description: "Hello From the new world",
-  },
-  {
-    image: img5,
     category: "digitalmarketing",
     name: "Portfolio",
     description: "Hello From the new world",

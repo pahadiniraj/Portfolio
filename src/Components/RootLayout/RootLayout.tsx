@@ -19,7 +19,7 @@ const RootLayoutClient = ({ children }: { children: React.ReactNode }) => {
             exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
             transition={{ type: "spring", stiffness: 250, damping: 40 }}
           >
-            <div className="rounded-[50px] flex justify-center items-center shadow-custom w-[900px] h-[390px]  bg-black  ">
+            <div className="rounded-[50px] flex justify-center shadow-custom w-[900px] h-[390px]  bg-black  ">
               {children}
             </div>
           </motion.div>
