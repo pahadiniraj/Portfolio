@@ -1,8 +1,7 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import { WebDev } from "./PortfolioData";
 import Button from "../Button/Button";
-import Image from "next/image";
 import AnimatedPortfolio from "./AnimatedPortfolio";
 
 const Portfolio: React.FC = () => {

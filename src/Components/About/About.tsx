@@ -13,6 +13,7 @@ const About = () => {
           src={profile}
           alt="Niraj Pahadi Photo"
           className="w-full rounded-3xl md:mr-8"
+          priority
         />
       </div>
       <div className=" md:hidden order-2  p-2">

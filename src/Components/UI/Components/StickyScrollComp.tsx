@@ -17,6 +17,7 @@ const content = [
           src={img1}
           className="h-full w-full  object-cover rounded-md "
           alt="Scalable Approach"
+          priority
         />
       </div>
     ),
@@ -31,6 +32,7 @@ const content = [
           src={img2}
           className="h-full w-full  object-cover rounded-md "
           alt="Scalable Approach"
+          priority
         />
       </div>
     ),
@@ -45,6 +47,7 @@ const content = [
           src={img3}
           className="h-full w-full  object-cover rounded-md "
           alt="Scalable Approach"
+          priority
         />
       </div>
     ),
@@ -59,6 +62,7 @@ const content = [
           src={img4}
           className="h-full w-full  object-cover rounded-md "
           alt="Scalable Approach"
+          priority
         />
       </div>
     ),
@@ -73,6 +77,7 @@ const content = [
           src={img5}
           className="h-full w-full  object-right rounded-md "
           alt="Scalable Approach"
+          priority
         />
       </div>
     ),
@@ -80,7 +85,7 @@ const content = [
 ];
 export function StickyScrollRevealDemo() {
   return (
-    <div className=" px-3 py-5 w-full ">
+    <div className=" px-3 py-5 w-full  ">
       <StickyScroll content={content} />
     </div>
   );

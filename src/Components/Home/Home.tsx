@@ -17,6 +17,7 @@ const HomeComponent = () => {
           src={profile}
           alt="Niraj Pahadi Photo"
           className="w-full rounded-3xl md:ml-12 "
+          priority
         />
       </div>
       <div className="md:w-3/5 order-2 md:order-1 pl-4  md:pl-0 flex flex-col gap-4 md:gap-6 justify-center ">

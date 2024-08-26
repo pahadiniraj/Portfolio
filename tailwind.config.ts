@@ -11,7 +11,7 @@ const config: Config = {
     extend: {
       boxShadow: {
         custom: "1px 0 8px white",
-        "inner-md": "inset 4px 2px 7px rgba(0, 0, 0, 0.5)",
+        "inner-md": "inset 4px 2px 5px rgba(0, 0, 0, 0.5)",
       },
       colors: {
         primary: "#1D4ED8",

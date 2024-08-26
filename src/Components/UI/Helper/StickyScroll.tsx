@@ -48,26 +48,13 @@ export const StickyScroll = ({
   });
 
   const backgroundColors = ["#000000"];
-  const linearGradients = [
-    "linear-gradient(to bottom right, #06b6d4, #10b981)",
-    "linear-gradient(to bottom right, #ec4899, #6366f1)",
-    "linear-gradient(to bottom right, #f97316, #f59e0b)",
-  ];
-
-  const [backgroundGradient, setBackgroundGradient] = useState(
-    linearGradients[0]
-  );
-
-  useEffect(() => {
-    setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
-  }, [activeCard]);
 
   return (
     <motion.div
       animate={{
         backgroundColor: backgroundColors[activeCard % backgroundColors.length],
       }}
-      className="md:max-h-[300px] max-h-[450px] overflow-auto md:scrollbar-hide overflow-y-auto flex justify-center relative space-x-10 rounded-md border-white md:border-none"
+      className="md:max-h-[300px] max-h-[520px] overflow-auto md:scrollbar-hide overflow-y-auto flex justify-center relative space-x-10 rounded-md border-white md:border-none"
       ref={ref}
     >
       <div className="div relative flex px-4 w-full">
@@ -75,7 +62,7 @@ export const StickyScroll = ({
           {content.map((item, index) => (
             <div
               key={item.title + index}
-              className="mb-40 mt-5 md:mb-20 md:mt-10"
+              className="mb-52 mt-5 md:mb-20 md:mt-10"
             >
               <motion.h2
                 initial={{ opacity: 0 }}
@@ -101,10 +88,9 @@ export const StickyScroll = ({
         </div>
       </div>
       <div
-        style={{ background: backgroundGradient }}
         className={cn(
-          "md:h-60 md:w-80 md:rounded-md bg-white md:sticky md:top-5 md:overflow-hidden",
-          "fixed w-5/6 h-60 rounded-md bottom-12 right-10",
+          "md:h-60 md:w-80 md:rounded-md bg-transparent md:sticky md:top-5 md:overflow-hidden",
+          "fixed w-full h-60 rounded-md bottom-5 pr-10",
           contentClassName
         )}
       >
@@ -127,7 +113,7 @@ export const StickyScroll = ({
         >
           <div className="text-xxs flex justify-center flex-col items-center gap-1">
             <BsArrowUp className="text-white text-xl" />
-            <p>Scroll Above Image </p>
+            <p>Scroll Above Image</p>
           </div>
         </motion.div>
       )}

@@ -2,6 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import Button from "../Button/Button";
 import Image, { StaticImageData } from "next/image";
+import { useDispatch } from "react-redux";
+import { setOpenPortfolio } from "../Redux/Slice/popupSlice";
 
 interface AnimatedPortfolioProps {
   filterSkill: () => {
@@ -15,6 +17,7 @@ interface AnimatedPortfolioProps {
 const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
   filterSkill,
 }) => {
+  const dispatch = useDispatch();
   // Animation variants for each item
   const itemVariants = {
     hidden: { opacity: 0, x: 50 },
@@ -46,11 +49,15 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
           variants={itemVariants}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          <Button className="w-full rounded-2xl p-3 bg-gray-100">
+          <Button
+            className="w-full rounded-2xl p-3 bg-gray-100"
+            onClick={() => dispatch(setOpenPortfolio(true))}
+          >
             <Image
               src={value.image}
               alt="Niraj Portfolio"
               className="w-full rounded-2xl"
+              priority
             />
           </Button>
         </motion.div>
