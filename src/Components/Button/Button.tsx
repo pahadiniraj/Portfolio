@@ -6,8 +6,7 @@ interface buttonProps {
   disabled?: boolean;
   type?: string;
   children?: React.ReactNode;
-  text?: string;
-  
+  text?: string;  
 }
 
 const Button: React.FC<buttonProps> = ({
@@ -15,6 +14,7 @@ const Button: React.FC<buttonProps> = ({
   className,
   children,
   text,
+  type,
 }) => {
   return (
     <button

@@ -1,30 +1,24 @@
 "use client";
-import { registrationSchema } from "@/Utils/YupSchema/loginAndRegister";
+import { loginSchema } from "@/Utils/YupSchema/loginAndRegister";
 import Button from "../Button/Button";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 
-const Register: React.FC = () => {
-  interface RegistrationFormValues {
-    firstName: string;
-    lastName: string;
+const Login: React.FC = () => {
+  interface LoginFormValues {
     email: string;
     password: string;
-    confirmPassword: string;
     acceptTermAndCondition: boolean;
   }
 
-  const initialValues: RegistrationFormValues = {
-    firstName: "",
-    lastName: "",
+  const initialValues: LoginFormValues = {
     email: "",
     password: "",
-    confirmPassword: "",
     acceptTermAndCondition: false,
   };
 
-  const handleSubmit = (values: RegistrationFormValues) => {
+  const handleSubmit = (values: LoginFormValues) => {
     console.log(values);
   };
 
@@ -34,52 +28,25 @@ const Register: React.FC = () => {
 
   return (
     <>
-      <div className="md:w-2/6 w-full h-full md:h-[520px] mx-auto pt-2 px-4 bg-gray-800 md:rounded-lg shadow-lg flex justify-start items-center flex-col  md:overflow-x-hidden md:overflow-y-auto scrollbar-hide ">
-        <div className="flex justify-center flex-col items-center w-full mb-4  ">
-          <h1 className="text-xl font-bold mb-1">Niraj's Portfolio</h1>
-          <p className="text-center text-xxs ">
-            Welcome to Niraj's Portfolio Sign up to stay updated with my latest
-            projects. Fill in your details and join the creative journey!
-          </p>
+      <div className="md:w-2/6 w-full h-full md:h-[450px] mx-auto  px-4 bg-gray-800 md:rounded-lg shadow-lg flex justify-center py-4 items-center flex-col  md:overflow-x-hidden md:overflow-y-auto scrollbar-hide ">
+        <div className="flex justify-center w-full  ">
+          <div className="flex justify-center flex-col items-center w-full mb-4 gap-1  ">
+            <h1 className="text-xl font-bold mb-1">Niraj's Portfolio</h1>
+            <p className="text-center text-xs ">
+              Welcome to Niraj's Portfolio Sign up to stay updated with my
+              latest projects. Fill in your details and join the creative
+              journey!
+            </p>
+          </div>
         </div>
         <Formik
           initialValues={initialValues}
-          validationSchema={registrationSchema}
+          validationSchema={loginSchema}
           onSubmit={handleSubmit}
         >
           {({ isValid }) => (
-            <Form className="flex flex-col ">
-              <div className="space-y-4">
-                <div className="flex gap-4">
-                  <div className="relative flex-1">
-                    <Field
-                      type="text"
-                      name="firstName"
-                      className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
-                      placeholder="First Name"
-                      autoComplete="firstName"
-                    />
-                    <ErrorMessage
-                      name="firstName"
-                      component="div"
-                      className="text-red-500 text-xxs ml-1"
-                    />
-                  </div>
-                  <div className="relative flex-1">
-                    <Field
-                      type="text"
-                      name="lastName"
-                      className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
-                      placeholder="Last Name"
-                      autoComplete="lastName"
-                    />
-                    <ErrorMessage
-                      name="lastName"
-                      component="div"
-                      className="text-red-500 text-xxs ml-1"
-                    />
-                  </div>
-                </div>
+            <Form className="flex flex-col mt-8 md:mt-4 w-full">
+              <div className="space-y-4 w-full ">
                 <div className="relative">
                   <Field
                     type="email"
@@ -108,20 +75,7 @@ const Register: React.FC = () => {
                     className="text-red-500 text-xxs ml-1"
                   />
                 </div>
-                <div className="relative">
-                  <Field
-                    type="password"
-                    name="confirmPassword"
-                    className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
-                    placeholder="Confirm Password"
-                    autoComplete="confirmPassword"
-                  />
-                  <ErrorMessage
-                    name="confirmPassword"
-                    component="div"
-                    className="text-red-500 text-xxs ml-1"
-                  />
-                </div>
+
                 <div className="flex flex-col   text-white">
                   <div className="flex  gap-2 items-center ml-1">
                     <Field
@@ -156,7 +110,6 @@ const Register: React.FC = () => {
           )}
         </Formik>
         <Button
-          type="button"
           className="w-full flex justify-center items-center gap-4 bg-white mt-4 rounded-3xl p-2"
           onClick={loginGoogle}
         >
@@ -168,4 +121,4 @@ const Register: React.FC = () => {
   );
 };
 
-export default Register;
+export default Login;

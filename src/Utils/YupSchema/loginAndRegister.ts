@@ -7,6 +7,9 @@ const loginSchema = Yup.object().shape({
   password: Yup.string()
     .min(6, "Password must be at least 6 characters")
     .required("Password is required"),
+  acceptTermAndCondition: Yup.boolean()
+    .oneOf([true], "You must accept the terms and conditions")
+    .required("Accepting terms and conditions is required"),
 });
 
 const registrationSchema = Yup.object().shape({
