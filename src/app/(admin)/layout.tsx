@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
+import AdminLayoutClient from "@/Components/AdminRootLayout/AdminRootLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} `}>
-        <main className="bg-black h-screen flex justify-center items-center">
-          {children}
-        </main>
+        <AdminLayoutClient>
+          <main className="bg-black h-screen flex justify-center items-center">
+            {children}
+          </main>
+        </AdminLayoutClient>
       </body>
     </html>
   );
