@@ -1,7 +1,10 @@
 import React from "react";
 
 const page = () => {
-  return <div>i'm login</div>;
+  return <>
+  
+  
+  </>;
 };
 
 export default page;
