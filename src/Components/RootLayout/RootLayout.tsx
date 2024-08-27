@@ -5,6 +5,17 @@ import { motion, AnimatePresence } from "framer-motion";
 import useMediaQuery from "../useMediaQuery/useMedia";
 import store from "@/Components/Redux/store";
 import { Provider } from "react-redux";
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+
+const customTheme = extendTheme({
+  styles: {
+    global: {
+      body: {
+        color: "white",
+      },
+    },
+  },
+});
 
 const RootLayoutClient = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -12,33 +23,35 @@ const RootLayoutClient = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <Provider store={store}>
-        {isMd ? (
-          <AnimatePresence mode="wait">
+      <ChakraProvider theme={customTheme}>
+        <Provider store={store}>
+          {isMd ? (
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={pathname}
+                initial={{ opacity: 0, x: "-100vw" }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
+                transition={{ type: "spring", stiffness: 250, damping: 40 }}
+              >
+                <div className="rounded-[50px] flex justify-center shadow-custom w-[900px] h-[390px]  bg-black  ">
+                  {children}
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          ) : (
             <motion.div
               key={pathname}
               initial={{ opacity: 0, x: "-100vw" }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
               transition={{ type: "spring", stiffness: 250, damping: 40 }}
+              className="flex justify-center items-center  w-full  bg-black"
             >
-              <div className="rounded-[50px] flex justify-center shadow-custom w-[900px] h-[390px]  bg-black  ">
-                {children}
-              </div>
+              {children}
             </motion.div>
-          </AnimatePresence>
-        ) : (
-          <motion.div
-            key={pathname}
-            initial={{ opacity: 0, x: "-100vw" }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ type: "spring", stiffness: 250, damping: 40 }}
-            className="flex justify-center items-center  w-full  bg-black"
-          >
-            {children}
-          </motion.div>
-        )}
-      </Provider>
+          )}
+        </Provider>
+      </ChakraProvider>
     </>
   );
 };
