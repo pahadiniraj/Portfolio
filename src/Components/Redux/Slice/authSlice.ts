@@ -4,13 +4,13 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 // Define the shape of your state
 interface AuthState {
   user: string;
-  token: string | null;
+  token: string;
 }
 
 // Initial state with the correct type
 const initialState: AuthState = {
   user: "",
-  token: null,
+  token: "",
 };
 
 const authSlice = createSlice({
@@ -21,12 +21,13 @@ const authSlice = createSlice({
       state,
       action: PayloadAction<{ user: string; token: string }>
     ) => {
+      console.log("Setting token:", action.payload.token);
       state.user = action.payload.user;
       state.token = action.payload.token;
     },
     logout: (state) => {
       state.user = "";
-      state.token = null;
+      state.token = "";
     },
   },
 });

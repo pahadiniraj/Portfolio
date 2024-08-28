@@ -3,7 +3,6 @@ import React from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { Provider } from "react-redux";
 import store from "../Redux/store";
-import RequireTokenAuth from "@/Services/RequireTokenAuth";
 
 const customTheme = extendTheme({
   styles: {
@@ -15,7 +14,7 @@ const customTheme = extendTheme({
   },
 });
 
-const AdminLayoutClient = ({ children }: { children: React.ReactNode }) => {
+const AuthLayoutClient = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Provider store={store}>
@@ -25,4 +24,4 @@ const AdminLayoutClient = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default AdminLayoutClient;
+export default AuthLayoutClient;
