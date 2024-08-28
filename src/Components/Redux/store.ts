@@ -1,14 +1,15 @@
 import { configureStore } from "@reduxjs/toolkit";
-import popupSlice from "./Slice/popupSlice";
-import { api } from "@/Services/apiSlice";
+import { apiSlice } from "@/Services/apiSlice";
+import authReducer from "../Redux/Slice/authSlice";
 
 const store = configureStore({
   reducer: {
-    popup: popupSlice,
-    [api.reducerPath]: api.reducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
+    auth: authReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(api.middleware),
+    getDefaultMiddleware().concat(apiSlice.middleware),
+  devTools: true,
 });
 
 export type RootState = ReturnType<typeof store.getState>;

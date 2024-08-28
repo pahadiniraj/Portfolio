@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { ApiProvider } from "@reduxjs/toolkit/query/react";
-import { api } from "@/Services/apiSlice";
+import { Provider } from "react-redux";
 
 const customTheme = extendTheme({
   styles: {
@@ -17,9 +16,8 @@ const customTheme = extendTheme({
 const AdminLayoutClient = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <ChakraProvider theme={customTheme}>
-        <ApiProvider api={api}>{children}</ApiProvider>
-      </ChakraProvider>
+    
+      <ChakraProvider theme={customTheme}>{children}</ChakraProvider>
     </>
   );
 };
