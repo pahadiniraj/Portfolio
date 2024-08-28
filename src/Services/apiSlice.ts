@@ -4,7 +4,6 @@ import {
   BaseQueryFn,
   FetchBaseQueryError,
   FetchArgs,
-  BaseQueryApi,
 } from "@reduxjs/toolkit/query/react";
 import { setCredentials, logout } from "@/Components/Redux/Slice/authSlice";
 import { RootState } from "@/Components/Redux/store";

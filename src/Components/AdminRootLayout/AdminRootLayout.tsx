@@ -2,6 +2,7 @@
 import React from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { Provider } from "react-redux";
+import store from "../Redux/store";
 
 const customTheme = extendTheme({
   styles: {
@@ -16,8 +17,9 @@ const customTheme = extendTheme({
 const AdminLayoutClient = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-    
-      <ChakraProvider theme={customTheme}>{children}</ChakraProvider>
+      <Provider store={store}>
+        <ChakraProvider theme={customTheme}>{children}</ChakraProvider>
+      </Provider>
     </>
   );
 };
