@@ -16,14 +16,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} `}>
-        <AuthLayoutClient>
-          <main className="bg-black h-screen flex justify-center items-center">
-            {children}
-          </main>
-        </AuthLayoutClient>
-      </body>
-    </html>
+    <div className="bg-black h-screen flex justify-center items-center">
+      {children}
+    </div>
   );
 }

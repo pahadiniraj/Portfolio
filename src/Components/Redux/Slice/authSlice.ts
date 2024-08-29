@@ -1,42 +1,40 @@
 // authSlice.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../store";
 
 // Define the shape of your state
-interface AuthState {
-  user: string;
-  token: string;
+export interface AuthState {
+  user: string | null;
+  token: string | null;
 }
 
 // Initial state with the correct type
 const initialState: AuthState = {
-  user: "",
-  token: "",
+  user: null,
+  token: null,
 };
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setCredentials: (
+    setUser: (
       state,
       action: PayloadAction<{ user: string; token: string }>
     ) => {
-      console.log("Setting token:", action.payload.token);
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          user: action.payload.user,
+          token: action.payload.token,
+        })
+      );
       state.user = action.payload.user;
       state.token = action.payload.token;
-    },
-    logout: (state) => {
-      state.user = "";
-      state.token = "";
     },
   },
 });
 
-export const { setCredentials, logout } = authSlice.actions;
+export const selectAuth = (state: RootState) => state.auth;
+export const { setUser } = authSlice.actions;
 export default authSlice.reducer;
-
-// Selector functions
-export const selectCurrentUser = (state: { auth: AuthState }) =>
-  state.auth.user;
-export const selectCurrentToken = (state: { auth: AuthState }) =>
-  state.auth.token;

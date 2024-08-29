@@ -1,25 +1,15 @@
 "use client";
 import React from "react";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { Provider } from "react-redux";
 import store from "../Redux/store";
-
-const customTheme = extendTheme({
-  styles: {
-    global: {
-      body: {
-        color: "white",
-      },
-    },
-  },
-});
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AuthLayoutClient = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <Provider store={store}>
-        <ChakraProvider theme={customTheme}>{children}</ChakraProvider>
-      </Provider>
+      <ToastContainer />
+      <Provider store={store}>{children}</Provider>
     </>
   );
 };

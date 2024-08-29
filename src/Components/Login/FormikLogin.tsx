@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { loginSchema } from "@/Utils/YupSchema/loginAndRegister";
-import { useLoginMutation } from "@/Services/authApiSlice";
+import { useLoginUserMutation } from "@/Services/AuthApi";
 import { useRouter } from "next/navigation";
 import ClipLoader from "react-spinners/ClipLoader";
-import { setCredentials } from "../Redux/Slice/authSlice";
-import { useDispatch } from "react-redux";
-import store from "../Redux/store";
+import { toast } from "react-toastify";
+import { useEffect } from "react";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { useAppDispatch } from "../Redux/hooks";
+import { setUser } from "../Redux/Slice/authSlice";
 
 const FormikLogin = () => {
   interface LoginFormValues {
@@ -20,14 +22,23 @@ const FormikLogin = () => {
     password: "",
     acceptTermAndCondition: false,
   };
-  const dispatch = useDispatch();
   const router = useRouter();
-  const [login, { isLoading }] = useLoginMutation();
+  const dispatch = useAppDispatch();
+  const [
+    loginUser,
+    {
+      data: loginData,
+      isSuccess: isLoginSucess,
+      isError: isLoginError,
+      error: loginError,
+      isLoading: isLoginLoading,
+    },
+  ] = useLoginUserMutation();
 
-  // Define state for loader color
+  console.log(loginData);
+
   const [color] = useState("#000000");
 
-  // Define custom CSS for the loader
   const override = {
     display: "block",
     margin: "0 auto",
@@ -36,14 +47,11 @@ const FormikLogin = () => {
   const handleSubmit = async (values: LoginFormValues) => {
     const { acceptTermAndCondition, ...loginValues } = values;
     try {
-      const userData = await login(loginValues).unwrap();
-      const { message, data } = userData;
-      const { user, accessToken: token } = data;
-      console.log(userData);
-      dispatch(setCredentials({ user, token }));
-      console.log("State after Dispatch:", store.getState());
-      // console.log(data);
-      // router.push("/admin");
+      await loginUser(loginValues);
+      // dispatch(setUser({token:}))
+      toast.success("Login successful!");
+      //
+      router.push("/admin");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -114,14 +122,14 @@ const FormikLogin = () => {
                   : "bg-gray-600 text-gray-400 cursor-not-allowed"
               } rounded-2xl py-2 mt-4 transition-all duration-300`}
               type="submit"
-              disabled={!isValid || isLoading}
+              disabled={!isValid || isLoginLoading}
             >
-              {isLoading ? (
+              {isLoginLoading ? (
                 <ClipLoader
-                  color={color} // Loader color
-                  loading={isLoading} // Controls visibility of the loader
-                  cssOverride={override} // Custom styles for the loader
-                  size={25} // Size of the loader
+                  color={color}
+                  loading={isLoginLoading}
+                  cssOverride={override}
+                  size={25}
                   aria-label="Loading Spinner"
                   data-testid="loader"
                 />

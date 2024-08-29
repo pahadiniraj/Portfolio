@@ -19,7 +19,9 @@ const AdminLayoutClient = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <Provider store={store}>
+        {/* <RequireTokenAuth> */}
         <ChakraProvider theme={customTheme}>{children}</ChakraProvider>
+        {/* </RequireTokenAuth> */}
       </Provider>
     </>
   );

@@ -7,7 +7,7 @@ import React, { useEffect } from "react";
 
 const RequireTokenAuth = ({ children }: { children: React.ReactNode }) => {
   const token = useSelector(selectCurrentToken);
-  console.log(token);
+  console.log("Current Token", token);
   const router = useRouter();
 
   useEffect(() => {
