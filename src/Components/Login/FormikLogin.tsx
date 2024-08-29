@@ -35,9 +35,8 @@ const FormikLogin = () => {
     },
   ] = useLoginUserMutation();
 
-  console.log(loginData);
-
   const [color] = useState("#000000");
+  console.log(loginData);
 
   const override = {
     display: "block",
@@ -46,15 +45,10 @@ const FormikLogin = () => {
 
   const handleSubmit = async (values: LoginFormValues) => {
     const { acceptTermAndCondition, ...loginValues } = values;
+    const { email, password } = loginValues;
     try {
-      await loginUser(loginValues);
-      // dispatch(setUser({token:}))
-      // if (isLoginSucess) {
-      //   toast.success("Login successful!");
-      //   router.push("/admin");
-      // }
-
-      //
+      const response = await loginUser({ email, password });
+      console.log(response);
     } catch (error) {
       console.error("Error:", error);
     }
@@ -62,19 +56,17 @@ const FormikLogin = () => {
 
   useEffect(() => {
     if (isLoginSucess) {
-      toast.success("Login successful!");
-      if (loginData) {
-        dispatch(setUser({ user: loginData.user, token: loginData.token })); // assuming loginData has a token property
-      }
-      router.push("/admin");
-    } else if (isLoginError) {
-      if ((loginError as FetchBaseQueryError)?.status === 401) {
-        toast.error("Invalid credentials");
-      } else {
-        toast.error("Login failed. Please try again.");
-      }
+      toast.success("Logged In Successfully!");
+      dispatch(
+        setUser({
+          accessToken: loginData.data.accessToken,
+          refreshToken: loginData.data.refreshToken,
+          user: loginData.data.user,
+        })
+      );
+      // router.push("/dashboard");
     }
-  }, [isLoginSucess, isLoginError, loginData, loginError, dispatch, router]);
+  }, [isLoginSucess]);
 
   return (
     <div>
