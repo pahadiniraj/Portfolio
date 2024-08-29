@@ -49,13 +49,32 @@ const FormikLogin = () => {
     try {
       await loginUser(loginValues);
       // dispatch(setUser({token:}))
-      toast.success("Login successful!");
+      // if (isLoginSucess) {
+      //   toast.success("Login successful!");
+      //   router.push("/admin");
+      // }
+
       //
-      router.push("/admin");
     } catch (error) {
       console.error("Error:", error);
     }
   };
+
+  useEffect(() => {
+    if (isLoginSucess) {
+      toast.success("Login successful!");
+      if (loginData) {
+        dispatch(setUser({ user: loginData.user, token: loginData.token })); // assuming loginData has a token property
+      }
+      router.push("/admin");
+    } else if (isLoginError) {
+      if ((loginError as FetchBaseQueryError)?.status === 401) {
+        toast.error("Invalid credentials");
+      } else {
+        toast.error("Login failed. Please try again.");
+      }
+    }
+  }, [isLoginSucess, isLoginError, loginData, loginError, dispatch, router]);
 
   return (
     <div>
