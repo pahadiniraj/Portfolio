@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import ClipLoader from "react-spinners/ClipLoader";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { useAppDispatch } from "../Redux/hooks";
 import { setUser } from "../Redux/Slice/authSlice";
 

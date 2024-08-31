@@ -92,9 +92,15 @@ const authSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
     },
+    logout: (state) => {
+      localStorage.removeItem("user");
+      state.user = null;
+      state.accessToken = null;
+      state.refreshToken = null;
+    },
   },
 });
 
 export const selectAuth = (state: RootState) => state.auth;
-export const { setUser } = authSlice.actions;
+export const { setUser, logout } = authSlice.actions;
 export default authSlice.reducer;

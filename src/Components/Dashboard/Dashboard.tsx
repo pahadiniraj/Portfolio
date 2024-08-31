@@ -1,13 +1,25 @@
+"use client";
 import React from "react";
-import { useAppSelector } from "../Redux/hooks";
-import { selectAuth } from "../Redux/Slice/authSlice";
+import { useAppDispatch, useAppSelector } from "../Redux/hooks";
+import { logout, selectAuth } from "../Redux/Slice/authSlice";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Dashboard = () => {
   const { user } = useAppSelector(selectAuth);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
 
   if (!user) {
     return <div>Loading...</div>; // Handle case where user data is not yet available
   }
+
+  const handleLogout = () => {
+    dispatch(logout());
+    router.push("/login");
+    toast.success("user logged out");
+  };
 
   return (
     <div className="dashboard-container p-4">
@@ -55,7 +67,7 @@ const Dashboard = () => {
       </div>
 
       <div className="other-details mt-6">
-        {/* Add more sections or details here as needed */}
+        <button onClick={handleLogout}>Logout</button>
       </div>
     </div>
   );

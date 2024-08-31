@@ -1,23 +1,31 @@
 "use client";
-
-import { selectCurrentToken } from "@/Components/Redux/Slice/authSlice";
-import { useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import React, { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { selectAuth } from "@/Components/Redux/Slice/authSlice";
+import { toast } from "react-toastify";
 
-const RequireTokenAuth = ({ children }: { children: React.ReactNode }) => {
-  const token = useSelector(selectCurrentToken);
-  console.log("Current Token", token);
+const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
+  const { accessToken } = useSelector(selectAuth);
   const router = useRouter();
+  const [initialLoad, setInitialLoad] = useState(true);
 
   useEffect(() => {
-    if (!token) {
-      router.push("/login"); // Redirect to login page if token doesn't exist
+    if (initialLoad) {
+      if (!accessToken) {
+        toast.error("Access not granted. Please login to get access.");
+        router.push("/login");
+      }
+      setInitialLoad(false);
     }
-  }, [token, router]);
+  }, [accessToken, router, initialLoad]);
 
-  // Render children only if token exists
-  return <>{token && children}</>;
+  if (!accessToken && !initialLoad) {
+    // If no token, render nothing (redirect will happen)
+    return null;
+  }
+
+  return <>{children}</>;
 };
 
-export default RequireTokenAuth;
+export default PrivateRoute;

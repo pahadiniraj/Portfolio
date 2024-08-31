@@ -37,8 +37,8 @@ export default function RootLayout({
             <ChakraProvider theme={customTheme}>
               <HigherOrderComponent>{children}</HigherOrderComponent>
             </ChakraProvider>
+            <ContainerWrapper />
           </Provider>
-          <ContainerWrapper />
         </main>
       </body>
     </html>

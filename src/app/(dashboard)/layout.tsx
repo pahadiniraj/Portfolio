@@ -1,8 +1,8 @@
 import { Inter } from "next/font/google";
 import "../globals.css";
+import PrivateRoute from "@/Services/RequireTokenAuth";
 
 const inter = Inter({ subsets: ["latin"] });
-
 
 export default function RootLayout({
   children,
@@ -11,7 +11,7 @@ export default function RootLayout({
 }) {
   return (
     <div className="bg-black w-full h-screen flex justify-center items-center">
-      {children}
+      <PrivateRoute>{children}</PrivateRoute>
     </div>
   );
 }
