@@ -1,5 +1,4 @@
 "use client";
-
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -10,6 +9,8 @@ import ContainerWrapper from "@/Components/ContainerWrapper";
 import { Provider } from "react-redux";
 import store from "@/Components/Redux/store";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { useAppDispatch } from "@/Components/Redux/hooks";
+import HigherOrderComponent from "@/Components/HigherOrderComp/HigherOrderComp";
 
 const customTheme = extendTheme({
   styles: {
@@ -33,7 +34,9 @@ export default function RootLayout({
       <body className={`${inter.className} `}>
         <main className="bg-transparent  h-screen flex justify-center items-center">
           <Provider store={store}>
-            <ChakraProvider theme={customTheme}>{children}</ChakraProvider>
+            <ChakraProvider theme={customTheme}>
+              <HigherOrderComponent>{children}</HigherOrderComponent>
+            </ChakraProvider>
           </Provider>
           <ContainerWrapper />
         </main>

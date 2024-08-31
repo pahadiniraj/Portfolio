@@ -43,9 +43,20 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
+interface User {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  avatar?: string;
+  role: string;
+  createdAt: string;
+  updatedAt: string;
+  __v?: number;
+}
 // Define the shape of your state
 export interface AuthState {
-  user: string | null;
+  user: User | null;
   accessToken: string | null;
   refreshToken: string | null;
 }
@@ -64,7 +75,7 @@ const authSlice = createSlice({
     setUser: (
       state,
       action: PayloadAction<{
-        user: string;
+        user: User;
         accessToken: string;
         refreshToken: string;
       }>

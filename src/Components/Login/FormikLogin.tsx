@@ -64,7 +64,7 @@ const FormikLogin = () => {
           user: loginData.data.user,
         })
       );
-      // router.push("/dashboard");
+      router.push("/dashboard");
     }
   }, [isLoginSucess]);
 
