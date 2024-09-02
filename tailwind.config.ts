@@ -59,9 +59,6 @@ const config: Config = {
           /* Hide scrollbar for Firefox, IE, Edge */
           scrollbarWidth: "none",
           /* Hide scrollbar for Chrome, Safari and Opera */
-          "&::-webkit-scrollbar": {
-            display: "none",
-          },
         },
       });
     },

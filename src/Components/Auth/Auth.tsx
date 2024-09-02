@@ -6,7 +6,10 @@ import { AnimatePresence } from "framer-motion";
 const Auth = () => {
   return (
     <>
-      <Register />
+      <div className="flex justify-center items-center">
+        <Login />
+        <Register />
+      </div>
     </>
   );
 };

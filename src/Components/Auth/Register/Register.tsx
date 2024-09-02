@@ -4,15 +4,19 @@ import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import FormikRegister from "./FormikRegister";
 import { AnimatePresence, motion } from "framer-motion";
+import { TiArrowBack } from "react-icons/ti";
+import { useRouter } from "next/navigation";
 
 const Register: React.FC = () => {
   const loginGoogle = () => {
     window.open("http://localhost:8000/auth/google/callback", "_self");
   };
 
+  const router = useRouter();
+
   return (
     <>
-      <div className=" w-full h-screen flex justify-center items-center ">
+      <div className=" w-full flex justify-center items-center bg-gray-900 md:bg-transparent h-full ">
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -23,10 +27,10 @@ const Register: React.FC = () => {
             stiffness: 300,
             damping: 20,
           }}
-          className=" inset-0 w-2/6  z-10 bg-opacity-30 backdrop-blur-sm  "
+          className=" inset-0 md:w-2/6  md:bg-gray-900 rounded-2xl   z-10 bg-opacity-30 backdrop-blur-sm  "
         >
-          <div className=" p-4 bg-gray-800 rounded-xl max-h-[90vh] overflow-y-auto  ">
-            <div className="flex justify-center flex-col items-center w-full  ">
+          <div className=" p-4  rounded-xl max-h-[90vh] overflow-y-auto  relative ">
+            <div className="flex justify-center flex-col items-center w-full   mb-2">
               <h1 className="text-xl font-bold mb-1">Niraj's Portfolio</h1>
               <p className="text-center text-xxs ">
                 Welcome to Niraj's Portfolio Sign up to stay updated with my
@@ -43,6 +47,12 @@ const Register: React.FC = () => {
               <FcGoogle className="text-3xl" />
               <p className="text-black font-semibold">Login With Google</p>
             </Button>
+            <button
+              className="absolute top-2 right-2 transition duration-300 ease-linear active:scale-90"
+              onClick={() => router.push("/login")}
+            >
+              <TiArrowBack className="text-2xl" />
+            </button>
           </div>
         </motion.div>
       </div>
