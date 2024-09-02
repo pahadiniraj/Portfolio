@@ -17,7 +17,7 @@ const Dashboard = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    router.push("/login");
+    router.push("/auth");
     toast.success("I'm gonna miss you. See ya");
   };
 

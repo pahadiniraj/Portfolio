@@ -1,11 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface PopupState {
-  setOpenPortfolio: boolean;
+  openPortfolio: boolean;
+  openRegister: boolean;
 }
 
 const initialState: PopupState = {
-  setOpenPortfolio: false,
+  openPortfolio: false,
+  openRegister: false,
 };
 
 const popupSlice = createSlice({
@@ -17,11 +19,14 @@ const popupSlice = createSlice({
         "setOpenCreate action triggered with payload:",
         action.payload
       );
-      state.setOpenPortfolio = action.payload;
+      state.openPortfolio = action.payload;
+    },
+    setOpenRegister: (state, action: PayloadAction<boolean>) => {
+      state.openRegister = action.payload;
     },
   },
 });
 
-export const { setOpenPortfolio } = popupSlice.actions;
+export const { setOpenPortfolio, setOpenRegister } = popupSlice.actions;
 
 export default popupSlice.reducer;

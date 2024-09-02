@@ -1,13 +1,13 @@
 "use client";
-import Button from "../Button/Button";
+import Button from "../../Button/Button";
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import FormikLogin from "./FormikLogin";
 import { useGoogleLogin } from "@react-oauth/google";
 import { googleAuth } from "@/Services/googleApi";
 import { toast } from "react-toastify";
-import { useAppDispatch } from "../Redux/hooks";
-import { setUser } from "../Redux/Slice/authSlice";
+import { useAppDispatch } from "../../Redux/hooks";
+import { setUser } from "../../Redux/Slice/authSlice";
 import { useRouter } from "next/navigation";
 
 const Login: React.FC = () => {
@@ -61,9 +61,14 @@ const Login: React.FC = () => {
           <FcGoogle className="text-3xl" />
           <p className="text-black font-semibold">Login With Google</p>
         </Button>
-        <div className="text-center mt-4 flex justify-center gap-1  text-sm">
-          <p className="font-light">Not yet Registered? </p>
-          <p className="text-purple-500 font-bold">Register</p>
+        <div className="text-center mt-4 flex justify-center gap-1  text-xs">
+          <p className="font-light">Not yet Registered ? </p>
+          <button
+            className="hover:text-purple-500 font-bold transition-colors duration-300"
+            onClick={() => router.push("/register")}
+          >
+            Register
+          </button>
         </div>
       </div>
     </>

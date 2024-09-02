@@ -1,10 +1,10 @@
-import Register from "@/Components/Register/Register";
+import Auth from "@/Components/Auth/Auth";
 import React from "react";
 
 const page = () => {
   return (
     <>
-      <Register />
+      <Auth />
     </>
   );
 };

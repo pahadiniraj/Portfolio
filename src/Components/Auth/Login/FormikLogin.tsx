@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import ClipLoader from "react-spinners/ClipLoader";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
-import { useAppDispatch } from "../Redux/hooks";
-import { setUser } from "../Redux/Slice/authSlice";
+import { useAppDispatch } from "../../Redux/hooks";
+import { setUser } from "../../Redux/Slice/authSlice";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 const FormikLogin = () => {

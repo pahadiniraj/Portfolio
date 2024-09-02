@@ -52,11 +52,6 @@ const config: Config = {
   plugins: [
     function ({ addUtilities }: PluginAPI) {
       addUtilities({
-        ".text-gradient": {
-          background: "linear-gradient(to bottom left, #00C9FF, #92FE9D)",
-          "-webkit-background-clip": "text",
-          "-webkit-text-fill-color": "transparent",
-        },
         ".text-glow": {
           textShadow: "0 0 10px rgba(255, 255, 255, 0.7)",
         },
