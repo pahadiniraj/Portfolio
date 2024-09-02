@@ -10,17 +10,18 @@ export default function HigherOrderComponent({
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      try {
-        const storedUser = JSON.parse(localStorage.getItem("user") || "null");
-        if (storedUser) {
-          dispatch(setUser(storedUser));
-        }
-      } catch (error) {
-        console.error("Failed to parse user from localStorage:", error);
-      }
+    const token = localStorage.getItem("accessToken");
+    const user = localStorage.getItem("user");
+
+    if (token && user) {
+      dispatch(
+        setUser({
+          user: JSON.parse(user),
+          accessToken: token,
+        })
+      );
     }
-  }, [dispatch]);
+  });
 
   return <div className="w-full">{children}</div>;
 }

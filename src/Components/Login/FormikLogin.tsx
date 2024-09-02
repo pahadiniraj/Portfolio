@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { useEffect } from "react";
 import { useAppDispatch } from "../Redux/hooks";
 import { setUser } from "../Redux/Slice/authSlice";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 
 const FormikLogin = () => {
   interface LoginFormValues {
@@ -21,8 +22,18 @@ const FormikLogin = () => {
     password: "",
     acceptTermAndCondition: false,
   };
+
+  interface FetchBaseQueryError {
+    status: number;
+    data?: {
+      message?: string;
+    };
+  }
   const router = useRouter();
   const dispatch = useAppDispatch();
+  const isFetchBaseQueryError = (error: any): error is FetchBaseQueryError => {
+    return error && (error as FetchBaseQueryError).status !== undefined;
+  };
   const [
     loginUser,
     {
@@ -35,7 +46,6 @@ const FormikLogin = () => {
   ] = useLoginUserMutation();
 
   const [color] = useState("#000000");
-  console.log(loginData);
 
   const override = {
     display: "block",
@@ -54,18 +64,24 @@ const FormikLogin = () => {
   };
 
   useEffect(() => {
-    if (isLoginSucess) {
-      toast.success("Logged In Successfully!");
+    if (loginData) {
+      toast.success(loginData.message);
       dispatch(
         setUser({
           accessToken: loginData.data.accessToken,
-          refreshToken: loginData.data.refreshToken,
           user: loginData.data.user,
         })
       );
       router.push("/dashboard");
     }
-  }, [isLoginSucess]);
+    if (isLoginError && loginError) {
+      if (isFetchBaseQueryError(loginError)) {
+        toast.error(loginError.data?.message);
+      } else {
+        console.log("Error:", loginError);
+      }
+    }
+  }, [loginData, loginError]);
 
   return (
     <div>

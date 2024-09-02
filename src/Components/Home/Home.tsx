@@ -27,17 +27,17 @@ const HomeComponent = () => {
           <h2 className="text-4xl font-bold ">
             {" "}
             <ReactTyped
-              strings={["I Make Web Apps", "I Make Web APIs"]}
+              strings={["I Make Web Apps", "I Make Web APIs", "I Make Music !"]}
               typeSpeed={60}
-              backSpeed={50}
+              backSpeed={65}
               loop
             />
           </h2>
           <p className="text-sm mt-3">
-            Collaborating with highly skilled professionals, Me and my team
-            deliver top-notch services. With a broad spectrum of knowledge, I'm
-            particularly inclined and focused on{" "}
-            <span className="font-bold">Software Development</span>
+            Collaborating with highly skilled professionals, I deliver top-notch
+            services alongside my team. With a broad spectrum of knowledge, I am
+            particularly inclined towards
+            <span className="font-bold ml-1">Software Development</span>
           </p>
         </section>
         <div className="flex-col gap-5 flex justify-center md:justify-start md:flex-row pb-5">

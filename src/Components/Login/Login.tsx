@@ -5,17 +5,31 @@ import { FcGoogle } from "react-icons/fc";
 import FormikLogin from "./FormikLogin";
 import { useGoogleLogin } from "@react-oauth/google";
 import { googleAuth } from "@/Services/googleApi";
+import { toast } from "react-toastify";
+import { useAppDispatch } from "../Redux/hooks";
+import { setUser } from "../Redux/Slice/authSlice";
+import { useRouter } from "next/navigation";
 
 const Login: React.FC = () => {
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
   const responeGoogle = async (authresult: any) => {
     try {
       if (authresult["code"]) {
         const result = await googleAuth(authresult["code"]);
-        console.log(result);
+        console.log(result.data);
+        toast.success(result.data.message);
+        dispatch(
+          setUser({
+            accessToken: result.data.tokens,
+            user: result.data.user,
+          })
+        );
+        router.push("/dashboard");
       }
-      console.log(authresult);
     } catch (error) {
-      console.log(authresult);
+      console.log(error);
     }
   };
 
@@ -47,6 +61,10 @@ const Login: React.FC = () => {
           <FcGoogle className="text-3xl" />
           <p className="text-black font-semibold">Login With Google</p>
         </Button>
+        <div className="text-center mt-4 flex justify-center gap-1  text-sm">
+          <p className="font-light">Not yet Registered? </p>
+          <p className="text-purple-500 font-bold">Register</p>
+        </div>
       </div>
     </>
   );

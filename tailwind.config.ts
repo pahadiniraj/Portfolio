@@ -47,9 +47,6 @@ const config: Config = {
       backgroundClip: {
         text: "text",
       },
-      textFillColor: {
-        transparent: "transparent",
-      },
     },
   },
   plugins: [
