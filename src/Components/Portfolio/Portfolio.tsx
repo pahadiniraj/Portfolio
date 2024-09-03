@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { WebDev } from "./PortfolioData";
 import Button from "../Button/Button";
 import AnimatedPortfolio from "./AnimatedPortfolio";
+import { motion } from "framer-motion";
 
 const Portfolio: React.FC = () => {
   const categories = [
@@ -25,8 +26,14 @@ const Portfolio: React.FC = () => {
 
   return (
     <>
-      <div className="flex flex-col md:px-10 px-5 mt-5 w-full">
-        <h2 className="text-2xl font-semibold mb-5 text-center">
+      <motion.div
+        initial={{ opacity: 0, x: "-100vw" }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
+        transition={{ type: "spring", stiffness: 250, damping: 40 }}
+        className="flex flex-col md:px-10 px-5 mt-5  md:h-[390px] md:w-[900px] bg-black overflow-hidden md:rounded-[50px] h-screen w-full overflow-y-scroll md:overflow-visible"
+      >
+        <h2 className="text-2xl font-semibold my-5 text-center">
           Presenting My{" "}
           <span className="py-1 px-2 rounded-lg bg-gradient-to-r from-indigo-300 to-purple-300 dark:from-indigo-500 dark:to-purple-500">
             Portfolio
@@ -45,7 +52,7 @@ const Portfolio: React.FC = () => {
           ))}
         </div>
         <AnimatedPortfolio filterSkill={filterSkill} />
-      </div>
+      </motion.div>
     </>
   );
 };

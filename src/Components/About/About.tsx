@@ -4,10 +4,17 @@ import Image from "next/image";
 import profile from "../../Assets/ProfileImg/profile.jpg";
 import { HeroHighlightDemo } from "../UI/Components/HeroHighlightComponent";
 import Skills from "./Skills/Skills";
+import { motion } from "framer-motion";
 
 const About = () => {
   return (
-    <div className="flex flex-col md:flex-row md:justify-center md:items-center  ">
+    <motion.div
+      initial={{ opacity: 0, x: "-100vw" }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
+      transition={{ type: "spring", stiffness: 250, damping: 40 }}
+      className="flex flex-col md:flex-row md:justify-center md:items-center md:h-[390px] md:w-[900px] bg-black overflow-hidden md:rounded-[50px] h-screen w-full overflow-y-scroll md:overflow-visible"
+    >
       <div className="md:w-2/6 order-2 md:order-1 p-4  flex flex-col gap-4 justify-center items-center">
         <Image
           src={profile}
@@ -16,7 +23,7 @@ const About = () => {
           priority
         />
       </div>
-      <div className=" md:hidden order-2  p-2">
+      <div className=" md:hidden order-2   p-2">
         <Skills />
       </div>
       <div className="md:w-3/5 order-1 pl-4 md:pl-0 flex flex-col  md:py-5 py-4  md:max-h-[400px] md:overflow-auto scrollbar-hide pr-5 ">
@@ -32,11 +39,11 @@ const About = () => {
             profound in what I do.
           </p>
         </section>
-        <div className="hidden md:block order-3 py-4">
+        <div className="hidden md:block order-3 py-4 ">
           <Skills />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

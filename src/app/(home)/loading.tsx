@@ -7,10 +7,10 @@ const loading = () => {
     display: "block",
     margin: "0 auto",
   };
-  const [color] = useState("#cd0202");
+  const [color] = useState("#000000");
 
   return (
-    <div className="text-white absolute top-2 right-2">
+    <div className=" absolute top-4 right-10 ">
       <ClipLoader
         color={color}
         loading={true}

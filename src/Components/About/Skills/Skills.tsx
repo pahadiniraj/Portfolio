@@ -5,17 +5,23 @@ import { skillsData } from "../SkillsData/SkillData";
 const Skills: React.FC = () => {
   const categories = [
     { name: "Main Skills", category: "skills" },
+    { name: "Projects", category: "projects" },
     { name: "Education", category: "education" },
-    { name: "Awards", category: "awards" },
   ];
 
   const educationData = [
     { name: "Bachelor's Degree in Computer Science" },
     { name: "Master's Degree in Software Engineering" },
+    { name: "Master's Degree in Software Engineering" },
+    { name: "Master's Degree in Software Engineering" },
+    { name: "Master's Degree in Software Engineering" },
   ];
 
-  const awardsData = [
+  const Projects = [
     { name: "Best Developer Award 2021" },
+    { name: "Top 10% Developer 2021" },
+    { name: "Top 10% Developer 2021" },
+    { name: "Top 10% Developer 2021" },
     { name: "Top 10% Developer 2021" },
   ];
 
@@ -67,8 +73,8 @@ const Skills: React.FC = () => {
           educationData.map((value, index) => (
             <div key={index}>{value.name}</div>
           ))}
-        {activeCategory === "awards" &&
-          awardsData.map((value, index) => <div key={index}>{value.name}</div>)}
+        {activeCategory === "projects" &&
+          Projects.map((value, index) => <div key={index}>{value.name}</div>)}
       </div>
     </div>
   );
