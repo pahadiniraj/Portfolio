@@ -4,13 +4,13 @@ import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import FormikLogin from "./FormikLogin";
 import { useGoogleLogin } from "@react-oauth/google";
-import { googleAuth } from "@/Services/googleApi";
 import { toast } from "react-toastify";
 import { useAppDispatch } from "../../Redux/hooks";
 import { setUser } from "../../Redux/Slice/authSlice";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { IoCaretBack } from "react-icons/io5";
+import { googleAuth } from "@/Services/googleApi";
 
 const Login: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -20,12 +20,11 @@ const Login: React.FC = () => {
     try {
       if (authresult["code"]) {
         const result = await googleAuth(authresult["code"]);
-        console.log(result.data);
+        console.log(result);
         toast.success(result.data.message);
         dispatch(
           setUser({
             accessToken: result.data.tokens,
-            user: result.data.user,
           })
         );
         router.push("/dashboard");
