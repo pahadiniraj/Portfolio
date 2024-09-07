@@ -6,6 +6,7 @@ import Image from "next/image";
 import profile from "../../Assets/ProfileImg/profile.jpg";
 import { ReactTyped } from "react-typed";
 import { AnimatePresence, motion } from "framer-motion";
+import logo from "../../Assets/Logo/logo.png";
 
 const HomeComponent = () => {
   return (
@@ -17,10 +18,8 @@ const HomeComponent = () => {
       transition={{ type: "spring", stiffness: 250, damping: 40 }}
       className="flex flex-col md:flex-row md:justify-center md:p-2 md:h-[390px] md:w-[900px] bg-black overflow-hidden md:rounded-[50px] h-screen  overflow-y-scroll md:overflow-visible "
     >
+      <h1 className="text-xl text-center mt-2 font-bold md:hidden">Niraj</h1>
       <div className="md:w-2/6 w-full h-full order-1 md:order-2 p-4    flex flex-col gap-4 justify-center items-center  ">
-        <h1 className="text-center text-2xl font-bold md:hidden">
-          Niraj's Portfolio
-        </h1>
         <Image
           src={profile}
           alt="Niraj Pahadi Photo"
