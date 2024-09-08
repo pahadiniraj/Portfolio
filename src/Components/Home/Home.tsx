@@ -5,8 +5,7 @@ import SocialLinks from "./SocialLinks/SocialLinks";
 import Image from "next/image";
 import profile from "../../Assets/ProfileImg/profile.jpg";
 import { ReactTyped } from "react-typed";
-import { AnimatePresence, motion } from "framer-motion";
-import logo from "../../Assets/Logo/logo.png";
+import {  motion } from "framer-motion";
 
 const HomeComponent = () => {
   return (
