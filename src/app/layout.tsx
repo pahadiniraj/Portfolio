@@ -8,6 +8,7 @@ import store from "@/Components/Redux/store";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import HigherOrderComponent from "@/Components/HigherOrderComp/HigherOrderComp";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import HigherOrderAuth from "@/Components/Auth/HigherOrderAuth";
 
 const customTheme = extendTheme({
   styles: {
@@ -29,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} `}>
-        <main className="bg-transparent  h-screen flex justify-center items-center">
+        <main className="bg-transparent  h-screen flex justify-center items-center bg-pink-200">
           <Provider store={store}>
             <ChakraProvider theme={customTheme}>
               <GoogleOAuthProvider

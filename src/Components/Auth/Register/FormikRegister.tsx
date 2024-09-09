@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { registrationSchema } from "@/Utils/YupSchema/loginAndRegister";
 import { ErrorMessage, Field, Form, Formik } from "formik";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const FormikRegister = () => {
   interface RegistrationFormValues {
@@ -24,6 +25,10 @@ const FormikRegister = () => {
   const handleSubmit = (values: RegistrationFormValues) => {
     console.log(values);
   };
+
+  const [showPassword, setShowPassword] = useState(true);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(true);
+
   return (
     <>
       <Formik
@@ -80,7 +85,7 @@ const FormikRegister = () => {
               </div>
               <div className="relative">
                 <Field
-                  type="password"
+                  type={showPassword ? "password" : "text"}
                   name="password"
                   className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                   placeholder="Password"
@@ -91,10 +96,16 @@ const FormikRegister = () => {
                   component="div"
                   className="text-red-500 text-xxs ml-1"
                 />
+                <button
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-2 top-4 transition duration-300 ease-linear active:scale-90"
+                >
+                  {showPassword ? <FaEye /> : <FaEyeSlash />}
+                </button>
               </div>
               <div className="relative">
                 <Field
-                  type="password"
+                  type={showConfirmPassword ? "password" : "text"}
                   name="confirmPassword"
                   className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                   placeholder="Confirm Password"
@@ -105,6 +116,12 @@ const FormikRegister = () => {
                   component="div"
                   className="text-red-500 text-xxs ml-1"
                 />
+                <button
+                  onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  className="absolute right-2 top-4  transition duration-300 ease-linear active:scale-90"
+                >
+                  {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
+                </button>
               </div>
               <div className="flex flex-col   text-white">
                 <div className="flex  gap-2 items-center ml-1">
