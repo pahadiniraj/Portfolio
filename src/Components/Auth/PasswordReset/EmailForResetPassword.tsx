@@ -6,20 +6,20 @@ import { useRouter } from "next/navigation";
 import { TiArrowBack } from "react-icons/ti";
 import { verifyEmailSchema } from "@/Utils/YupSchema/OtpSchema";
 
-interface verifyEmailValue {
+interface OtpFormValue {
   email: string;
 }
 
-const initialValues: verifyEmailValue = {
+const initialValues: OtpFormValue = {
   email: "",
 };
 
-const handleSubmit = (value: verifyEmailValue) => {
-  console.log(value);
-};
+const EmailForResetPassword = () => {
+  const router = useRouter();
 
-const VerifyEmail = () => {
-  const route = useRouter();
+  const handleSubmit = (value: OtpFormValue) => {
+    console.log(value);
+  };
 
   return (
     <>
@@ -35,11 +35,15 @@ const VerifyEmail = () => {
         }}
         className="inset-0 md:w-2/6  md:bg-gray-900 rounded-2xl   z-10 bg-opacity-30 backdrop-blur-sm   "
       >
-        <div className="flex justify-center mt-4 flex-col items-center text-center px-4">
-          <p className="font-bold">Verify Email</p>
-          <p className="text-xs">
-            Enter you authentic email address so that you will be verified 
-          </p>
+        <div className="flex justify-center items-center">
+          <div className="flex justify-center mt-4 flex-col items-center md:w-full w-3/5 text-center">
+            <p className="font-bold">Reset Password</p>
+            <p className="text-xs px-2">
+              Enter your email, and I’ll send you a link to reset your password.
+              Click the 'Reset Password' button in the email to change your
+              password.
+            </p>
+          </div>
         </div>
         <Formik
           initialValues={initialValues}
@@ -54,7 +58,7 @@ const VerifyEmail = () => {
                     type="email"
                     name="email"
                     className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
-                    placeholder="Emali"
+                    placeholder="Enter your Authentic Email"
                   />
                   <ErrorMessage
                     name="email"
@@ -72,14 +76,14 @@ const VerifyEmail = () => {
                 type="submit"
                 // disabled={!isValid || isLoginLoading}
               >
-                Verify OTP
+                Reset Password
               </button>
             </Form>
           )}
         </Formik>
         <button
           className="absolute top-2 right-2 transition duration-300 ease-linear active:scale-90  "
-          onClick={() => route.push("/register")}
+          onClick={() => router.push("/register")}
         >
           <TiArrowBack className="text-2xl" />
         </button>
@@ -88,4 +92,4 @@ const VerifyEmail = () => {
   );
 };
 
-export default VerifyEmail;
+export default EmailForResetPassword;

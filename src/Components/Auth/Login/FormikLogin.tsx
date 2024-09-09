@@ -140,6 +140,9 @@ const FormikLogin = () => {
                   className="text-red-500 text-xxs ml-6"
                 />
               </div>
+              <div className=" w-full flex  justify-end items-end">
+                <button className="text-xs ">Forget Password?</button>
+              </div>
             </div>
             <button
               className={`${
