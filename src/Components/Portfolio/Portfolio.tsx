@@ -31,7 +31,7 @@ const Portfolio: React.FC = () => {
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
         transition={{ type: "spring", stiffness: 250, damping: 40 }}
-        className="flex flex-col md:px-10 px-5 mt-5  md:h-[390px] md:w-[900px] bg-black overflow-hidden md:rounded-[50px] h-screen w-full overflow-y-scroll md:overflow-visible"
+        className="flex flex-col md:px-10 px-5   md:h-[390px] md:w-[900px] bg-black overflow-hidden md:rounded-[50px] h-screen w-full overflow-y-scroll md:overflow-visible"
       >
         <h2 className="text-2xl font-semibold my-5 text-center">
           Presenting My{" "}

@@ -15,9 +15,6 @@ export default function RootLayout({
       <div className="h-screen w-full justify-center  items-center flex-col md:overflow-x-hidden  md:flex md:justify-center md:items-center gap-2  relative  ">
         <MainLayout>{children}</MainLayout>
         <Navbar />
-        <button className="bg-green-600 font-bold p-2 absolute top-2 rounded-sm text-white right-0">
-          Login
-        </button>
       </div>
     </>
   );

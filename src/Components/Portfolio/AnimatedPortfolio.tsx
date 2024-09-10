@@ -4,8 +4,7 @@ import Button from "../Button/Button";
 import Image, { StaticImageData } from "next/image";
 import { useDispatch } from "react-redux";
 import { BiSolidLike } from "react-icons/bi";
-import { FaCommentDots } from "react-icons/fa6";
-import { IoMdShareAlt } from "react-icons/io";
+import { RiShareForward2Fill } from "react-icons/ri";
 
 interface AnimatedPortfolioProps {
   filterSkill: () => {
@@ -47,52 +46,37 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
       {filterSkill().map((value, index) => (
         <motion.div
           key={index}
-          className="rounded-2xl flex bg-green-50 justify-center items-center "
+          className="rounded-2xl flex justify-center items-center "
           variants={itemVariants}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          <div className="w-full rounded-2xl px-4 py-2 bg-gray-100">
-            <div>
-              <p className="text-black font-semibold text-center">
-                {value.name}
-              </p>
-            </div>
+          <div className="relative w-full h-full rounded-2xl overflow-hidden group">
             <Image
               src={value.image}
               alt="Niraj Portfolio"
-              className="w-full rounded-2xl"
+              className="w-full h-full object-cover"
               priority
             />
-            <div className="flex gap-2 mt-2 pl-2  flex-col">
-              <div className="text-black flex justify-between">
-                <div className="flex justify-center items-center gap-2">
-                  <BiSolidLike className="text-xs text-blue-600" />
-                  <p className="text-xs">1</p>
-                </div>
-                <div className="flex gap-5 justify-center items-center">
+            <div className="absolute inset-0 flex items-end justify-start bg-black  text-white opacity-0 group-hover:opacity-80 transition-opacity duration-300">
+              <div className="flex flex-col gap-4 ml-2 mb-2">
+                <h2 className="text-lg font-bold">{value.name}</h2>
+                <p className="text-sm font-light">{value.description}</p>
+                <div className="flex gap-6">
+                  <div className="flex justify-center items-center gap-2">
+                    <BiSolidLike className="text-xs text-blue-600" />
+                    <p className="text-xs">1</p>{" "}
+                  </div>
                   <div className="flex gap-1 justify-center items-center">
                     <p className="text-xs">1</p>
                     <p className="text-xs">Comment</p>
                   </div>
                   <div className="flex gap-1 justify-center items-center">
                     <p className="text-xs">1</p>
-                    <p className="text-xs">Share</p>
+                    <p className="text-xl ">
+                      <RiShareForward2Fill />
+                    </p>
                   </div>
                 </div>
-              </div>
-              <div className="flex justify-between ">
-                <Button className="text-black flex justify-center items-center gap-1">
-                  <BiSolidLike />
-                  <p className="text-sm">like</p>
-                </Button>
-                <Button className="text-black flex justify-center items-center gap-1">
-                  <FaCommentDots />
-                  <p className="text-sm">Comment</p>
-                </Button>
-                <Button className="text-black flex justify-center items-center gap-1">
-                  <IoMdShareAlt />
-                  <p className="text-sm">Share</p>
-                </Button>
               </div>
             </div>
           </div>
@@ -103,3 +87,22 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
 };
 
 export default AnimatedPortfolio;
+
+// <div className="flex gap-2 mt-2 pl-2  flex-col  ">
+//             <div className="text-black flex justify-between">
+//               <div className="flex justify-center items-center gap-2">
+//                 <BiSolidLike className="text-xs text-blue-600" />
+//                 <p className="text-xs">1</p>
+//               </div>
+//               <div className="flex gap-5 justify-center items-center">
+//                 <div className="flex gap-1 justify-center items-center">
+//                   <p className="text-xs">1</p>
+//                   <p className="text-xs">Comment</p>
+//                 </div>
+//                 <div className="flex gap-1 justify-center items-center">
+//                   <p className="text-xs">1</p>
+//                   <p className="text-xs">Share</p>
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
