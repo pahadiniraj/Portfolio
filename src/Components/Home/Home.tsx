@@ -46,7 +46,7 @@ const HomeComponent = () => {
           <p className="text-sm mt-3">
             Collaborating with highly skilled professionals, I deliver top-notch
             services alongside my team. With a broad spectrum of knowledge, I am
-            particularly inclined towards
+            particularly inclined, towards
             <span className="font-bold ml-1">Software Development</span>
           </p>
         </section>
