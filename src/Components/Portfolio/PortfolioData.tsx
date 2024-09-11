@@ -9,26 +9,30 @@ export const WebDev = [
   {
     image: img1,
     category: "webdevelopment",
-    name: "Portfolio",
-    description: "Hello From the new world",
+    name: "Grace International",
+    description:
+      "I developed a modern, responsive consultancy website featuring user-friendly navigation, dynamic content management, and a professional design to enhance client engagement and showcase the consultancy's services effectively.",
   },
   {
     image: img2,
     category: "webdevelopment",
     name: "Portfolio",
-    description: "Hello From the new world",
+    description:
+      "I developed a modern, responsive consultancy website featuring user-friendly navigation, dynamic content management, and a professional design to enhance client engagement and showcase the consultancy's services effectively.",
   },
   {
     image: img3,
     category: "webdevelopment",
     name: "Portfolio",
-    description: "Hello From the new world",
+    description:
+      "I developed a modern, responsive consultancy website featuring user-friendly navigation, dynamic content management, and a professional design to enhance client engagement and showcase the consultancy's services effectively.",
   },
   {
     image: img4,
     category: "graphicdesign",
     name: "Portfolio",
-    description: "Hello From the new world",
+    description:
+      "I developed a modern, responsive consultancy website featuring user-friendly navigation, dynamic content management, and a professional design to enhance client engagement and showcase the consultancy's services effectively.",
   },
 
   {

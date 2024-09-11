@@ -2,9 +2,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useRouter } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import { TiArrowBack } from "react-icons/ti";
-import { verifyEmailSchema } from "@/Utils/YupSchema/OtpSchema";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import resetPassword from "@/Utils/YupSchema/ResetPassword";
 
@@ -20,12 +19,14 @@ const initialValues: ResetPasswordValue = {
 
 const InputForResetPassword = () => {
   const router = useRouter();
+  const { id, token } = useParams();
 
   const [showPassword, setShowPassword] = useState(true);
   const [showConfirmPassword, setShowConfirmPassword] = useState(true);
 
   const handleSubmit = (value: ResetPasswordValue) => {
-    console.log(value);
+    const data = { ...value, id, token };
+    console.log(data);
   };
 
   return (
@@ -115,7 +116,7 @@ const InputForResetPassword = () => {
         </Formik>
         <button
           className="absolute top-2 right-2 transition duration-300 ease-linear active:scale-90  "
-          onClick={() => router.push("/")}
+          onClick={() => router.push("/reset-password-link")}
         >
           <TiArrowBack className="text-2xl" />
         </button>

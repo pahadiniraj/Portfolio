@@ -58,10 +58,10 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
               priority
             />
             <div className="absolute inset-0 flex items-end justify-start bg-black  text-white opacity-0 group-hover:opacity-80 transition-opacity duration-300">
-              <div className="flex flex-col gap-4 ml-2 mb-2">
+              <div className="flex flex-col gap-4 px-4 py-2">
                 <h2 className="text-lg font-bold">{value.name}</h2>
-                <p className="text-sm font-light">{value.description}</p>
-                <div className="flex gap-6">
+                <p className="text-xxs font-light">{value.description}</p>
+                <div className="flex justify-between gap-6  ">
                   <div className="flex justify-center items-center gap-2">
                     <BiSolidLike className="text-xs text-blue-600" />
                     <p className="text-xs">1</p>{" "}

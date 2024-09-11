@@ -6,6 +6,7 @@ import FormikRegister from "./FormikRegister";
 import { AnimatePresence, motion } from "framer-motion";
 import { TiArrowBack } from "react-icons/ti";
 import { useRouter } from "next/navigation";
+import { IoClose } from "react-icons/io5";
 
 const Register: React.FC = () => {
   const loginGoogle = () => {
@@ -48,10 +49,16 @@ const Register: React.FC = () => {
               <p className="text-black font-semibold">Login With Google</p>
             </Button>
             <button
-              className="absolute top-2 right-2 transition duration-300 ease-linear active:scale-90"
+              className="absolute top-2 left-2 transition duration-300 ease-linear active:scale-90"
               onClick={() => router.push("/login")}
             >
               <TiArrowBack className="text-2xl" />
+            </button>
+            <button
+              className="absolute top-2 right-2 transition duration-300 ease-linear active:scale-90"
+              onClick={() => router.push("/")}
+            >
+              <IoClose className="text-2xl" />
             </button>
           </div>
         </motion.div>

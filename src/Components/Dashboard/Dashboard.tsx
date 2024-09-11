@@ -8,23 +8,6 @@ import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 import { jwtDecode } from "jwt-decode";
 const Dashboard = () => {
-  const dispatch = useAppDispatch();
-  const router = useRouter();
-
-
-const token = localStorage.getItem("accessToken");
-
-if (token) {
-  const decodedToken = (jwtDecode as (token: string) => any)(token);
-  console.log(decodedToken);
-}
-
-  const handleLogout = () => {
-    dispatch(logout());
-    router.push("/login");
-    toast.success("I'm gonna miss you. See ya");
-  };
-
   return (
     <div className="dashboard-container p-4">
       <div className="welcome-section mb-6">
@@ -58,7 +41,7 @@ if (token) {
       </div>
 
       <div className="other-details mt-6">
-        <button onClick={handleLogout}>Logout</button>
+        <button>Logout</button>
       </div>
     </div>
   );

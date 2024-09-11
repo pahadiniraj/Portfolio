@@ -10,7 +10,7 @@ const loading = () => {
   const [color] = useState("#000000");
 
   return (
-    <div className=" absolute top-4 right-20 ">
+    <div className=" absolute top-4 right-6 ">
       <ClipLoader
         color={color}
         loading={true}

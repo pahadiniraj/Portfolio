@@ -3,6 +3,7 @@ import { FaFacebookSquare, FaLinkedin } from "react-icons/fa";
 import { FaSquareGithub } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import LoginButton from "@/Components/Auth/Login/LoginButton";
 
 const iconVariants = {
   hidden: {
@@ -45,7 +46,8 @@ const SocialLinks: React.FC = () => {
   ];
 
   return (
-    <div className="flex items-end mb-1 ml-2">
+    <div className="flex items-end mb-1 ml-2 gap-4">
+      <LoginButton />
       <ul className="flex gap-2" ref={ref}>
         {data.map((item, index) => (
           <li key={index}>

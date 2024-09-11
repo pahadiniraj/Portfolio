@@ -11,7 +11,7 @@ export default function RootLayout({
 }) {
   return (
     <div className="bg-black w-full h-screen flex justify-center items-center">
-      <PrivateRoute>{children}</PrivateRoute>
+      {children}
     </div>
   );
 }

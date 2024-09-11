@@ -1,13 +1,17 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import HomeButtons from "./HomeButtons/HomeButtons";
 import SocialLinks from "./SocialLinks/SocialLinks";
 import Image from "next/image";
 import profile from "../../Assets/ProfileImg/profile.jpg";
 import { ReactTyped } from "react-typed";
-import {  motion } from "framer-motion";
+import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import LoginButton from "../Auth/Login/LoginButton";
 
 const HomeComponent = () => {
+  const router = useRouter();
+
   return (
     <motion.div
       key="home"

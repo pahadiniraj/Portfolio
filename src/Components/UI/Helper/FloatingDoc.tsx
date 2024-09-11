@@ -127,7 +127,6 @@ const FloatingDockDesktop = ({
   className?: string;
 }) => {
   let mouseX = useMotionValue(Infinity);
-  const pathname = usePathname();
 
   return (
     <motion.div

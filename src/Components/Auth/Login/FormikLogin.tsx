@@ -11,6 +11,7 @@ import { setUser } from "../../Redux/Slice/authSlice";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
+import Link from "next/link";
 
 const FormikLogin = () => {
   interface LoginFormValues {
@@ -63,33 +64,34 @@ const FormikLogin = () => {
   const handleSubmit = async (values: LoginFormValues) => {
     const { acceptTermAndCondition, ...loginValues } = values;
     const { email, password } = loginValues;
-    try {
-      const response = await loginUser({ email, password });
-      console.log(response);
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    console.log(email, password);
+    // try {
+    //   const response = await loginUser({ email, password });
+    //   console.log(response);
+    // } catch (error) {
+    //   console.error("Error:", error);
+    // }
   };
 
-  useEffect(() => {
-    if (loginData) {
-      toast.success(loginData.message);
-      dispatch(
-        setUser({
-          accessToken: loginData.data.accessToken,
-          user: loginData.data.user,
-        })
-      );
-      router.push("/dashboard");
-    }
-    if (isLoginError && loginError) {
-      if (isFetchBaseQueryError(loginError)) {
-        toast.error(loginError.data?.message);
-      } else {
-        console.log("Error:", loginError);
-      }
-    }
-  }, [loginData, loginError]);
+  // useEffect(() => {
+  //   if (loginData) {
+  //     toast.success(loginData.message);
+  //     dispatch(
+  //       setUser({
+  //         accessToken: loginData.data.accessToken,
+  //         user: loginData.data.user,
+  //       })
+  //     );
+  //     router.push("/dashboard");
+  //   }
+  //   if (isLoginError && loginError) {
+  //     if (isFetchBaseQueryError(loginError)) {
+  //       toast.error(loginError.data?.message);
+  //     } else {
+  //       console.log("Error:", loginError);
+  //     }
+  //   }
+  // }, [loginData, loginError]);
 
   return (
     <div>
@@ -155,9 +157,12 @@ const FormikLogin = () => {
                 />
               </div>
               <div className=" w-full flex  justify-end items-end">
-                <button className="text-xs hover:text-purple-500 font-bold transition-colors duration-300">
+                <Link
+                  href="/reset-password-link"
+                  className="text-xs hover:text-purple-500 font-bold transition-colors duration-300"
+                >
                   Forget Password?
-                </button>
+                </Link>
               </div>
             </div>
             <button

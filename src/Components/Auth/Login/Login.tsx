@@ -4,9 +4,7 @@ import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import FormikLogin from "./FormikLogin";
 import { useGoogleLogin } from "@react-oauth/google";
-import { toast } from "react-toastify";
 import { useAppDispatch } from "../../Redux/hooks";
-import { setUser } from "../../Redux/Slice/authSlice";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { IoCaretBack } from "react-icons/io5";
@@ -21,13 +19,13 @@ const Login: React.FC = () => {
       if (authresult["code"]) {
         const result = await googleAuth(authresult["code"]);
         console.log(result);
-        toast.success(result.data.message);
-        dispatch(
-          setUser({
-            accessToken: result.data.tokens,
-          })
-        );
-        router.push("/dashboard");
+        // toast.success(result.data.message);
+        // dispatch(
+        //   setUser({
+        //     accessToken: result.data.tokens,
+        //   })
+        // );
+        // router.push("/dashboard");
       }
     } catch (error) {
       console.log(error);
