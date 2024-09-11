@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { loginSchema } from "@/Utils/YupSchema/loginandRegister";
-import { useLoginUserMutation } from "@/Services/AuthApi";
 import { useRouter } from "next/navigation";
 import ClipLoader from "react-spinners/ClipLoader";
 import { toast } from "react-toastify";
 import { useEffect } from "react";
-import { useAppDispatch } from "../../Redux/hooks";
-import { setUser } from "../../Redux/Slice/authSlice";
-import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
 import Link from "next/link";
@@ -33,7 +29,6 @@ const FormikLogin = () => {
     };
   }
   const router = useRouter();
-  const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(true);
 
   const togglePasswordVisibility = () => {
@@ -43,16 +38,6 @@ const FormikLogin = () => {
   const isFetchBaseQueryError = (error: any): error is FetchBaseQueryError => {
     return error && (error as FetchBaseQueryError).status !== undefined;
   };
-  const [
-    loginUser,
-    {
-      data: loginData,
-      isSuccess: isLoginSucess,
-      isError: isLoginError,
-      error: loginError,
-      isLoading: isLoginLoading,
-    },
-  ] = useLoginUserMutation();
 
   const [color] = useState("#000000");
 
@@ -172,20 +157,9 @@ const FormikLogin = () => {
                   : "bg-gray-600 text-gray-400 cursor-not-allowed"
               } rounded-2xl py-2 mt-4 transition-all duration-300`}
               type="submit"
-              disabled={!isValid || isLoginLoading}
+              disabled={!isValid}
             >
-              {isLoginLoading ? (
-                <ClipLoader
-                  color={color}
-                  loading={isLoginLoading}
-                  cssOverride={override}
-                  size={25}
-                  aria-label="Loading Spinner"
-                  data-testid="loader"
-                />
-              ) : (
-                "Login"
-              )}
+              Login
             </button>
           </Form>
         )}

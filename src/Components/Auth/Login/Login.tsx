@@ -4,14 +4,12 @@ import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import FormikLogin from "./FormikLogin";
 import { useGoogleLogin } from "@react-oauth/google";
-import { useAppDispatch } from "../../Redux/hooks";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { IoCaretBack } from "react-icons/io5";
 import { googleAuth } from "@/Services/googleApi";
 
 const Login: React.FC = () => {
-  const dispatch = useAppDispatch();
   const router = useRouter();
 
   const responeGoogle = async (authresult: any) => {
