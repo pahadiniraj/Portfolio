@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { loginSchema } from "@/Utils/YupSchema/loginAndRegister";
+import { loginSchema } from "@/Utils/YupSchema/loginandRegister";
 import { useLoginUserMutation } from "@/Services/AuthApi";
 import { useRouter } from "next/navigation";
 import ClipLoader from "react-spinners/ClipLoader";

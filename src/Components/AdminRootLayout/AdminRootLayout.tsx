@@ -2,7 +2,6 @@
 import React from "react";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { Provider } from "react-redux";
-import store from "../Redux/store";
 import RequireTokenAuth from "@/Services/RequireTokenAuth";
 
 const customTheme = extendTheme({
@@ -18,11 +17,9 @@ const customTheme = extendTheme({
 const AdminLayoutClient = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <Provider store={store}>
-        {/* <RequireTokenAuth> */}
-        <ChakraProvider theme={customTheme}>{children}</ChakraProvider>
-        {/* </RequireTokenAuth> */}
-      </Provider>
+      {/* <RequireTokenAuth> */}
+      <ChakraProvider theme={customTheme}>{children}</ChakraProvider>
+      {/* </RequireTokenAuth> */}
     </>
   );
 };

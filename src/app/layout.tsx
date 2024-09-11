@@ -4,11 +4,10 @@ import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import ContainerWrapper from "@/Components/ContainerWrapper";
 import { Provider } from "react-redux";
-import store from "@/Components/Redux/store";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import HigherOrderComponent from "@/Components/HigherOrderComp/HigherOrderComp";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import HigherOrderAuth from "@/Components/Auth/HigherOrderAuth";
+import HigherorderComponent from "@/Components/HigherorderComp/HigherorderComp";
 
 const customTheme = extendTheme({
   styles: {
@@ -31,18 +30,14 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} `}>
         <main className="bg-transparent  h-screen flex justify-center items-center bg-pink-200">
-          <Provider store={store}>
-            <ChakraProvider theme={customTheme}>
-              <GoogleOAuthProvider
-                clientId={`${
-                  process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string
-                }`}
-              >
-                <HigherOrderComponent>{children}</HigherOrderComponent>
-              </GoogleOAuthProvider>
-            </ChakraProvider>
-            <ContainerWrapper />
-          </Provider>
+          <ChakraProvider theme={customTheme}>
+            <GoogleOAuthProvider
+              clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string}`}
+            >
+              <HigherorderComponent>{children}</HigherorderComponent>
+            </GoogleOAuthProvider>
+          </ChakraProvider>
+          <ContainerWrapper />
         </main>
       </body>
     </html>

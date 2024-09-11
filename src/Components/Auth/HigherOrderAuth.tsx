@@ -1,6 +1,6 @@
 import React from "react";
 
-const HigherOrderAuth = ({ children }: { children: React.ReactNode }) => {
+const HigherorderAuth = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <button>Login</button>
@@ -8,4 +8,4 @@ const HigherOrderAuth = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default HigherOrderAuth;
+export default HigherorderAuth;

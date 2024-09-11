@@ -1,12 +1,7 @@
 "use client";
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../Redux/hooks";
-import { logout, selectAuth } from "../Redux/Slice/authSlice";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Image from "next/image";
-import { jwtDecode } from "jwt-decode";
+
 const Dashboard = () => {
   return (
     <div className="dashboard-container p-4">

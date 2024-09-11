@@ -1,8 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Button from "../Button/Button";
 import Image, { StaticImageData } from "next/image";
-import { useDispatch } from "react-redux";
 import { BiSolidLike } from "react-icons/bi";
 import { RiShareForward2Fill } from "react-icons/ri";
 
@@ -18,7 +16,6 @@ interface AnimatedPortfolioProps {
 const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
   filterSkill,
 }) => {
-  const dispatch = useDispatch();
   // Animation variants for each item
   const itemVariants = {
     hidden: { opacity: 0, x: 50 },

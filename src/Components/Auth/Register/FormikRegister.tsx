@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { registrationSchema } from "@/Utils/YupSchema/loginAndRegister";
+import { registrationSchema } from "@/Utils/YupSchema/loginandRegister";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
