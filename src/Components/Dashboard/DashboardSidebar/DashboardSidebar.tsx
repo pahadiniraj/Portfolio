@@ -16,9 +16,9 @@ const SidebarDashboard = () => {
       </div>
       <div className="flex flex-col gap-4 mt-5 text-lg">
         <Link
-          href="/profile"
+          href="/dashboard/profile"
           className={`flex justify-start p-2 rounded-md font-semibold duration-300 ${
-            isActive("/profile")
+            isActive("/dashboard/profile")
               ? "bg-purple-400 text-black"
               : "hover:bg-purple-400 hover:text-black"
           }`}
@@ -26,9 +26,9 @@ const SidebarDashboard = () => {
           Profile
         </Link>
         <Link
-          href="/setting"
+          href="/dashboard/setting"
           className={`flex justify-start p-2 rounded-md font-semibold duration-300 ${
-            isActive("/setting")
+            isActive("/dashboard/setting")
               ? "bg-purple-400 text-black"
               : "hover:bg-purple-400 hover:text-black"
           }`}

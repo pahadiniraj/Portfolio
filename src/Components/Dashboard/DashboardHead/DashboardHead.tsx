@@ -6,7 +6,7 @@ import profile from "../../../Assets/ProfileImg/profile.jpg";
 const DashboardHead = () => {
   return (
     <>
-      <div className="w-full border-b border-gray-400  p-4 shadow-[0_4px_10px_rgba(255,255,255,0.5)]">
+      <div className="w-full border-b border-gray-400  p-4 shadow-[0_4px_5px_rgba(255,255,255,0.5)]">
         <div className="flex justify-end items-center gap-6">
           <div className="w-8 h-8 bg-gray-500 rounded-full flex justify-center items-center">
             <MdNotifications className="text-xl" />

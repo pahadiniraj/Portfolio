@@ -1,5 +1,5 @@
 import { Inter } from "next/font/google";
-import "../globals.css";
+import "../../globals.css";
 import PrivateRoute from "@/Services/RequireTokenAuth";
 import SidebarDashboard from "@/Components/Dashboard/DashboardSidebar/DashboardSidebar";
 import DashboardHead from "@/Components/Dashboard/DashboardHead/DashboardHead";

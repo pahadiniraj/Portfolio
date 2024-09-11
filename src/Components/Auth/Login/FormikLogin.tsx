@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { loginSchema } from "@/Utils/YupSchema/loginandRegister";
+
 import { useRouter } from "next/navigation";
 import ClipLoader from "react-spinners/ClipLoader";
 import { toast } from "react-toastify";
@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
 import Link from "next/link";
+import { loginSchema } from "../../../Utils/YupSchema/loginandRegister";
 
 const FormikLogin = () => {
   interface LoginFormValues {
@@ -22,28 +23,10 @@ const FormikLogin = () => {
     acceptTermAndCondition: false,
   };
 
-  interface FetchBaseQueryError {
-    status: number;
-    data?: {
-      message?: string;
-    };
-  }
-  const router = useRouter();
   const [showPassword, setShowPassword] = useState(true);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
-  };
-
-  const isFetchBaseQueryError = (error: any): error is FetchBaseQueryError => {
-    return error && (error as FetchBaseQueryError).status !== undefined;
-  };
-
-  const [color] = useState("#000000");
-
-  const override = {
-    display: "block",
-    margin: "0 auto",
   };
 
   const handleSubmit = async (values: LoginFormValues) => {
