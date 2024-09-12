@@ -1,6 +1,5 @@
 import { Inter } from "next/font/google";
-import "../../globals.css";
-import PrivateRoute from "@/Services/RequireTokenAuth";
+import "../globals.css";
 import SidebarDashboard from "@/Components/Dashboard/DashboardSidebar/DashboardSidebar";
 import DashboardHead from "@/Components/Dashboard/DashboardHead/DashboardHead";
 
@@ -12,13 +11,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-black w-full h-screen flex ">
+    <div className="w-full bg-black h-screen flex ">
       <div className="w-1/4">
         <SidebarDashboard />
       </div>
       <div className="w-3/4">
-        <DashboardHead />
-        {children}
+        <div className="bg-gradient-to-r from-indigo-800">
+          <DashboardHead />
+        </div>
+        <div className="bg-gradient-to-r from-indigo-800 h-[462px] ">
+          {children}
+        </div>
       </div>
     </div>
   );

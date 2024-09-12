@@ -1,10 +1,10 @@
-import Dashboard from "@/Components/Dashboard/Dashboard";
+import Settings from "@/Components/Settings/Settings";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <Dashboard />
+      <Settings />
     </div>
   );
 };

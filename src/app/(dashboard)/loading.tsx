@@ -10,12 +10,12 @@ const loading = () => {
   const [color] = useState("#fcfcfc");
 
   return (
-    <div className=" mt-10 absolute right-6">
+    <div className=" mt-4 absolute right-6">
       <ClipLoader
         color={color}
         loading={true}
         cssOverride={override}
-        size={50}
+        size={25}
         aria-label="Loading Spinner"
         data-testid="loader"
       />
