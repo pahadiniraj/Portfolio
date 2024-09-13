@@ -19,7 +19,7 @@ export default function RootLayout({
         <div className="bg-gradient-to-r from-indigo-800">
           <DashboardHead />
         </div>
-        <div className="bg-gradient-to-r from-indigo-800 h-[462px] ">
+        <div className="bg-gradient-to-r from-indigo-800 h-[462px]  overflow-y-auto">
           {children}
         </div>
       </div>
