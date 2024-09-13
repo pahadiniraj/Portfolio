@@ -16,7 +16,7 @@ export default function RootLayout({
         <SidebarDashboard />
       </div>
       <div className="w-3/4">
-        <div className="bg-gradient-to-r from-indigo-800">
+        <div className="bg-gradient-to-r from-indigo-800 border-b border-gray-500">
           <DashboardHead />
         </div>
         <div className="bg-gradient-to-r from-indigo-800 h-[462px]  overflow-y-auto">

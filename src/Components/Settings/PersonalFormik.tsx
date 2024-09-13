@@ -5,21 +5,27 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
-interface LoginFormValues {
+interface SettingsPersonalValues {
+  firstName: string;
+  lastName: string;
   email: string;
-  password: string;
-  acceptTermAndCondition: boolean;
+  jobTitle: string;
+  bio: string | undefined;
 }
 
-const initialValues: LoginFormValues = {
+const initialValues: SettingsPersonalValues = {
+  firstName: "",
+  lastName: "",
   email: "",
-  password: "",
-  acceptTermAndCondition: false,
+  jobTitle: "",
+  bio: "",
 };
 
 const PersonalFormik = () => {
-  const handleSubmit = (value: any) => {
+  const router = useRouter();
+  const handleSubmit = (value: SettingsPersonalValues) => {
     console.log(value);
   };
 
@@ -43,9 +49,10 @@ const PersonalFormik = () => {
                     name="firstName"
                     className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                     placeholder="First Name"
+                    autoComplete="firstName"
                   />
                   <ErrorMessage
-                    name="email"
+                    name="firstName"
                     component="div"
                     className="text-red-500 text-xxs ml-1"
                   />
@@ -59,10 +66,10 @@ const PersonalFormik = () => {
                     name="text"
                     className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                     placeholder="Last Name"
-                    autoComplete="email"
+                    autoComplete="lastName"
                   />
                   <ErrorMessage
-                    name="email"
+                    name="lastName"
                     component="div"
                     className="text-red-500 text-xxs ml-1"
                   />
@@ -86,7 +93,25 @@ const PersonalFormik = () => {
                 />
               </div>
               <div className="relative">
-                <label htmlFor="bio">Bio</label>
+                <label htmlFor="acceptTermAndCondition" className="text-sm">
+                  Job Title
+                </label>
+                <Field
+                  type="text"
+                  name="jobTitle"
+                  className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+                  placeholder="Job Title"
+                />
+                <ErrorMessage
+                  name="jobTitle"
+                  component="div"
+                  className="text-red-500 text-xxs ml-1"
+                />
+              </div>
+              <div className="relative">
+                <label htmlFor="bio" className="text-sm">
+                  Bio
+                </label>
                 <Field
                   as="textarea"
                   name="bio"
@@ -98,17 +123,19 @@ const PersonalFormik = () => {
                 <ErrorMessage name="bio" component="div" className="error" />
               </div>
             </div>
-            <button
-              className={`${
-                isValid
-                  ? "bg-gradient-to-r from-blue-500 to-green-500 font-bold text-white hover:shadow-lg"
-                  : "bg-gray-600 text-gray-400 cursor-not-allowed"
-              } rounded-2xl py-2 mt-4 transition-all duration-300`}
-              type="submit"
-              disabled={!isValid}
-            >
-              Login
-            </button>
+            <div className="flex justify-end">
+              <button
+                className={`${
+                  isValid
+                    ? "bg-gradient-to-r from-blue-500 to-green-500 font-bold text-white hover:shadow-lg"
+                    : "bg-gray-600 text-gray-400 cursor-not-allowed"
+                } rounded-2xl  mt-4 px-4 py-2 transition-all duration-300`}
+                type="submit"
+                disabled={!isValid}
+              >
+                Submit
+              </button>
+            </div>
           </Form>
         )}
       </Formik>

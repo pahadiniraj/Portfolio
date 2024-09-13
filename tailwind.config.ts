@@ -10,7 +10,12 @@ const config: Config = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        "custom-dark": "0 4px 10px rgba(0, 0, 0, 0.25)", // Custom default shadow
+        "custom-white": "0 0 12px rgba(255, 255, 255, 0.7)", // Custom white shadow for hover
+      },
+    },
   },
   plugins: [],
 };

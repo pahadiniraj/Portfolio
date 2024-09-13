@@ -6,7 +6,7 @@ interface buttonProps {
   disabled?: boolean;
   type?: string;
   children?: React.ReactNode;
-  text?: string;  
+  text?: string;
 }
 
 const Button: React.FC<buttonProps> = ({
@@ -19,7 +19,7 @@ const Button: React.FC<buttonProps> = ({
   return (
     <button
       onClick={onClick}
-      className={`${className}  transition duration-300 ease-linear active:scale-90  hover:shadow-custom`}
+      className={`${className}  transition duration-300 ease-linear active:scale-90  hover:shadow-custom-white`}
     >
       {text}
       {children}

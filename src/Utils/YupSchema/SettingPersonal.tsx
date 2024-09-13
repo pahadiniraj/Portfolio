@@ -2,22 +2,25 @@ import * as Yup from "yup";
 
 const SettingPersonalSchema = Yup.object().shape({
   firstName: Yup.string()
-    .min(2, "First name must be at least 2 characters long")
-    .max(50, "First name can be up to 50 characters long")
-    .required("First name is required"),
+    .required("First name is required")
+    .min(2, "First name must be at least 2 characters")
+    .max(50, "First name can be at most 50 characters"),
 
   lastName: Yup.string()
-    .min(2, "Last name must be at least 2 characters long")
-    .max(50, "Last name can be up to 50 characters long")
-    .required("Last name is required"),
+    .required("Last name is required")
+    .min(2, "Last name must be at least 2 characters")
+    .max(50, "Last name can be at most 50 characters"),
 
   email: Yup.string()
     .email("Invalid email format")
     .required("Email is required"),
 
-  bio: Yup.string()
-    .max(300, "Bio can be up to 300 characters long") // Limit bio length
-    .optional(), // Bio can be optional
+  jobTitle: Yup.string()
+    .required("Job title is required")
+    .min(2, "Job title must be at least 2 characters")
+    .max(100, "Job title can be at most 100 characters"),
+
+  bio: Yup.string().max(500, "Bio can be at most 500 characters"), // Bio is optional but with a 500 character limit
 });
 
 export { SettingPersonalSchema };
