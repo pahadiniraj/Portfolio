@@ -2,28 +2,47 @@ import React, { useState } from "react";
 import { registrationSchema } from "@/Utils/YupSchema/loginandRegister";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { useRegisterUserMutation } from "@/Redux/Services/auth";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import { handleError } from "@/Redux/handleErrror";
 
+interface RegistrationFormValues {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+  acceptTermAndCondition: boolean;
+}
+
+const initialValues: RegistrationFormValues = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+  acceptTermAndCondition: false,
+};
 const FormikRegister = () => {
-  interface RegistrationFormValues {
-    firstName: string;
-    lastName: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
-    acceptTermAndCondition: boolean;
-  }
+  const router = useRouter();
+  const [RegisterUser, { isLoading, isError, isSuccess, error }] =
+    useRegisterUserMutation();
 
-  const initialValues: RegistrationFormValues = {
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    acceptTermAndCondition: false,
-  };
-
-  const handleSubmit = (values: RegistrationFormValues) => {
-    console.log(values);
+  const handleSubmit = async (values: RegistrationFormValues) => {
+    try {
+      const response = await RegisterUser(values);
+      if (response.data && response.data.success === true) {
+        toast.success(response.data?.message);
+        router.push("/otp");
+      }
+      if (isError) {
+        console.error(error);
+        handleError(error);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const [showPassword, setShowPassword] = useState(true);
@@ -97,6 +116,7 @@ const FormikRegister = () => {
                   className="text-red-500 text-xxs ml-1"
                 />
                 <button
+                  type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-2 top-4 transition duration-300 ease-linear active:scale-90"
                 >
@@ -117,6 +137,7 @@ const FormikRegister = () => {
                   className="text-red-500 text-xxs ml-1"
                 />
                 <button
+                  type="button"
                   onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                   className="absolute right-2 top-4  transition duration-300 ease-linear active:scale-90"
                 >

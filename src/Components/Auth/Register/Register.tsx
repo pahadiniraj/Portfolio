@@ -33,7 +33,7 @@ const Register: React.FC = () => {
           <div className=" p-4  rounded-xl max-h-[90vh] overflow-y-auto  relative ">
             <div className="flex justify-center flex-col items-center w-full   mb-2">
               <h1 className="text-xl font-bold mb-1">Niraj's Portfolio</h1>
-              <p className="text-center text-xxs ">
+              <p className="text-center text-xs ">
                 Welcome to Niraj's Portfolio Sign up to stay updated with my
                 latest projects. Fill in your details and join the creative
                 journey!
