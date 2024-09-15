@@ -35,7 +35,7 @@ export const handleError = (
 
     if (errorData) {
       if (errorData.data?.message) {
-        errorMessage = errorData.data.message;
+        errorMessage = errorData.data?.message;
       } else {
         errorMessage = "An error occurred";
       }

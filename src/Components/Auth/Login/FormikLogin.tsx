@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-
 import { useRouter } from "next/navigation";
 import ClipLoader from "react-spinners/ClipLoader";
 import { toast } from "react-toastify";
@@ -9,57 +8,50 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
 import Link from "next/link";
 import { loginSchema } from "../../../Utils/YupSchema/loginandRegister";
+import { useLoginUserMutation } from "@/Redux/Services/auth";
+import { handleError } from "@/Redux/handleErrror";
 
+interface LoginFormValues {
+  email: string;
+  password: string;
+  acceptTermAndCondition: boolean;
+}
+
+const initialValues: LoginFormValues = {
+  email: "",
+  password: "",
+  acceptTermAndCondition: false,
+};
 const FormikLogin = () => {
-  interface LoginFormValues {
-    email: string;
-    password: string;
-    acceptTermAndCondition: boolean;
-  }
-
-  const initialValues: LoginFormValues = {
-    email: "",
-    password: "",
-    acceptTermAndCondition: false,
-  };
-
   const [showPassword, setShowPassword] = useState(true);
+  const router = useRouter();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  const [loginUser, { isError, isLoading, isSuccess, error }] =
+    useLoginUserMutation();
+
   const handleSubmit = async (values: LoginFormValues) => {
     const { acceptTermAndCondition, ...loginValues } = values;
-    const { email, password } = loginValues;
-    console.log(email, password);
-    // try {
-    //   const response = await loginUser({ email, password });
-    //   console.log(response);
-    // } catch (error) {
-    //   console.error("Error:", error);
-    // }
+
+    try {
+      const response = await loginUser(loginValues);
+      if (response.data && response.data.success === true) {
+        toast.success(response.data?.message);
+        router.push("/dashboard");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
-  // useEffect(() => {
-  //   if (loginData) {
-  //     toast.success(loginData.message);
-  //     dispatch(
-  //       setUser({
-  //         accessToken: loginData.data.accessToken,
-  //         user: loginData.data.user,
-  //       })
-  //     );
-  //     router.push("/dashboard");
-  //   }
-  //   if (isLoginError && loginError) {
-  //     if (isFetchBaseQueryError(loginError)) {
-  //       toast.error(loginError.data?.message);
-  //     } else {
-  //       console.log("Error:", loginError);
-  //     }
-  //   }
-  // }, [loginData, loginError]);
+  useEffect(() => {
+    if (error) {
+      handleError(error);
+    }
+  }, [isError, error]);
 
   return (
     <div>
@@ -140,9 +132,9 @@ const FormikLogin = () => {
                   : "bg-gray-600 text-gray-400 cursor-not-allowed"
               } rounded-2xl py-2 mt-4 transition-all duration-300`}
               type="submit"
-              disabled={!isValid}
+              disabled={!isValid || isLoading}
             >
-              Login
+              {isLoading ? <ClipLoader size={25} color="#fff" /> : "Login"}
             </button>
           </Form>
         )}

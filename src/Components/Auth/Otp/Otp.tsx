@@ -1,10 +1,14 @@
 "use client";
-import React from "react";
+import React, { CSSProperties, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useRouter } from "next/navigation";
 import { TiArrowBack } from "react-icons/ti";
 import { otpSchema } from "@/Utils/YupSchema/OtpSchema";
+import { useVerifyOtpMutation } from "@/Redux/Services/auth";
+import ClipLoader from "react-spinners/ClipLoader";
+import { toast } from "react-toastify";
+import { handleError } from "@/Redux/handleErrror";
 
 interface OtpFormValue {
   otp: number | string;
@@ -15,10 +19,32 @@ const initialValues: OtpFormValue = {
 };
 
 const OtpComp = () => {
-  const router = useRouter();
+  const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+  };
 
-  const handleSubmit = (value: OtpFormValue) => {
-    console.log(value);
+  const router = useRouter();
+  const [verifyOtp, { isError, isLoading, error, status }] =
+    useVerifyOtpMutation();
+
+  useEffect(() => {
+    if (error) {
+      handleError(error);
+    }
+  }, [isError, error]);
+
+  const handleSubmit = async (value: OtpFormValue) => {
+    try {
+      const response = await verifyOtp(value);
+      console.log(response);
+      if (response.data && response.data.success === true) {
+        toast.success(response.data.message);
+        router.push("/login");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -63,7 +89,7 @@ const OtpComp = () => {
                     <ErrorMessage
                       name="otp"
                       component="div"
-                      className="text-red-500 text-xxs ml-1"
+                      className="text-red-500 text-xs ml-1"
                     />
                   </div>
                 </div>
@@ -74,9 +100,22 @@ const OtpComp = () => {
                       : "bg-gray-600 text-gray-400 cursor-not-allowed"
                   } rounded-2xl py-2 mt-4 transition-all duration-300 `}
                   type="submit"
-                  // disabled={!isValid || isLoginLoading}
+                  disabled={!isValid || isLoading}
                 >
-                  Verify OTP
+                  {isLoading ? (
+                    <>
+                      <ClipLoader
+                        color={`#ffffff`}
+                        loading={isLoading}
+                        cssOverride={override}
+                        size={25}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                      />
+                    </>
+                  ) : (
+                    "Register"
+                  )}
                 </button>
               </Form>
             )}
@@ -88,7 +127,7 @@ const OtpComp = () => {
             <TiArrowBack className="text-2xl" />
           </button>
           <div>
-            <p className="text-xxs text-center mb-2">
+            <p className="text-xs text-center mb-2">
               Having problem ? Go back and check Email Address
             </p>
           </div>

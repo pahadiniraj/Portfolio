@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-interface User {
+interface Register {
   firstName: string;
   lastName: string;
   email: string;
@@ -8,7 +8,16 @@ interface User {
   confirmPassword: string;
 }
 
-interface RegisterResponse {
+interface Login {
+  email: string;
+  password: string;
+}
+
+interface Otp {
+  otp: number | string;
+}
+
+interface Response {
   message: string;
   success: boolean;
 }
@@ -16,9 +25,12 @@ interface RegisterResponse {
 // Define a service using a base URL and expected endpoints
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8000/api/auth/" }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: "http://localhost:8000/api/auth/",
+    credentials: "include",
+  }),
   endpoints: (builder) => ({
-    registerUser: builder.mutation<RegisterResponse, User>({
+    registerUser: builder.mutation<Response, Register>({
       query: (user) => {
         console.log("Redux User data", user);
         return {
@@ -28,6 +40,32 @@ export const authApi = createApi({
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
+        };
+      },
+    }),
+    verifyOtp: builder.mutation<Response, Otp>({
+      query: (user) => {
+        return {
+          url: `verify-otp`,
+          method: "POST",
+          body: user,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+      },
+    }),
+    loginUser: builder.mutation<Response, Login>({
+      query: (user) => {
+        return {
+          url: `login`,
+          method: "POST",
+          body: user,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
         };
       },
     }),
@@ -36,4 +74,8 @@ export const authApi = createApi({
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useRegisterUserMutation } = authApi;
+export const {
+  useRegisterUserMutation,
+  useVerifyOtpMutation,
+  useLoginUserMutation,
+} = authApi;

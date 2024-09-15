@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, CSSProperties, useEffect } from "react";
 import { registrationSchema } from "@/Utils/YupSchema/loginandRegister";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
@@ -6,6 +6,7 @@ import { useRegisterUserMutation } from "@/Redux/Services/auth";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { handleError } from "@/Redux/handleErrror";
+import ClipLoader from "react-spinners/ClipLoader";
 
 interface RegistrationFormValues {
   firstName: string;
@@ -25,9 +26,20 @@ const initialValues: RegistrationFormValues = {
   acceptTermAndCondition: false,
 };
 const FormikRegister = () => {
+  const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+  };
+  let [color, setColor] = useState("#ffffff");
   const router = useRouter();
   const [RegisterUser, { isLoading, isError, isSuccess, error }] =
     useRegisterUserMutation();
+
+  useEffect(() => {
+    if (error) {
+      handleError(error);
+    }
+  }, [error, isError]);
 
   const handleSubmit = async (values: RegistrationFormValues) => {
     try {
@@ -36,12 +48,8 @@ const FormikRegister = () => {
         toast.success(response.data?.message);
         router.push("/otp");
       }
-      if (isError) {
-        console.error(error);
-        handleError(error);
-      }
     } catch (err) {
-      console.error(err);
+      console.error("Error while registration", err);
     }
   };
 
@@ -170,9 +178,22 @@ const FormikRegister = () => {
                   : "bg-gray-600 text-gray-400 cursor-not-allowed"
               } rounded-2xl py-2 mt-4 transition-all duration-300`}
               type="submit"
-              disabled={!isValid}
+              disabled={!isValid || isLoading}
             >
-              Register
+              {isLoading ? (
+                <>
+                  <ClipLoader
+                    color={color}
+                    loading={isLoading}
+                    cssOverride={override}
+                    size={25}
+                    aria-label="Loading Spinner"
+                    data-testid="loader"
+                  />
+                </>
+              ) : (
+                "Register"
+              )}
             </button>
           </Form>
         )}
