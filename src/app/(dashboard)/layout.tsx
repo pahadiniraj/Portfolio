@@ -12,14 +12,14 @@ export default function RootLayout({
 }) {
   return (
     <div className="w-full bg-black h-screen flex ">
-      <div className="w-1/4">
+      <div className="w-1/4 ">
         <SidebarDashboard />
       </div>
-      <div className="w-3/4">
-        <div className="bg-gradient-to-r from-indigo-800 border-b border-gray-500">
-          <DashboardHead />
-        </div>
-        <div className="bg-gradient-to-r from-indigo-800 h-[462px]  overflow-y-auto">
+      <div className="w-3/4 h-screen bg-gradient-to-r from-indigo-800 to-indigo-950 ">
+        <div className="h-full overflow-y-auto ">
+          <div className="border-b border-gray-500">
+            <DashboardHead />
+          </div>
           {children}
         </div>
       </div>

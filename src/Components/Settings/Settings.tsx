@@ -9,7 +9,7 @@ const Settings = () => {
   const router = useRouter();
   return (
     <>
-      <div className="px-8 py-5">
+      <div className="px-8 py-5  overflow-y-auto">
         <p className="text-2xl font-semibold">Setting Page</p>
         <div className="flex w-full gap-8 mt-4">
           <div className="w-3/5 backdrop-blur-sm  bg-black shadow-md border-slate-700  shadow-slate-700 text-lg p-4 rounded-md border ">

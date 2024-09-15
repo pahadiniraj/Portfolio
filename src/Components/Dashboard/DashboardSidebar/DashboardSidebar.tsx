@@ -36,7 +36,7 @@ const SidebarDashboard = () => {
   const isActive = (href: string) => pathname === href;
 
   return (
-    <div className="bg-gradient-to-r from-slate-900  text-white h-screen px-4 py-4 shadow-lg shadow-gray-700 ">
+    <div className="bg-gradient-to-r from-slate-900 h-full text-white   px-4 py-4 shadow-lg shadow-gray-700 ">
       <div className="text-center font-bold text-2xl">
         <Link href="/">Niraj's Portfolio</Link>
       </div>
