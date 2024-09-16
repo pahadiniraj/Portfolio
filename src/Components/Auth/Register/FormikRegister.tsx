@@ -30,7 +30,7 @@ const FormikRegister = () => {
     display: "block",
     margin: "0 auto",
   };
-  let [color, setColor] = useState("#ffffff");
+  let [color, setColor] = useState("#f3f3f3");
   const router = useRouter();
   const [RegisterUser, { isLoading, isError, isSuccess, error }] =
     useRegisterUserMutation();
@@ -73,7 +73,7 @@ const FormikRegister = () => {
                     name="firstName"
                     className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                     placeholder="First Name"
-                    autoComplete="firstName"
+                    autoComplete="given-name"
                   />
                   <ErrorMessage
                     name="firstName"
@@ -87,7 +87,7 @@ const FormikRegister = () => {
                     name="lastName"
                     className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                     placeholder="Last Name"
-                    autoComplete="lastName"
+                    autoComplete="family-name"
                   />
                   <ErrorMessage
                     name="lastName"
@@ -116,7 +116,7 @@ const FormikRegister = () => {
                   name="password"
                   className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                   placeholder="Password"
-                  autoComplete="password"
+                  autoComplete="new-password"
                 />
                 <ErrorMessage
                   name="password"
@@ -137,7 +137,7 @@ const FormikRegister = () => {
                   name="confirmPassword"
                   className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                   placeholder="Confirm Password"
-                  autoComplete="confirmPassword"
+                  autoComplete="new-password"
                 />
                 <ErrorMessage
                   name="confirmPassword"

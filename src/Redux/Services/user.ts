@@ -13,6 +13,13 @@ interface UserData {
   updatedAt: string;
   avatar?: string | null;
   bio?: string | null;
+  github?: string | null;
+  linkedin?: string | null;
+  twitter?: string | null;
+  facebook?: string | null;
+  instagram?: string | null;
+  personal?: string | null;
+  youtube?: string | null;
 }
 
 interface ApiResponse {
@@ -35,8 +42,21 @@ export const userApi = createApi({
         credentials: "include",
       }),
     }),
+    updateUser: builder.mutation({
+      query: (user) => {
+        return {
+          url: `update-user-profile`,
+          method: "POST",
+          body: user,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        };
+      },
+    }),
   }),
 });
 
 // Export hooks for usage in functional components
-export const { useGetUserQuery } = userApi;
+export const { useGetUserQuery, useUpdateUserMutation } = userApi;

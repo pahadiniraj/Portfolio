@@ -83,7 +83,7 @@ const FormikLogin = () => {
                   name="password"
                   className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                   placeholder="Password"
-                  autoComplete="password"
+                  autoComplete="new-password"
                 />
                 <ErrorMessage
                   name="password"

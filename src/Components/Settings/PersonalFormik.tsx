@@ -3,10 +3,11 @@ import { loginSchema } from "@/Utils/YupSchema/loginandRegister";
 import { SettingPersonalSchema } from "@/Utils/YupSchema/SettingPersonal";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { TbWorldWww } from "react-icons/tb";
+import { useGetUserQuery, useUpdateUserMutation } from "@/Redux/Services/user";
 
 import {
   FacebookIcon,
@@ -16,27 +17,61 @@ import {
   TwitterIcon,
   YoutubeIcon,
 } from "@/Assets/Svg/Svg";
+import { toast } from "react-toastify";
 
-interface SettingsPersonalValues {
-  firstName: string;
-  lastName: string;
-  email: string;
-  jobTitle: string;
-  bio: string | undefined;
+interface UserData {
+  bio?: string | null;
+  jobTitle?: string | null;
+  instagram?: string | null;
+  twitter?: string | null;
+  linkedin?: string | null;
+  github?: string | null;
+  personal?: string | null;
+  facebook?: string | null;
+  youtube?: string | null;
 }
-
-const initialValues: SettingsPersonalValues = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  jobTitle: "",
-  bio: "",
-};
 
 const PersonalFormik = () => {
   const router = useRouter();
-  const handleSubmit = (value: SettingsPersonalValues) => {
-    console.log(value);
+  const { data: fetchedData, isSuccess: userFetchSuccess } = useGetUserQuery();
+  const [userData, setUserData] = useState<UserData | null | undefined>(null);
+  const user = fetchedData?.user;
+
+  const [UpdateUser, { isLoading, isSuccess, isError, error, data }] =
+    useUpdateUserMutation();
+
+  useEffect(() => {
+    if (userFetchSuccess) {
+      setUserData(user);
+    }
+  });
+
+  const initialValues: UserData = {
+    jobTitle: user?.jobTitle || "",
+    bio: user?.bio || "",
+    facebook: user?.facebook || "",
+    twitter: user?.twitter || "",
+    linkedin: user?.linkedin || "",
+    instagram: user?.instagram || "",
+    youtube: user?.youtube || "",
+    github: user?.github || "",
+    personal: user?.personal || "",
+  };
+
+  const handleSubmit = async (value: UserData) => {
+    try {
+      console.log(value);
+      const response = await UpdateUser(value);
+      console.log("response data", response);
+      if (response.data && response.data.success === true) {
+        console.log("success", response.data?.message);
+        toast.success(response.data?.message);
+        router.push("/profile");
+      }
+      console.log(response);
+    } catch (error) {
+      console.error("somthing went wrong", error);
+    }
   };
 
   return (
@@ -45,72 +80,20 @@ const PersonalFormik = () => {
         initialValues={initialValues}
         validationSchema={SettingPersonalSchema}
         onSubmit={handleSubmit}
+        enableReinitialize={true}
       >
         {({ isValid }) => (
           <Form className="flex flex-col mt-8 md:mt-4 w-full">
             <div className="space-y-4 w-full">
-              <div className="flex gap-4">
-                <div className="relative">
-                  <label htmlFor="firstName" className="text-sm">
-                    First Name
-                  </label>
-                  <Field
-                    type="text"
-                    name="firstName"
-                    className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
-                    placeholder="First Name"
-                    autoComplete="firstName"
-                  />
-                  <ErrorMessage
-                    name="firstName"
-                    component="div"
-                    className="text-red-500 text-xs ml-1"
-                  />
-                </div>
-                <div className="relative">
-                  <label htmlFor="lastName" className="text-sm">
-                    Last Name
-                  </label>
-                  <Field
-                    type="lastName"
-                    name="text"
-                    className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
-                    placeholder="Last Name"
-                    autoComplete="lastName"
-                  />
-                  <ErrorMessage
-                    name="lastName"
-                    component="div"
-                    className="text-red-500 text-xs ml-1"
-                  />
-                </div>
-              </div>
-              <div className="relative">
-                <label htmlFor="email" className="text-sm">
-                  Email
-                </label>
-                <Field
-                  type="email"
-                  name="email"
-                  className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
-                  placeholder="Email"
-                  autoComplete="email"
-                />
-                <ErrorMessage
-                  name="email"
-                  component="div"
-                  className="text-red-500 text-xs ml-1"
-                />
-              </div>
               <div className="relative">
                 <label htmlFor="jobTitle" className="text-sm">
                   Job Title
                 </label>
                 <Field
+                  id="jobTitle"
                   type="text"
                   name="jobTitle"
                   className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
-                  placeholder="Job Title"
                 />
                 <ErrorMessage
                   name="jobTitle"
@@ -123,6 +106,7 @@ const PersonalFormik = () => {
                   Bio
                 </label>
                 <Field
+                  id="bio"
                   as="textarea"
                   name="bio"
                   rows="4"
@@ -146,7 +130,7 @@ const PersonalFormik = () => {
                     component="div"
                     className="text-red-500 text-xs ml-1"
                   />
-                  <span className="absolute top-6 right-2">
+                  <span className="absolute top-6 right-1">
                     <FacebookIcon />
                   </span>
                 </div>
@@ -162,7 +146,7 @@ const PersonalFormik = () => {
                     component="div"
                     className="text-red-500 text-xs ml-1"
                   />
-                  <span className="absolute top-6 right-2">
+                  <span className="absolute top-6 right-1">
                     <InstagramIcon />
                   </span>
                 </div>
@@ -180,7 +164,7 @@ const PersonalFormik = () => {
                     component="div"
                     className="text-red-500 text-xs ml-1"
                   />
-                  <span className="absolute top-6 right-2">
+                  <span className="absolute top-6 right-1">
                     <TwitterIcon />
                   </span>
                 </div>
@@ -196,7 +180,7 @@ const PersonalFormik = () => {
                     component="div"
                     className="text-red-500 text-xs ml-1"
                   />
-                  <span className="absolute top-6 right-2">
+                  <span className="absolute top-6 right-1">
                     <GithubIcon />
                   </span>
                 </div>{" "}
@@ -214,7 +198,7 @@ const PersonalFormik = () => {
                     component="div"
                     className="text-red-500 text-xs ml-1"
                   />
-                  <span className="absolute top-6 right-2">
+                  <span className="absolute top-6 right-1">
                     <LinkedInIcon />
                   </span>
                 </div>
@@ -230,7 +214,7 @@ const PersonalFormik = () => {
                     component="div"
                     className="text-red-500 text-xs ml-1"
                   />
-                  <span className="absolute top-6 right-2">
+                  <span className="absolute top-6 right-1">
                     <YoutubeIcon />
                   </span>
                 </div>
@@ -247,7 +231,7 @@ const PersonalFormik = () => {
                   component="div"
                   className="text-red-500 text-xs ml-1"
                 />
-                <span className="absolute top-6 right-2">
+                <span className="absolute top-6 right-1">
                   <TbWorldWww className="text-4xl" />
                 </span>
               </div>
@@ -256,7 +240,7 @@ const PersonalFormik = () => {
               <button
                 className={`${
                   isValid
-                    ? "bg-gradient-to-r from-blue-500 to-green-500 font-bold text-white hover:shadow-lg"
+                    ? "bg-gradient-to-r from-blue-500 to-slate-500 font-bold text-white hover:shadow-lg"
                     : "bg-gray-600 text-gray-400 cursor-not-allowed"
                 } rounded-2xl  mt-4 px-4 py-2 transition-all duration-300`}
                 type="submit"

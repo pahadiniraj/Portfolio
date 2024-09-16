@@ -3,6 +3,7 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import profile from "../../Assets/ProfileImg/profile.jpg";
 import { useGetUserQuery } from "@/Redux/Services/user";
+
 interface UserData {
   _id: string;
   firstName: string;
@@ -15,8 +16,14 @@ interface UserData {
   avatar?: string | null;
   bio?: string | null;
   jobTitle?: string | null;
+  instagram?: string | null;
+  twitter?: string | null;
+  linkedin?: string | null;
+  github?: string | null;
+  personalWebsite?: string | null;
+  facebook?: string | null;
+  youtube?: string | null;
 }
-
 
 const Profile = () => {
   const { data, isSuccess } = useGetUserQuery();
@@ -34,12 +41,12 @@ const Profile = () => {
       <div className="px-8 py-2">
         <p className="text-2xl font-bold mt-2 ">Profile</p>
         <div className="h-[370px] w-full bg-gradient-to-r from-black to-black   shadow-md border-slate-500 border shadow-slate-700  mt-4 rounded-2xl flex justify-center items-center flex-col overflow-y-auto py-2">
-          <div className="w-[170px] h-[170px] rounded-full flex justify-center items-center oveyrflow-hidden relative">
+          <div className="w-[120px] h-[120px] rounded-full flex justify-center items-center oveyrflow-hidden relative border border-slate-800 ">
             {/* Blurred background */}
-            <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-500 to-indigo-500 blur-xl"></div>
+            <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full shadow-xl"></div>
 
             {/* Container for the image */}
-            <div className="relative w-[150px] h-[150px] rounded-full overflow-hidden flex justify-center items-center">
+            <div className="relative w-[100px] h-[100px] rounded-full overflow-hidden flex justify-center items-center">
               <Image
                 src={profile}
                 alt="profile"
@@ -53,10 +60,11 @@ const Profile = () => {
           <p className="text-xl font-semibold mt-2">
             {user?.firstName} {user?.lastName}
           </p>
-          <p className="text-xs text-slate-300">{user?.jobTitle}</p>
+          <p className="text-[12px] text-slate-300">{user?.jobTitle}</p>
           <p className="mt-4 font-semibold">About Me</p>
           <p className="px-8 text-xs text-center">{user?.bio}</p>
           <p className="mt-3">logos</p>
+          <p>{user?.github && <p> github</p>}</p>
         </div>
       </div>
     </>
