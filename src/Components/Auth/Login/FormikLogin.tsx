@@ -40,7 +40,7 @@ const FormikLogin = () => {
       const response = await loginUser(loginValues);
       if (response.data && response.data.success === true) {
         toast.success(response.data?.message);
-        router.push("/dashboard");
+        router.push("/dashboard/setting");
       }
     } catch (error) {
       console.error("Error:", error);
@@ -91,6 +91,7 @@ const FormikLogin = () => {
                   className="text-red-500 text-xxs ml-1"
                 />
                 <button
+                  type="button"
                   onClick={togglePasswordVisibility}
                   className="absolute right-2 top-4 text-xl transition duration-300 ease-linear active:scale-90"
                 >

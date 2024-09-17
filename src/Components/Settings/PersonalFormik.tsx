@@ -71,7 +71,7 @@ const PersonalFormik = () => {
       if (response.data && response.data.success === true) {
         console.log("success", response.data?.message);
         toast.success(response.data?.message);
-        router.push("/profile");
+        router.push("/dashboard/profile");
       }
       console.log(response);
     } catch (error) {

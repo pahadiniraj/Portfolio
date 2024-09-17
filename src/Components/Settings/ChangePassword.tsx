@@ -71,7 +71,7 @@ const ChangePassword = () => {
                 <button
                   type="button"
                   className="absolute top-2 right-1 transition duration-300 ease-linear active:scale-90"
-                  onClick={() => router.push("/setting")}
+                  onClick={() => router.push("/dashboard/setting")}
                 >
                   <IoClose className="text-2xl" />
                 </button>

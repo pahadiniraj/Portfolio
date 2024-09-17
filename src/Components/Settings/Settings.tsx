@@ -25,7 +25,7 @@ const Settings = () => {
                 Click the button below and put the current and new password{" "}
               </p>
               <button
-                onClick={() => router.push("/change-password")}
+                onClick={() => router.push("/dashboard/change-password")}
                 className="bg-blue-600 px-4 py-2  hover:bg-blue-800 mt-3 rounded-lg transition duration-300 ease-linear active:scale-90"
               >
                 Change Password

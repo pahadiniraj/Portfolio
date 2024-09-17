@@ -10,23 +10,23 @@ import ClipLoader from "react-spinners/ClipLoader";
 const SidebarDashboard = () => {
   const link = [
     {
-      href: "/admin-dashboard",
+      href: "/dashboard/admin-dashboard",
       label: "Admin Dashboard",
     },
     {
-      href: "/admin-blog",
+      href: "/dashboard/admin-blog",
       label: "Admin Blogs",
     },
     {
-      href: "/profile",
+      href: "/dashboard/profile",
       label: "Profile",
     },
     {
-      href: "/setting",
+      href: "/dashboard/setting",
       label: "Settings",
     },
     {
-      href: "/testimonial",
+      href: "/dashboard/testimonial",
       label: "Testimonials",
     },
   ];
