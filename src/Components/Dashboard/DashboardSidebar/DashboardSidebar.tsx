@@ -1,14 +1,14 @@
 "use client"; // Ensure this line is at the top for client-side rendering
 import Link from "next/link";
-import React from "react";
+import React, { CSSProperties } from "react";
 import { usePathname } from "next/navigation"; // Import usePathname
+import { useLogoutUserMutation } from "@/Redux/Services/auth";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const SidebarDashboard = () => {
   const link = [
-    {
-      href: "/dashboard",
-      label: "Dashboard",
-    },
     {
       href: "/admin-dashboard",
       label: "Admin Dashboard",
@@ -34,6 +34,25 @@ const SidebarDashboard = () => {
   const pathname = usePathname(); // Get the current route's pathname
 
   const isActive = (href: string) => pathname === href;
+  const router = useRouter(); // Import useRouter
+
+  const [logoutUser, { isLoading, isError, isSuccess, error }] =
+    useLogoutUserMutation();
+
+  const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+  };
+
+  const handleLogout = async () => {
+    try {
+      const response = await logoutUser().unwrap();
+      toast.success(response.data);
+      router.push("/login");
+    } catch (error) {
+      console.error("Failed to logout user", error);
+    }
+  };
 
   return (
     <div className="bg-gradient-to-r from-slate-900 h-full text-white   px-4 py-4 shadow-lg shadow-gray-700 ">
@@ -54,8 +73,24 @@ const SidebarDashboard = () => {
             {item.label}
           </Link>
         ))}
-        <button className="flex justify-start p-2 rounded-md font-semibold duration-300 hover:bg-red-500 ">
-          Logout
+        <button
+          className="flex justify-start p-2 rounded-md font-semibold duration-300 hover:bg-red-500 "
+          onClick={handleLogout}
+        >
+          {isLoading ? (
+            <>
+              <ClipLoader
+                color={"#000000999"}
+                loading={isLoading}
+                cssOverride={override}
+                size={25}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            </>
+          ) : (
+            "Logout"
+          )}
         </button>
       </div>
     </div>

@@ -3,7 +3,6 @@ import React from "react";
 import PersonalFormik from "./PersonalFormik";
 import PersonalPhoto from "./PersonalPhoto";
 import { useRouter } from "next/navigation";
-import Button from "../Button/Button";
 
 const Settings = () => {
   const router = useRouter();
@@ -25,12 +24,12 @@ const Settings = () => {
               <p className="text-xs text-center">
                 Click the button below and put the current and new password{" "}
               </p>
-              <Button
+              <button
                 onClick={() => router.push("/change-password")}
-                className="bg-blue-600 px-4 py-2  duration-300 mt-3 rounded-lg"
+                className="bg-blue-600 px-4 py-2  hover:bg-blue-800 mt-3 rounded-lg transition duration-300 ease-linear active:scale-90"
               >
                 Change Password
-              </Button>
+              </button>
               <p className="text-xs mt-2">
                 Facing Problem ?{" "}
                 <span className="hover:text-purple-500 cursor-pointer duration-300">

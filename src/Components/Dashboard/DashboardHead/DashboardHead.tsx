@@ -1,28 +1,37 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MdNotifications } from "react-icons/md";
 import profile from "../../../Assets/ProfileImg/profile.jpg";
 import { useGetUserQuery } from "@/Redux/Services/user";
 
+interface UserData {
+  firstName: string | null;
+  lastName: string | null;
+  jobTitle?: string | null;
+}
+
 const DashboardHead = () => {
-  const { data, isSuccess, isError, isLoading } = useGetUserQuery();
-  console.log("fetch data", data?.user);
+  const { data, isSuccess, isError, isLoading } = useGetUserQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
+  const [user, setUser] = useState<UserData | null>(null);
+  console.log("User dashboard data", user);
+  useEffect(() => {
+    if (data && isSuccess) {
+      setUser(data.user);
+    }
+  }, [data, isSuccess]);
   return (
     <>
       <div className="w-full   p-4 ">
         <div className="flex justify-end items-center gap-6">
-          <div className="w-8 h-8 bg-gray-500 rounded-full flex justify-center items-center">
-            <MdNotifications className="text-xl" />
-          </div>
           <div>
             <p className="text-base">
-              {data?.user?.firstName} {data?.user?.lastName}
+              {user?.firstName} {user?.lastName}
             </p>
-            <p className="text-xs text-end  text-slate-100">
-              {data?.user?.jobTitle}
-            </p>
+            <p className="text-xs text-end  text-slate-100">{user?.jobTitle}</p>
           </div>
           <div className="w-14 h-14 rounded-full overflow-hidden">
             <Image

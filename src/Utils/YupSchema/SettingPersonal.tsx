@@ -5,7 +5,7 @@ const SettingPersonalSchema = Yup.object().shape({
     .min(3, "Job title must be at least 3 characters")
     .max(50, "Job title can be at most 50 characters"),
 
-  bio: Yup.string().max(200, "Bio can be at most 200 characters"),
+  bio: Yup.string().max(500, "Bio can be at most 500 characters"),
 
   facebook: Yup.string()
     .nullable()

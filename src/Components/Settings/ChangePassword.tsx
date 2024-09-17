@@ -8,19 +8,22 @@ import { useEffect } from "react";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
 import Link from "next/link";
+import { IoClose } from "react-icons/io5";
 import { changePasswordSchema } from "@/Utils/YupSchema/ChangePassword";
+import { useChangeUserPasswordMutation } from "@/Redux/Services/user";
+import { handleError } from "@/Redux/handleErrror";
 
 const ChangePassword = () => {
   interface ChangePasswordFormValues {
-    password: string;
+    currentPassword: string;
     newPassword: string;
-    confirmNewPassword: string;
+    newConfirmPassword: string;
   }
 
   const initialValues: ChangePasswordFormValues = {
-    password: "",
+    currentPassword: "",
     newPassword: "",
-    confirmNewPassword: "",
+    newConfirmPassword: "",
   };
 
   const router = useRouter();
@@ -28,8 +31,29 @@ const ChangePassword = () => {
   const [showNewConfirmPassword, setShowNewConfirmPassword] = useState(true);
   const [showNewPassword, setShowNewPassword] = useState(true);
 
-  const handleSubmit = async (values: ChangePasswordFormValues) => {
-    console.log(values);
+  const [changeUserPassword, { isLoading, isError, isSuccess, error }] =
+    useChangeUserPasswordMutation();
+
+  useEffect(() => {
+    if (error) {
+      handleError(error);
+    }
+  }, [isError, error]);
+
+  const handleSubmit = async (
+    values: ChangePasswordFormValues,
+    { resetForm }: any
+  ) => {
+    try {
+      const response = await changeUserPassword(values);
+      console.log(response);
+      if (response.data && response.data.success === true) {
+        toast.success(response.data?.data);
+        resetForm();
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -40,30 +64,32 @@ const ChangePassword = () => {
         onSubmit={handleSubmit}
       >
         {({ isValid }) => (
-          <Form className="flex flex-col mt-8 md:mt-4 w-2/5  p-5 rounded-lg bg-black shadow-lg  border-slate-700  shadow-slate-500 border">
+          <Form className="flex flex-col mt-8 md:mt-4 w-2/5 relative  rounded-xl bg-black   border-slate-700 p-6  border">
             <div className="space-y-4 w-full">
-              <div className=" relative">
+              <div className=" ">
                 <p className="text-center text-xl font-bold">Change Password</p>
                 <button
-                  className="absolute top-0 right-0"
+                  type="button"
+                  className="absolute top-2 right-1 transition duration-300 ease-linear active:scale-90"
                   onClick={() => router.push("/setting")}
                 >
-                  close
+                  <IoClose className="text-2xl" />
                 </button>
               </div>
               <div className="relative">
                 <Field
                   type={showPassword ? "password" : "text"}
-                  name="password"
+                  name="currentPassword"
                   className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
-                  placeholder="Password"
+                  placeholder="Current Password"
                 />
                 <ErrorMessage
-                  name="password"
+                  name="currentPassword"
                   component="div"
-                  className="text-red-500 text-xxs ml-1"
+                  className="text-red-500 text-xs ml-1"
                 />
                 <button
+                  type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-2 top-4 text-xl transition duration-300 ease-linear active:scale-90"
                 >
@@ -80,9 +106,10 @@ const ChangePassword = () => {
                 <ErrorMessage
                   name="newPassword"
                   component="div"
-                  className="text-red-500 text-xxs ml-1"
+                  className="text-red-500 text-xs ml-1"
                 />
                 <button
+                  type="button"
                   onClick={() => setShowNewPassword(!showNewPassword)}
                   className="absolute right-2 top-4 text-xl transition duration-300 ease-linear active:scale-90"
                 >
@@ -92,16 +119,17 @@ const ChangePassword = () => {
               <div className="relative">
                 <Field
                   type={showNewConfirmPassword ? "password" : "text"}
-                  name="confirmNewPassword"
+                  name="newConfirmPassword"
                   className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                   placeholder="New Confirm Password"
                 />
                 <ErrorMessage
-                  name="confirmNewPassword"
+                  name="newConfirmPassword"
                   component="div"
-                  className="text-red-500 text-xxs ml-1"
+                  className="text-red-500 text-xs ml-1"
                 />
                 <button
+                  type="button"
                   onClick={() =>
                     setShowNewConfirmPassword(!showNewConfirmPassword)
                   }
@@ -114,13 +142,17 @@ const ChangePassword = () => {
             <button
               className={`${
                 isValid
-                  ? "bg-gradient-to-r from-blue-500 to-green-500 font-bold text-white hover:shadow-lg"
+                  ? "bg-gradient-to-r from-blue-500 to-blue-600 font-bold text-white hover:shadow-lg"
                   : "bg-gray-600 text-gray-400 cursor-not-allowed"
               } rounded-2xl py-2 mt-4 transition-all duration-300`}
               type="submit"
-              disabled={!isValid}
+              disabled={!isValid || isLoading}
             >
-              Change Password
+              {isLoading ? (
+                <ClipLoader color="#fcfcfc" size={25} />
+              ) : (
+                "Change Password"
+              )}
             </button>
           </Form>
         )}

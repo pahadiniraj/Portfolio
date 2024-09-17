@@ -3,6 +3,18 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import profile from "../../Assets/ProfileImg/profile.jpg";
 import { useGetUserQuery } from "@/Redux/Services/user";
+import Link from "next/link";
+import { TbWorldWww } from "react-icons/tb";
+import Cookies from "js-cookie";
+
+import {
+  FacebookIcon,
+  GithubIcon,
+  InstagramIcon,
+  LinkedInIcon,
+  TwitterIcon,
+  YoutubeIcon,
+} from "@/Assets/Svg/Svg";
 
 interface UserData {
   _id: string;
@@ -26,7 +38,9 @@ interface UserData {
 }
 
 const Profile = () => {
-  const { data, isSuccess } = useGetUserQuery();
+  const { data, isSuccess } = useGetUserQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
 
   const [user, setUser] = useState<UserData | null>(null);
   console.log("User data", user);
@@ -36,14 +50,45 @@ const Profile = () => {
     }
   }, [data, isSuccess]);
 
+  const userData = [
+    {
+      href: `${user?.linkedin}`,
+      icon: <LinkedInIcon />,
+    },
+    {
+      href: `${user?.facebook}`,
+      icon: <FacebookIcon />,
+    },
+    {
+      href: `${user?.instagram}`,
+      icon: <InstagramIcon />,
+    },
+    {
+      href: `${user?.twitter}`,
+      icon: <TwitterIcon />,
+    },
+    {
+      href: `${user?.github}`,
+      icon: <GithubIcon />,
+    },
+    {
+      href: `${user?.youtube}`,
+      icon: <YoutubeIcon />,
+    },
+    {
+      href: `${user?.personalWebsite}`,
+      icon: <TbWorldWww className="text-4xl" />,
+    },
+  ];
+
   return (
     <>
       <div className="px-8 py-2">
         <p className="text-2xl font-bold mt-2 ">Profile</p>
-        <div className="h-[370px] w-full bg-gradient-to-r from-black to-black   shadow-md border-slate-500 border shadow-slate-700  mt-4 rounded-2xl flex justify-center items-center flex-col overflow-y-auto py-2">
-          <div className="w-[120px] h-[120px] rounded-full flex justify-center items-center oveyrflow-hidden relative border border-slate-800 ">
+        <div className="h-[370px] w-full bg-gradient-to-r from-black to-black   shadow-md border-slate-500 border shadow-slate-700  mt-4 rounded-2xl flex justify-center items-center flex-col overflow-y-auto py-2 relative">
+          <div className="w-[110px] h-[110px] rounded-full flex justify-center items-center oveyrflow-hidden relative border border-slate-800 ">
             {/* Blurred background */}
-            <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full shadow-xl"></div>
+            <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-gray-800 to-gray-600 rounded-full shadow-xl "></div>
 
             {/* Container for the image */}
             <div className="relative w-[100px] h-[100px] rounded-full overflow-hidden flex justify-center items-center">
@@ -63,7 +108,24 @@ const Profile = () => {
           <p className="text-[12px] text-slate-300">{user?.jobTitle}</p>
           <p className="mt-4 font-semibold">About Me</p>
           <p className="px-8 text-xs text-center">{user?.bio}</p>
-          <p className="mt-3">logos</p>
+          <div className="mt-3 absolute top-2 right-5 flex">
+            <div className="flex">
+              {userData.map(
+                (value, index) =>
+                  value.href && ( // Check if `href` exists before rendering
+                    <Link
+                      href={value.href}
+                      passHref
+                      key={index}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <div>{value.icon}</div>
+                    </Link>
+                  )
+              )}
+            </div>
+          </div>
           <p>{user?.github && <p> github</p>}</p>
         </div>
       </div>

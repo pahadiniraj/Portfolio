@@ -18,8 +18,14 @@ interface UserData {
   twitter?: string | null;
   facebook?: string | null;
   instagram?: string | null;
-  personal?: string | null;
+  personalWebsite?: string | null;
   youtube?: string | null;
+}
+
+interface passwordData {
+  currentPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
 }
 
 interface ApiResponse {
@@ -55,8 +61,25 @@ export const userApi = createApi({
         };
       },
     }),
+    changeUserPassword: builder.mutation({
+      query: (password) => {
+        return {
+          url: `change-password`,
+          method: "POST",
+          body: password,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        };
+      },
+    }),
   }),
 });
 
 // Export hooks for usage in functional components
-export const { useGetUserQuery, useUpdateUserMutation } = userApi;
+export const {
+  useGetUserQuery,
+  useUpdateUserMutation,
+  useChangeUserPasswordMutation,
+} = userApi;

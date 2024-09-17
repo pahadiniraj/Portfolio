@@ -3,7 +3,7 @@ import { loginSchema } from "@/Utils/YupSchema/loginandRegister";
 import { SettingPersonalSchema } from "@/Utils/YupSchema/SettingPersonal";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { CSSProperties, useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { TbWorldWww } from "react-icons/tb";
@@ -18,6 +18,7 @@ import {
   YoutubeIcon,
 } from "@/Assets/Svg/Svg";
 import { toast } from "react-toastify";
+import ClipLoader from "react-spinners/ClipLoader";
 
 interface UserData {
   bio?: string | null;
@@ -26,19 +27,23 @@ interface UserData {
   twitter?: string | null;
   linkedin?: string | null;
   github?: string | null;
-  personal?: string | null;
+  personalWebsite?: string | null;
   facebook?: string | null;
   youtube?: string | null;
 }
 
 const PersonalFormik = () => {
   const router = useRouter();
+  const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+  };
   const { data: fetchedData, isSuccess: userFetchSuccess } = useGetUserQuery();
   const [userData, setUserData] = useState<UserData | null | undefined>(null);
   const user = fetchedData?.user;
+  console.log("settings user", user);
 
-  const [UpdateUser, { isLoading, isSuccess, isError, error, data }] =
-    useUpdateUserMutation();
+  const [UpdateUser, { isLoading, isError, error }] = useUpdateUserMutation();
 
   useEffect(() => {
     if (userFetchSuccess) {
@@ -55,7 +60,7 @@ const PersonalFormik = () => {
     instagram: user?.instagram || "",
     youtube: user?.youtube || "",
     github: user?.github || "",
-    personal: user?.personal || "",
+    personalWebsite: user?.personalWebsite || "",
   };
 
   const handleSubmit = async (value: UserData) => {
@@ -222,12 +227,12 @@ const PersonalFormik = () => {
               <div className="relative">
                 <Field
                   type="url"
-                  name="personal"
+                  name="personalWebsite"
                   className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
                   placeholder="Personal Website URL"
                 />
                 <ErrorMessage
-                  name="personal"
+                  name="personalWebsite"
                   component="div"
                   className="text-red-500 text-xs ml-1"
                 />
@@ -246,7 +251,20 @@ const PersonalFormik = () => {
                 type="submit"
                 disabled={!isValid}
               >
-                Submit
+                {isLoading ? (
+                  <>
+                    <ClipLoader
+                      color={"#000000999"}
+                      loading={isLoading}
+                      cssOverride={override}
+                      size={25}
+                      aria-label="Loading Spinner"
+                      data-testid="loader"
+                    />
+                  </>
+                ) : (
+                  "Submit"
+                )}
               </button>
             </div>
           </Form>
