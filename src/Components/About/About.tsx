@@ -29,11 +29,11 @@ const About = () => {
       <div className="md:w-3/5 order-1 pl-4 md:pl-0 flex flex-col  md:py-5 py-4  md:max-h-[400px] md:overflow-auto scrollbar-hide pr-5 ">
         <section>
           <p className="text-sm font-semibold">About me</p>
-          <h1 className="md:text-3xl font-bold text-2xl">
+          <h1 className="md:text-3xl font-bold text-2xl mb-1 md:mb-3">
             2 Year's Experience,
           </h1>
           <HeroHighlightDemo text="on FullStack Development" />
-          <p className="text-sm mt-2">
+          <p className="text-sm mt-4">
             Hello there! I'm Niraj. I specialize in Web & App development. I'm
             deeply committed to my craft. With 2 years of experience, I'm
             profound in what I do.

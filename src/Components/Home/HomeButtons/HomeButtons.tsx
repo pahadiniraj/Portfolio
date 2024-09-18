@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@/Components/Button/Button";
 import { FiExternalLink } from "react-icons/fi";
 import { BsDownload } from "react-icons/bs";
+import { HoverBorderGradientDemo } from "@/Components/UI/Components/HoverGradientComp";
 
 const HomeButtons = () => {
   return (

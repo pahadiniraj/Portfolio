@@ -8,11 +8,11 @@ import { motion } from "framer-motion";
 const Portfolio: React.FC = () => {
   const categories = [
     { name: "All", category: "all" },
-    { name: "Web/App Dev", category: "webdevelopment" },
-    { name: "Graphic Designing", category: "graphicdesign" },
+    { name: "Web/App ", category: "webdevelopment" },
+    { name: "Graphic ", category: "graphicdesign" },
     { name: "Wordpress", category: "wordpress" },
-    { name: "Digital Marketing", category: "digitalmarketing" },
-    { name: "Music Creations", category: "music" },
+    { name: "Marketing", category: "digitalmarketing" },
+    { name: "Music ", category: "music" },
   ];
 
   const [activeCategory, setActiveCategory] = useState("all");
@@ -45,7 +45,7 @@ const Portfolio: React.FC = () => {
               key={index}
               text={value.name}
               onClick={() => setActiveCategory(value.category)}
-              className={`border text-xxs md:text-xs py-1 rounded-[5px] font-semibold ${
+              className={`border text-xs md:text-xs py-1 rounded-[5px] font-semibold ${
                 activeCategory === value.category ? "bg-white text-black" : ""
               }`}
             />

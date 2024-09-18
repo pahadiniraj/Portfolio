@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FaFacebookSquare, FaLinkedin } from "react-icons/fa";
 import { FaSquareGithub } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import LoginButton from "@/Components/Auth/Login/LoginButton";
+import Cookies from "js-cookie";
+import { HoverBorderGradientDemo } from "@/Components/UI/Components/HoverGradientComp";
+import { useRouter } from "next/navigation";
 
 const iconVariants = {
   hidden: {
@@ -30,6 +33,15 @@ const SocialLinks: React.FC = () => {
     threshold: 0.1, // Trigger when 10% of the component is visible
   });
 
+  const [isVerified, setIsVerified] = useState<boolean | null>(null);
+  const router = useRouter();
+
+  // Check the cookie only on the client side
+  useEffect(() => {
+    const verified = Cookies.get("isVerified");
+    setIsVerified(verified === "true");
+  }, []);
+
   const data = [
     {
       url: "https://www.facebook.com/profile.php?id=100089208278456",
@@ -45,9 +57,13 @@ const SocialLinks: React.FC = () => {
     },
   ];
 
+  // If the client-side state has not been set yet, don't render until it's ready
+  if (isVerified === null) {
+    return null; // Or a loader if you'd like
+  }
+
   return (
-    <div className="flex items-end mb-1 ml-2 gap-4">
-      <LoginButton />
+    <div className="flex items-end mb-1 ml-2 gap-4 ">
       <ul className="flex gap-2" ref={ref}>
         {data.map((item, index) => (
           <li key={index}>
@@ -67,6 +83,16 @@ const SocialLinks: React.FC = () => {
           </li>
         ))}
       </ul>
+      {isVerified ? (
+        <div
+          className="relative top-1 duration-300 active:scale-90"
+          onClick={() => router.push("/dashboard")}
+        >
+          <HoverBorderGradientDemo />
+        </div>
+      ) : (
+        <LoginButton />
+      )}
     </div>
   );
 };

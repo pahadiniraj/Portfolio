@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 const LoginButton = () => {
   const router = useRouter();
@@ -24,7 +25,7 @@ const LoginButton = () => {
               repeat: Infinity, // Loop the animation
               repeatType: "loop", // Loop type
               ease: "easeInOut", // Smooth easing
-              repeatDelay: 5, // Delay between shakes
+              repeatDelay: 3, // Delay between shakes
             }}
             whileHover={{ scale: 1.1 }} // Slightly scale up on hover
             className="px-2 py-1 rounded-md text-xs"
