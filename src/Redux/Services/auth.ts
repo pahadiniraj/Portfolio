@@ -79,6 +79,32 @@ export const authApi = createApi({
         };
       },
     }),
+    resetUserPasswordLink: builder.mutation({
+      query: (user) => {
+        return {
+          url: `reset-password-link`,
+          body: user,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+      },
+    }),
+    resetUserPassword: builder.mutation({
+      query: (data) => {
+        const { id, token, ...values } = data;
+        const actualData = { ...values };
+        return {
+          url: `reset-password-confirm/${id}/${token}`,
+          method: "POST",
+          body: actualData,
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+      },
+    }),
   }),
 });
 
@@ -89,4 +115,6 @@ export const {
   useVerifyOtpMutation,
   useLoginUserMutation,
   useLogoutUserMutation,
+  useResetUserPasswordLinkMutation,
+  useResetUserPasswordMutation,
 } = authApi;

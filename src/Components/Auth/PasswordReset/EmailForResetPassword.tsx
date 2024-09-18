@@ -1,10 +1,14 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useRouter } from "next/navigation";
 import { TiArrowBack } from "react-icons/ti";
 import { verifyEmailSchema } from "@/Utils/YupSchema/OtpSchema";
+import { toast } from "react-toastify";
+import ClipLoader from "react-spinners/ClipLoader";
+import { handleError } from "@/Redux/handleErrror";
+import { useResetUserPasswordLinkMutation } from "@/Redux/Services/auth";
 
 interface OtpFormValue {
   email: string;
@@ -15,11 +19,27 @@ const initialValues: OtpFormValue = {
 };
 
 const EmailForResetPassword = () => {
+  const [resetUserPasswordLink, { isLoading, isError, error }] =
+    useResetUserPasswordLinkMutation();
+
   const router = useRouter();
 
-  const handleSubmit = (value: OtpFormValue) => {
-    console.log(value);
+  const handleSubmit = async (value: OtpFormValue) => {
+    try {
+      const response = await resetUserPasswordLink(value);
+      if (response.data && response.data.success === true) {
+        toast.success(response.data?.data);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
+
+  useEffect(() => {
+    if (isError) {
+      handleError(error);
+    }
+  }, [error, isError]);
 
   return (
     <>
@@ -75,9 +95,9 @@ const EmailForResetPassword = () => {
                       : "bg-gray-600 text-gray-400 cursor-not-allowed"
                   } rounded-2xl py-2 mt-4 transition-all duration-300 `}
                   type="submit"
-                  // disabled={!isValid || isLoginLoading}
+                  disabled={!isValid || isLoading}
                 >
-                  Reset Password
+                  {isLoading ? "Sending email ..." : "Reset Password"}
                 </button>
               </Form>
             )}

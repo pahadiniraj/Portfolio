@@ -1,11 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useRouter, useParams } from "next/navigation";
 import { TiArrowBack } from "react-icons/ti";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import resetPassword from "@/Utils/YupSchema/ResetPassword";
+import { useResetUserPasswordMutation } from "@/Redux/Services/auth";
+import { toast } from "react-toastify";
+import { handleError } from "@/Redux/handleErrror";
 
 interface ResetPasswordValue {
   password: string;
@@ -20,14 +23,30 @@ const initialValues: ResetPasswordValue = {
 const InputForResetPassword = () => {
   const router = useRouter();
   const { id, token } = useParams();
-
+  const [resetUserPassword, { isError, isLoading, isSuccess, error }] =
+    useResetUserPasswordMutation();
   const [showPassword, setShowPassword] = useState(true);
   const [showConfirmPassword, setShowConfirmPassword] = useState(true);
 
-  const handleSubmit = (value: ResetPasswordValue) => {
-    const data = { ...value, id, token };
-    console.log(data);
+  const handleSubmit = async (value: ResetPasswordValue) => {
+    try {
+      const data = { ...value, id, token };
+      const response = await resetUserPassword(data);
+      console.log(response);
+      if (response.data && response.data.success === true) {
+        router.push("/login");
+        toast.success(response.data?.data);
+      }
+    } catch (error) {
+      console.error("Error while resetting password", error);
+    }
   };
+
+  useEffect(() => {
+    if (error) {
+      handleError(error);
+    }
+  }, [error, isError]);
 
   return (
     <>

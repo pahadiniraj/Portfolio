@@ -6,6 +6,7 @@ import ContainerWrapper from "@/Components/ContainerWrapper";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Provider } from "react-redux";
 import { store } from "@/Redux/Store";
+import { SkeletonTheme } from "react-loading-skeleton";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,7 +23,9 @@ export default function RootLayout({
             <GoogleOAuthProvider
               clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string}`}
             >
-              {children}
+              <SkeletonTheme baseColor="#000000" highlightColor="#79737d">
+                {children}
+              </SkeletonTheme>
             </GoogleOAuthProvider>
             <ContainerWrapper />
           </main>

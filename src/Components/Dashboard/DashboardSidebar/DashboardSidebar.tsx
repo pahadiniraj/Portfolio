@@ -1,13 +1,22 @@
 "use client"; // Ensure this line is at the top for client-side rendering
 import Link from "next/link";
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, useEffect, useState } from "react";
 import { usePathname } from "next/navigation"; // Import usePathname
 import { useLogoutUserMutation } from "@/Redux/Services/auth";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
+import Cookies from "js-cookie";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const SidebarDashboard = () => {
+  const [userRole, setUserRole] = useState<string | null>(null);
+
+  useEffect(() => {
+    const role = Cookies.get("role");
+    setUserRole(role ?? null);
+  }, []);
   const link = [
     {
       href: "/dashboard/admin-dashboard",
@@ -29,7 +38,17 @@ const SidebarDashboard = () => {
       href: "/dashboard/testimonial",
       label: "Testimonials",
     },
-  ];
+  ].filter((item) => {
+    // Only show "Admin Dashboard" and "Admin Blogs" if userRole is "admin"
+    if (
+      userRole === "user" &&
+      (item.href === "/dashboard/admin-dashboard" ||
+        item.href === "/dashboard/admin-blog")
+    ) {
+      return false;
+    }
+    return true;
+  });
 
   const pathname = usePathname(); // Get the current route's pathname
 
@@ -53,6 +72,10 @@ const SidebarDashboard = () => {
       console.error("Failed to logout user", error);
     }
   };
+
+  if (userRole === null) {
+    return <Skeleton className="w-full" borderRadius="0" />;
+  }
 
   return (
     <div className="bg-gradient-to-r from-slate-900 h-full text-white   px-4 py-4 shadow-lg shadow-gray-700 ">

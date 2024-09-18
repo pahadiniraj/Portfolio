@@ -7,10 +7,6 @@ export async function middleware(request: NextRequest) {
     const isVerified = request.cookies.get("isVerified")?.value;
     const userRole = request.cookies.get("role")?.value;
 
-    console.log("isVerified: " + isVerified);
-    // Log the user role (for debugging)
-    console.log("User role:", userRole);
-
     // If the user is not verified, redirect to the login page
     if (!isVerified) {
       return NextResponse.redirect(new URL("/login", request.url));

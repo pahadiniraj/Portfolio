@@ -2,14 +2,16 @@
 
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import { MdNotifications } from "react-icons/md";
 import profile from "../../../Assets/ProfileImg/profile.jpg";
 import { useGetUserQuery } from "@/Redux/Services/user";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 interface UserData {
   firstName: string | null;
   lastName: string | null;
   jobTitle?: string | null;
+  avatar?: string | null;
 }
 
 const DashboardHead = () => {
@@ -30,8 +32,12 @@ const DashboardHead = () => {
           <div>
             <p className="text-base">
               {user?.firstName} {user?.lastName}
+              {isLoading && <Skeleton width={100} />}
             </p>
-            <p className="text-xs text-end  text-slate-100">{user?.jobTitle}</p>
+            <p className="text-xs text-end  text-slate-100">
+              {user?.jobTitle}
+              {isLoading && <Skeleton width={100} />}
+            </p>
           </div>
           <div className="w-14 h-14 rounded-full overflow-hidden">
             <Image

@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import SidebarDashboard from "@/Components/Dashboard/DashboardSidebar/DashboardSidebar";
 import DashboardHead from "@/Components/Dashboard/DashboardHead/DashboardHead";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 const inter = Inter({ subsets: ["latin"] });
 
