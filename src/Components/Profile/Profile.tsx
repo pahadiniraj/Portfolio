@@ -44,7 +44,6 @@ const Profile = () => {
   });
 
   const [user, setUser] = useState<UserData | null>(null);
-  console.log("User data", user);
   useEffect(() => {
     if (data && isSuccess) {
       setUser(data.user);
@@ -103,6 +102,7 @@ const Profile = () => {
                   height={300}
                   style={{ objectFit: "cover" }}
                   className="rounded-full"
+                  priority
                 />
               </div>
             </div>

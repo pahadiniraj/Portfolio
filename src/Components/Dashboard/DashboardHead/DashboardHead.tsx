@@ -19,7 +19,6 @@ const DashboardHead = () => {
     refetchOnMountOrArgChange: true,
   });
   const [user, setUser] = useState<UserData | null>(null);
-  console.log("User dashboard data", user);
   useEffect(() => {
     if (data && isSuccess) {
       setUser(data.user);
@@ -46,6 +45,7 @@ const DashboardHead = () => {
               width={60}
               height={50}
               style={{ objectFit: "contain" }}
+              priority
             />
           </div>
         </div>

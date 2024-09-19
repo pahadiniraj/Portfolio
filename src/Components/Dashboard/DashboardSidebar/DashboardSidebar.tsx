@@ -74,7 +74,7 @@ const SidebarDashboard = () => {
   };
 
   if (userRole === null) {
-    return <Skeleton className="w-full" borderRadius="0" />;
+    return <Skeleton className="w-full h-screen mt-0" borderRadius="0" />;
   }
 
   return (

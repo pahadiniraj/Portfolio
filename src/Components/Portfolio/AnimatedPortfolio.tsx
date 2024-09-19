@@ -35,7 +35,7 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
 
   return (
     <motion.div
-      className="grid md:grid-cols-3 sm:grid-cols-3 grid-cols-1 md:max-h-[250px] overflow-x-auto md:scrollbar-hide max-h-[450px] gap-5 py-2 "
+      className="grid md:grid-cols-3 sm:grid-cols-3 grid-cols-1 md:max-h-[250px] md:scrollbar-hide max-h-[450px] gap-5 py-2  overflow-x-hidden"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -43,37 +43,23 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
       {filterSkill().map((value, index) => (
         <motion.div
           key={index}
-          className="rounded-2xl flex justify-center items-center "
+          className="rounded-2xl flex justify-center items-center  "
           variants={itemVariants}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          <div className="relative w-full h-full rounded-2xl overflow-hidden group">
-            <Image
-              src={value.image}
-              alt="Niraj Portfolio"
-              className="w-full h-full object-cover"
-              priority
-            />
-            <div className="absolute inset-0 flex items-end justify-start bg-black  text-white opacity-0 group-hover:opacity-80 transition-opacity duration-300">
-              <div className="flex flex-col gap-4 px-4 py-2">
-                <h2 className="text-lg font-bold">{value.name}</h2>
-                <p className="text-xxs font-light">{value.description}</p>
-                <div className="flex justify-between gap-6  ">
-                  <div className="flex justify-center items-center gap-2">
-                    <BiSolidLike className="text-xs text-blue-600" />
-                    <p className="text-xs">1</p>{" "}
-                  </div>
-                  <div className="flex gap-1 justify-center items-center">
-                    <p className="text-xs">1</p>
-                    <p className="text-xs">Comment</p>
-                  </div>
-                  <div className="flex gap-1 justify-center items-center">
-                    <p className="text-xs">1</p>
-                    <p className="text-xl ">
-                      <RiShareForward2Fill />
-                    </p>
-                  </div>
-                </div>
+          <div className="relative w-full h-full rounded-2xl overflow-hidden group bg-slate-700 border border-slate-600 px-3 pt-1 pb-3 hover:shadow-lg">
+            <h2 className=" font-bold p-1">{value.name}</h2>
+            <div className="h-[190px] ">
+              <Image
+                src={value.image}
+                alt="Niraj Portfolio"
+                className="w-full h-full object-cover rounded-md "
+                priority
+              />
+            </div>
+            <div className="absolute inset-0 flex items-end justify-start bg-black  text-white opacity-0 group-hover:opacity-80 transition-opacity duration-300 ">
+              <div className="flex flex-col gap-4 px-4 py-2 ">
+                <p className="text-xs font-light">{value.description}</p>
               </div>
             </div>
           </div>
@@ -103,3 +89,22 @@ export default AnimatedPortfolio;
 //               </div>
 //             </div>
 //           </div>
+
+{
+  /* <div className="flex justify-between gap-6  ">
+                  <div className="flex justify-center items-center gap-2">
+                    <BiSolidLike className="text-xs text-blue-600" />
+                    <p className="text-xs">1</p>{" "}
+                  </div>
+                  <div className="flex gap-1 justify-center items-center">
+                    <p className="text-xs">1</p>
+                    <p className="text-xs">Comment</p>
+                  </div>
+                  <div className="flex gap-1 justify-center items-center">
+                    <p className="text-xs">1</p>
+                    <p className="text-xl ">
+                      <RiShareForward2Fill />
+                    </p>
+                  </div>
+                </div> */
+}

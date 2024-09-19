@@ -84,7 +84,7 @@ const EmailForResetPassword = () => {
                     <ErrorMessage
                       name="email"
                       component="div"
-                      className="text-red-500 text-xxs ml-1"
+                      className="text-red-500 text-xs ml-1"
                     />
                   </div>
                 </div>
@@ -97,7 +97,16 @@ const EmailForResetPassword = () => {
                   type="submit"
                   disabled={!isValid || isLoading}
                 >
-                  {isLoading ? "Sending email ..." : "Reset Password"}
+                  {isLoading ? (
+                    <div className="flex space-x-2 justify-center items-center  bg-transparent ">
+                      <div>Sending Main</div>
+                      <div className="h-2 w-2  bg-white rounded-full animate-bounce [animation-delay:-0.3s]"></div>
+                      <div className="h-2 w-2 bg-white rounded-full animate-bounce [animation-delay:-0.15s]"></div>
+                      <div className="h-2 w-2 bg-white rounded-full animate-bounce"></div>
+                    </div>
+                  ) : (
+                    "Submit"
+                  )}
                 </button>
               </Form>
             )}

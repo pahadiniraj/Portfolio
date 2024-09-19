@@ -9,6 +9,7 @@ import resetPassword from "@/Utils/YupSchema/ResetPassword";
 import { useResetUserPasswordMutation } from "@/Redux/Services/auth";
 import { toast } from "react-toastify";
 import { handleError } from "@/Redux/handleErrror";
+import ClipLoader from "react-spinners/ClipLoader";
 
 interface ResetPasswordValue {
   password: string;
@@ -66,9 +67,7 @@ const InputForResetPassword = () => {
           <div className="flex justify-center mt-4 flex-col items-center md:w-full w-3/5 text-center">
             <p className="font-bold">Reset Password</p>
             <p className="text-xs px-2">
-              Enter your email, and I’ll send you a link to reset your password.
-              Click the 'Reset Password' button in the email to change your
-              password.
+              Enter Your new password. This Link will be expired in 15 min.
             </p>
           </div>
         </div>
@@ -90,9 +89,10 @@ const InputForResetPassword = () => {
                   <ErrorMessage
                     name="password"
                     component="div"
-                    className="text-red-500 text-xxs ml-1"
+                    className="text-red-500 text-xs ml-1"
                   />
                   <button
+                    type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-2 top-4 text-xl transition duration-300 ease-linear active:scale-90"
                   >
@@ -109,9 +109,10 @@ const InputForResetPassword = () => {
                   <ErrorMessage
                     name="confirmPassword"
                     component="div"
-                    className="text-red-500 text-xxs ml-1"
+                    className="text-red-500 text-xs ml-1"
                   />
                   <button
+                    type="button"
                     onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                     className="absolute right-2 top-4 text-xl transition duration-300 ease-linear active:scale-90"
                   >
@@ -126,9 +127,9 @@ const InputForResetPassword = () => {
                     : "bg-gray-600 text-gray-400 cursor-not-allowed"
                 } rounded-2xl py-2 mt-4 transition-all duration-300 `}
                 type="submit"
-                // disabled={!isValid || isLoginLoading}
+                disabled={!isValid || isLoading}
               >
-                Reset Password
+                {isLoading ? <ClipLoader size={20} /> : "Reset Password"}
               </button>
             </Form>
           )}

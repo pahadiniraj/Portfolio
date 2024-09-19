@@ -41,7 +41,6 @@ const PersonalFormik = () => {
   const { data: fetchedData, isSuccess: userFetchSuccess } = useGetUserQuery();
   const [userData, setUserData] = useState<UserData | null | undefined>(null);
   const user = fetchedData?.user;
-  console.log("settings user", user);
 
   const [UpdateUser, { isLoading, isError, error }] = useUpdateUserMutation();
 
@@ -67,7 +66,6 @@ const PersonalFormik = () => {
     try {
       console.log(value);
       const response = await UpdateUser(value);
-      console.log("response data", response);
       if (response.data && response.data.success === true) {
         console.log("success", response.data?.message);
         toast.success(response.data?.message);

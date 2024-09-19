@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&display=swap");
+
 :root {
   --foreground-rgb: 255, 255, 255; /* White for dark mode */
   --background-start-rgb: 0, 0, 0;

@@ -61,7 +61,7 @@ const FormikLogin = () => {
         onSubmit={handleSubmit}
       >
         {({ isValid }) => (
-          <Form className="flex flex-col mt-8 md:mt-4 w-full">
+          <Form className="flex flex-col mt-8 md:mt-2 w-full">
             <div className="space-y-4 w-full">
               <div className="relative">
                 <Field

@@ -12,8 +12,11 @@ const config: Config = {
   theme: {
     extend: {
       boxShadow: {
-        "custom-dark": "0 4px 10px rgba(0, 0, 0, 0.25)", // Custom default shadow
-        "custom-white": "0 0 12px rgba(255, 255, 255, 0.7)", // Custom white shadow for hover
+        "custom-dark": "0 4px 10px rgba(0, 0, 0, 0.25)",
+        "custom-white": "0 0 12px rgba(255, 255, 255, 0.7)",
+      },
+      fontFamily: {
+        pacifico: ["Pacifico", "cursive"],
       },
     },
   },

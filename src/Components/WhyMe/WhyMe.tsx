@@ -11,7 +11,7 @@ const WhyMe = () => {
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
         transition={{ type: "spring", stiffness: 250, damping: 40 }}
-        className="h-[390px] w-[900px] bg-black overflow-hidden rounded-[50px]"
+        className="h-[390px] w-[900px] bg-black overflow-hidden rounded-[50px] "
       >
         <div className="text-center mt-5">
           <h3 className="text-2xl font-semibold px-4  ">
@@ -21,7 +21,7 @@ const WhyMe = () => {
             </span>
           </h3>
         </div>
-        <div className="w-full">
+        <div className="w-full ">
           <StickyScrollRevealDemo />
         </div>
       </motion.div>

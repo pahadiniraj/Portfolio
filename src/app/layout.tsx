@@ -1,5 +1,6 @@
 "use client";
 import { Inter } from "next/font/google";
+import Head from "next/head"; // Import the Head component
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import ContainerWrapper from "@/Components/ContainerWrapper";
@@ -19,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} `}>
         <Provider store={store}>
-          <main className="bg-transparent  h-screen flex justify-center items-center bg-pink-200">
+          <main className="bg-transparent h-screen flex justify-center items-center bg-pink-200">
             <GoogleOAuthProvider
               clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string}`}
             >
