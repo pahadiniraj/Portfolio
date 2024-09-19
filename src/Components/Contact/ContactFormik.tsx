@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useRouter } from "next/navigation";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useLoginUserMutation } from "@/Redux/Services/auth";
 import { handleError } from "@/Redux/handleErrror";
 import contactFormSchema from "@/Utils/YupSchema/ContactSchema";
+import { useCreateContactMutation } from "@/Redux/Services/contact";
+import { toast } from "react-toastify";
 
 interface contactFormikValues {
   fullName: string;
@@ -21,18 +23,31 @@ const initialValues: contactFormikValues = {
 };
 const ContactFormik = () => {
   const [showPassword, setShowPassword] = useState(true);
-  const router = useRouter();
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  const [CreateContact, { isError, isLoading, isSuccess, error }] =
+    useCreateContactMutation();
+
+  const handleSubmit = async (
+    values: contactFormikValues,
+    { resetForm }: { resetForm: () => void }
+  ) => {
+    try {
+      const response = await CreateContact(values);
+      console.log(response);
+      if (response.data && response.data.success === true) {
+        toast.success(response.data?.message);
+        resetForm();
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const [loginUser, { isError, isLoading, isSuccess, error }] =
-    useLoginUserMutation();
-
-  const handleSubmit = async (values: contactFormikValues) => {
-    console.log(values);
-  };
+  useEffect(() => {
+    if (error) {
+      handleError(error);
+    }
+  }, [error, isError]);
 
   return (
     <div>
@@ -114,7 +129,7 @@ const ContactFormik = () => {
                 type="submit"
                 disabled={!isValid || isLoading}
               >
-                {isLoading ? <ClipLoader size={25} color="#fff" /> : "Login"}
+                {isLoading ? <ClipLoader size={25} color="#fff" /> : "Submit"}
               </button>
             </div>
           </Form>
