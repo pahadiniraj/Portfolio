@@ -49,7 +49,7 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
         >
           <div className="relative w-full h-full rounded-2xl overflow-hidden group bg-slate-800 border border-slate-700 px-3 pt-1 pb-3 hover:shadow-lg">
             <h2 className=" font-bold p-1">{value.name}</h2>
-            <div className="h-[190px] ">
+            <div className="md:h-[190px] ">
               <Image
                 src={value.image}
                 alt="Niraj Portfolio"
@@ -59,7 +59,7 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
             </div>
             <div className="absolute inset-0 flex items-end justify-start bg-black  text-white opacity-0 group-hover:opacity-80 transition-opacity duration-300 ">
               <div className="flex flex-col gap-4 px-4 py-2 ">
-                <p className="text-xs font-light">{value.description}</p>
+                <p className="text-md pb-5 font-light">{value.description}</p>
               </div>
             </div>
           </div>

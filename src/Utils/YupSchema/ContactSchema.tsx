@@ -15,9 +15,10 @@ const contactFormSchema = Yup.object().shape({
     .max(500, "Message can't be longer than 500 characters")
     .required("Message is required"),
 
-  acceptTermAndCondition: Yup.boolean()
-    .oneOf([true], "You must accept the terms and conditions")
-    .required("Accepting terms and conditions is required"),
+  subject: Yup.string()
+    .min(10, "Subject must be at least 10 characters")
+    .max(500, "Subject can't be longer than 50 characters")
+    .required("Subject is required"),
 });
 
 export default contactFormSchema;

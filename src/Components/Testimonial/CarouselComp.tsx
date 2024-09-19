@@ -65,7 +65,7 @@ const CarouselComp = () => {
         >
           <div className="w-full flex justify-center items-center mt-5 ">
             <div className=" h-[280px] w-full flex justify-center items-center">
-              <div className="w-4/5 bg-slate-800 flex items-center  h-[90%] rounded-2xl flex-col">
+              <div className="w-[95%] md:w-5/6 bg-slate-800 flex items-center  h-[90%] rounded-2xl flex-col">
                 <div className=" w-[80px] h-[80px] rounded-full overflow-hidden flex justify-center items-center  border relative bottom-4 ">
                   <Image
                     src={profile}
@@ -91,7 +91,7 @@ const CarouselComp = () => {
           </div>
           <div className="w-full flex justify-center items-center mt-5 ">
             <div className=" h-[280px] w-full flex justify-center items-center">
-              <div className="w-4/5 bg-slate-800 flex items-center  h-[90%] rounded-2xl flex-col">
+              <div className="w-[95%] md:w-5/6 bg-slate-800 flex items-center  h-[90%] rounded-2xl flex-col">
                 <div className=" w-[80px] h-[80px] rounded-full overflow-hidden flex justify-center items-center  border relative bottom-4 ">
                   <Image
                     src={profile}

@@ -13,22 +13,25 @@ const Contact = () => {
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
         transition={{ type: "spring", stiffness: 250, damping: 40 }}
-        className="h-[390px] w-[900px] bg-black overflow-hidden rounded-[50px] p-5 relative "
+        className="md:h-[390px] md:w-[900px] h-full  bg-black overflow-hidden rounded-[50px] p-5 relative overflow-y-scroll"
       >
+        <h2 className="text-white text-2xl font-bold text-center mb-2 block md:hidden">
+          Contact Me
+        </h2>
         <ShootingStars />
-        <div className=" flex ">
-          <div className="w-1/3">
+        <div className=" flex flex-col md:flex-row md:gap-4">
+          <div className="md:w-1/3">
             <Testimonial />
           </div>
 
-          <div className="w-2/3  z-20 border border-slate-800 flex flex-col justify-center items-center rounded-3xl ">
-            <div className="overflow-y-auto max-h-[350px] mt-1">
-              <h2 className="text-white text-2xl font-bold text-center mb-2">
+          <div className="md:w-2/3  z-20 md:border border-slate-800 flex flex-col justify-center items-center rounded-3xl ">
+            <div className="overflow-y-auto md:max-h-[350px] md:mt-1">
+              <h2 className="text-white text-2xl font-bold text-center mb-2 hidden md:block">
                 Contact Me
               </h2>
               <ContactFormik />
-              <div className="flex  justify-end w-full">
-                <p className="text-lg font-serif italic text-gray-600 border-l-4  border-blue-500 pl-4 mr-2">
+              <div className="flex  justify-start md:justify-end w-full mt-2">
+                <p className="text-xs md:text-lg  font-serif italic text-gray-600 border-l-4  border-blue-500 pl-2 ml-2 mr-2 mt-2 md:mt-0 ">
                   "Let's talk on something great together."
                 </p>
               </div>
