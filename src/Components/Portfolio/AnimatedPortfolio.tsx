@@ -47,7 +47,7 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
           variants={itemVariants}
           transition={{ duration: 0.5, ease: "easeInOut" }}
         >
-          <div className="relative w-full h-full rounded-2xl overflow-hidden group bg-slate-700 border border-slate-600 px-3 pt-1 pb-3 hover:shadow-lg">
+          <div className="relative w-full h-full rounded-2xl overflow-hidden group bg-slate-800 border border-slate-700 px-3 pt-1 pb-3 hover:shadow-lg">
             <h2 className=" font-bold p-1">{value.name}</h2>
             <div className="h-[190px] ">
               <Image

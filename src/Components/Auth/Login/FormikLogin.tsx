@@ -74,7 +74,7 @@ const FormikLogin = () => {
                 <ErrorMessage
                   name="email"
                   component="div"
-                  className="text-red-500 text-xxs ml-1"
+                  className="text-red-500 text-xs ml-1"
                 />
               </div>
               <div className="relative">
@@ -88,7 +88,7 @@ const FormikLogin = () => {
                 <ErrorMessage
                   name="password"
                   component="div"
-                  className="text-red-500 text-xxs ml-1"
+                  className="text-red-500 text-xs ml-1"
                 />
                 <button
                   type="button"
@@ -114,7 +114,7 @@ const FormikLogin = () => {
                 <ErrorMessage
                   name="acceptTermAndCondition"
                   component="div"
-                  className="text-red-500 text-xxs ml-6"
+                  className="text-red-500 text-xs ml-6"
                 />
               </div>
               <div className=" w-full flex  justify-end items-end">

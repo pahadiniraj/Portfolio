@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Testimonial from "../Testimonial/testimonial";
 import { ShootingStars } from "../UI/Components/SootingStarComp";
+import ContactFormik from "./ContactFormik";
 
 const Contact = () => {
   return (
@@ -20,8 +21,18 @@ const Contact = () => {
             <Testimonial />
           </div>
 
-          <div className="w-2/3  ">
-          
+          <div className="w-2/3  z-20 border border-slate-800 flex flex-col justify-center items-center rounded-3xl ">
+            <div className="overflow-y-auto max-h-[350px] mt-1">
+              <h2 className="text-white text-2xl font-bold text-center mb-2">
+                Contact Me
+              </h2>
+              <ContactFormik />
+              <div className="flex  justify-end w-full">
+                <p className="text-lg font-serif italic text-gray-600 border-l-4  border-blue-500 pl-4 mr-2">
+                  "Let's talk on something great together."
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </motion.div>
