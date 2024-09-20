@@ -8,6 +8,7 @@ interface Contact {
 }
 
 interface Response {
+  data: Contact[];
   message: string;
   success: boolean;
 }
@@ -32,9 +33,17 @@ export const contactApi = createApi({
         };
       },
     }),
+
+    getContact: builder.query<Response, void>({
+      query: () => ({
+        url: "get-contact",
+        method: "GET",
+        credentials: "include",
+      }),
+    }),
   }),
 });
 
 // Export hooks for usage in functional components, which are
 // auto-generated based on the defined endpoints
-export const { useCreateContactMutation } = contactApi;
+export const { useCreateContactMutation, useGetContactQuery } = contactApi;

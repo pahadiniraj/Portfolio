@@ -22,9 +22,7 @@ const initialValues: contactFormikValues = {
   subject: "",
 };
 const ContactFormik = () => {
-  const [showPassword, setShowPassword] = useState(true);
-
-  const [CreateContact, { isError, isLoading, isSuccess, error }] =
+  const [CreateContact, { isError, isLoading, error }] =
     useCreateContactMutation();
 
   const handleSubmit = async (

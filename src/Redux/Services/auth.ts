@@ -32,7 +32,6 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     registerUser: builder.mutation<Response, Register>({
       query: (user) => {
-        console.log("Redux User data", user);
         return {
           url: "register",
           method: "POST",

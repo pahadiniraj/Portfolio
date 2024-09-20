@@ -1,10 +1,11 @@
-import AdminDashboard from "@/Components/Admin/AdminDashboard";
+
+import GetContact from "@/Components/Admin/Contact/GetContact/GetContact";
 import React from "react";
 
 const page = () => {
   return (
     <div>
-      <AdminDashboard />
+      <GetContact />
     </div>
   );
 };
