@@ -12,7 +12,6 @@ const contactFormSchema = Yup.object().shape({
 
   message: Yup.string()
     .min(10, "Message must be at least 10 characters")
-    .max(500, "Message can't be longer than 500 characters")
     .required("Message is required"),
 
   subject: Yup.string()
@@ -21,4 +20,13 @@ const contactFormSchema = Yup.object().shape({
     .required("Subject is required"),
 });
 
-export default contactFormSchema;
+const validStatuses = ["unseen", "inprogress", "completed", "rejected"];
+
+const updateContactSchema = Yup.object().shape({
+  _id: Yup.string().required("ID is required"), // _id should be required
+  status: Yup.string()
+    .oneOf(validStatuses, `Status must be one of: ${validStatuses.join(", ")}`)
+    .required("Status is required"), // Remove .required() if status is not mandatory
+});
+
+export { contactFormSchema, updateContactSchema };
