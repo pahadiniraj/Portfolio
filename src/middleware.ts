@@ -20,6 +20,7 @@ export async function middleware(request: NextRequest) {
     // Check user-specific access rules
     if (userRole === "user") {
       const pathname = request.nextUrl.pathname;
+      const searchParams = request.nextUrl.search; // To preserve query parameters
 
       // Define allowed routes for regular users
       const userAllowedRoutes = [
@@ -27,12 +28,13 @@ export async function middleware(request: NextRequest) {
         "/dashboard/setting",
         "/dashboard/testimonial",
         "/dashboard/change-password",
+        "/dashboard/delete-account",
       ];
 
       // If the user tries to access a restricted route, redirect them
-      if (!userAllowedRoutes.includes(pathname)) {
+      if (!userAllowedRoutes.some((route) => pathname.startsWith(route))) {
         return NextResponse.redirect(
-          new URL("/dashboard/setting", request.url)
+          new URL(`/dashboard/setting${searchParams}`, request.url)
         );
       }
 

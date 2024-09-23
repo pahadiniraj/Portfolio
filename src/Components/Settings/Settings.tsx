@@ -1,11 +1,24 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PersonalFormik from "./PersonalFormik";
 import PersonalPhoto from "./PersonalPhoto";
 import { useRouter } from "next/navigation";
+import { useGetUserQuery, UserData } from "@/Redux/Services/user";
 
 const Settings = () => {
   const router = useRouter();
+  const { data, isSuccess, isLoading } = useGetUserQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
+
+  const [user, setUser] = useState<UserData | null>(null);
+
+  useEffect(() => {
+    if (data && isSuccess) {
+      setUser(data.user);
+    }
+  }, [data, isSuccess]);
+
   return (
     <>
       <div className="px-8 py-5  overflow-y-auto">
@@ -36,6 +49,23 @@ const Settings = () => {
                   Contact
                 </span>
               </p>
+            </div>
+            <div className="flex justify-end">
+              <button
+                className=" bg-red-600 hover:bg-red-700 p-1 text-sm rounded-md duration-300 ease-linear active:scale-90"
+                onClick={() => {
+                  if (user?._id) {
+                    console.log(
+                      `Navigating to: /dashboard/delete-account/${user._id}`
+                    );
+                    router.push(`/dashboard/delete-account/${user._id}`);
+                  } else {
+                    console.error("User ID is not defined.");
+                  }
+                }}
+              >
+                Delete account
+              </button>
             </div>
           </div>
         </div>

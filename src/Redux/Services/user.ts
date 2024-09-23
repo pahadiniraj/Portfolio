@@ -68,6 +68,21 @@ export const userApi = createApi({
         };
       },
     }),
+    deleteUser: builder.mutation({
+      query: (data) => {
+        const { _id, email, currentPassword } = data;
+        console.log(`deleteUser ${email} ${currentPassword} ${_id}`);
+        return {
+          url: `delete-account/${_id}`,
+          method: "POST",
+          body: { email, currentPassword },
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json", // Set content type to JSON
+          },
+        };
+      },
+    }),
   }),
 });
 
@@ -75,4 +90,5 @@ export const {
   useGetUserQuery,
   useUpdateUserMutation,
   useChangeUserPasswordMutation,
+  useDeleteUserMutation,
 } = userApi;
