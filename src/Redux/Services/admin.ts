@@ -19,6 +19,10 @@ interface ContactDelete {
   _id: string;
 }
 
+interface DeleteUser {
+  _id: string;
+}
+
 interface Response {
   data: Contact[];
   message: string;
@@ -83,6 +87,20 @@ export const adminApi = createApi({
         credentials: "include",
       }),
     }),
+    deleteAllUsers: builder.mutation<UpdateResponse, DeleteUser>({
+      query: (id) => {
+        console.log("redux delete", id);
+        return {
+          url: "delete-all-users",
+          method: "DELETE",
+          body: id,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        };
+      },
+    }),
   }),
 });
 
@@ -91,4 +109,5 @@ export const {
   useUpdateContactMutation,
   useDeleteContactMutation,
   useGetAllUsersQuery,
+  useDeleteAllUsersMutation,
 } = adminApi;

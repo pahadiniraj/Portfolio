@@ -72,7 +72,11 @@ const DeleteAccount = () => {
           <Form className="flex flex-col mt-8 md:mt-4 w-2/5 relative  rounded-xl bg-black border-slate-700 p-6 border">
             <div className="space-y-4 w-full">
               <div className=" ">
-                <p className="text-center text-xl font-bold">Change Password</p>
+                <p className="text-center text-xl font-bold">Delete Account</p>
+                <p className="text-center">
+                  <span className="text-red-500">Warning! </span>
+                  if you confirm the delete you will be parmanently removed.
+                </p>
                 <button
                   type="button"
                   className="absolute top-2 right-1 transition duration-300 ease-linear active:scale-90"
@@ -120,7 +124,7 @@ const DeleteAccount = () => {
             <button
               className={`${
                 isValid
-                  ? "bg-gradient-to-r from-blue-500 to-blue-600 font-bold text-white hover:shadow-lg"
+                  ? "bg-gradient-to-r from-red-500 to-red-700 font-bold text-white hover:shadow-lg"
                   : "bg-gray-600 text-gray-400 cursor-not-allowed"
               } rounded-2xl py-2 mt-4 transition-all duration-300`}
               type="submit"
@@ -129,7 +133,7 @@ const DeleteAccount = () => {
               {isLoading ? (
                 <ClipLoader color="#fcfcfc" size={25} />
               ) : (
-                "Change Password"
+                "Confirm Delete"
               )}
             </button>
           </Form>
