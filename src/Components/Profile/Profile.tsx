@@ -50,6 +50,8 @@ const Profile = () => {
     }
   }, [data, isSuccess]);
 
+  console.log(user);
+
   const userData = [
     {
       href: `${user?.linkedin}`,
@@ -114,19 +116,20 @@ const Profile = () => {
             <p className="px-8 text-xs text-center">{user?.bio}</p>
             <div className="mt-3 absolute top-2 right-5 flex">
               <div className="flex">
-                {userData.map(
-                  (value, index) =>
-                    value.href && ( // Check if `href` exists before rendering
-                      <Link
-                        href={value.href}
-                        passHref
-                        key={index}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <div>{value.icon}</div>
-                      </Link>
-                    )
+                {userData.map((value, index) =>
+                  value.href === "null" ? (
+                    <p key={index}> </p> // Check if `href` exists and is not empty
+                  ) : (
+                    <Link
+                      href={value.href}
+                      passHref
+                      key={index}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <div>{value.icon}</div>
+                    </Link>
+                  )
                 )}
               </div>
             </div>

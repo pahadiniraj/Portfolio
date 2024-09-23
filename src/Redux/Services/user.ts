@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Update UserData interface to match the user object
-interface UserData {
+export interface UserData {
   _id: string;
   jobTitle?: string | null;
   firstName: string;
@@ -20,12 +20,6 @@ interface UserData {
   instagram?: string | null;
   personalWebsite?: string | null;
   youtube?: string | null;
-}
-
-interface passwordData {
-  currentPassword: string;
-  newPassword: string;
-  confirmNewPassword: string;
 }
 
 interface ApiResponse {
@@ -77,7 +71,6 @@ export const userApi = createApi({
   }),
 });
 
-// Export hooks for usage in functional components
 export const {
   useGetUserQuery,
   useUpdateUserMutation,

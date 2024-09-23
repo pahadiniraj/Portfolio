@@ -43,13 +43,23 @@ const GetContact = () => {
     setSelectedContact(contactItem); // Set the clicked contact data
   };
 
-  const handleClosePopup = () => {
-    setSelectedContact(null); // Close the popup by resetting selected contact
-  };
-
-  const handleUpdateSuccess = () => {
-    refetch(); // Refetch contacts when update is successful
-  };
+  if (!isLoading && !contactData?.data?.length) {
+    return (
+      <div className="flex  h-screen  px-6  py-8 ">
+        <div className="w-full bg-slate-900 h-[400px] rounded-xl relative">
+          <div className="text-center text-3xl font-bold justify-center flex items-center w-full h-full">
+            No contacts found.
+          </div>
+          <button
+            onClick={() => router.push("/dashboard/admin-dashboard")}
+            className="absolute right-4 top-4"
+          >
+            <IoClose />
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="py-4 px-6">
@@ -120,8 +130,8 @@ const GetContact = () => {
         {selectedContact && (
           <UpdateContact
             userData={selectedContact}
-            handleClose={handleClosePopup}
-            onSuccess={handleUpdateSuccess} // Pass refetch handler to trigger after update
+            handleClose={() => setSelectedContact(null)}
+            onSuccess={() => refetch()} // Pass refetch handler to trigger after update
           />
         )}
       </div>

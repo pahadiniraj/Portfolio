@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { UserData } from "./user";
 
 interface Contact {
   fullName: string;
@@ -28,6 +29,10 @@ interface UpdateResponse {
   data: string;
   message: string;
   success: boolean;
+}
+
+interface GetUserResponse {
+  data: UserData[];
 }
 
 // Define a service using a base URL and expected endpoints
@@ -71,6 +76,13 @@ export const adminApi = createApi({
         };
       },
     }),
+    getAllUsers: builder.query<GetUserResponse, void>({
+      query: () => ({
+        url: "get-users",
+        method: "GET",
+        credentials: "include",
+      }),
+    }),
   }),
 });
 
@@ -78,4 +90,5 @@ export const {
   useGetContactQuery,
   useUpdateContactMutation,
   useDeleteContactMutation,
+  useGetAllUsersQuery,
 } = adminApi;

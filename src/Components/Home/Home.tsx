@@ -6,6 +6,7 @@ import Image from "next/image";
 import profile from "../../Assets/ProfileImg/profile.jpg";
 import { ReactTyped } from "react-typed";
 import { motion } from "framer-motion";
+import { ShootingStars } from "../UI/Components/SootingStarComp";
 
 const HomeComponent = () => {
   return (
