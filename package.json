@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^2.2.7",
     "@tabler/icons-react": "^3.12.0",
     "@tailwindcss/line-clamp": "^0.4.4",
+    "@types/react-star-rating-component": "^1.4.4",
     "axios": "^1.7.7",
     "clsx": "^2.1.1",
     "formik": "^2.4.6",

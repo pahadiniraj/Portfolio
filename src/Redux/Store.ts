@@ -4,8 +4,10 @@ import { authApi } from "./Services/auth";
 import { userApi } from "./Services/user";
 import { contactApi } from "./Services/contact";
 import { adminApi } from "./Services/admin";
+import { testimonialApi } from "./Services/testimonial";
 export const store = configureStore({
   reducer: {
+    [testimonialApi.reducerPath]: testimonialApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
     [contactApi.reducerPath]: contactApi.reducer,
@@ -17,7 +19,8 @@ export const store = configureStore({
       authApi.middleware,
       userApi.middleware,
       contactApi.middleware,
-      adminApi.middleware
+      adminApi.middleware,
+      testimonialApi.middleware
     ),
 });
 
