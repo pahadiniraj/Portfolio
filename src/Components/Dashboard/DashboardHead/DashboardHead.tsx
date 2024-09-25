@@ -40,7 +40,7 @@ const DashboardHead = () => {
           </div>
           <div className="w-14 h-14 rounded-full overflow-hidden">
             <Image
-              src={profile}
+              src={user?.avatar || profile}
               alt="profile"
               width={60}
               height={50}

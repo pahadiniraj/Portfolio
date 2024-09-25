@@ -2,7 +2,7 @@ import {
   useDeleteAllUsersMutation,
   useGetAllUsersQuery,
 } from "@/Redux/Services/admin";
-import { useDeleteUserMutation, UserData } from "@/Redux/Services/user";
+import { UserData } from "@/Redux/Services/user";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import profile from "../../../Assets/ProfileImg/profile.jpg";
@@ -27,6 +27,13 @@ const AllUsers = () => {
   console.log(user);
 
   const handleDeleteUser = async (_id: string) => {
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
+
+    if (!confirmDelete) {
+      return;
+    }
     try {
       const response = await DeleteUser({ _id });
       toast.success(response?.data?.message);

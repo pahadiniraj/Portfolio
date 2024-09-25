@@ -16,6 +16,7 @@ interface User {
   lastName: string;
   jobTitle: string;
   _id: string;
+  avatar:string;
 }
 
 // Define Data interface

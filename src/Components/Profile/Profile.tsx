@@ -39,7 +39,7 @@ interface UserData {
 }
 
 const Profile = () => {
-  const { data, isSuccess, isLoading } = useGetUserQuery(undefined, {
+  const { data, isSuccess, isLoading, refetch } = useGetUserQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
 
@@ -47,6 +47,7 @@ const Profile = () => {
   useEffect(() => {
     if (data && isSuccess) {
       setUser(data.user);
+      refetch();
     }
   }, [data, isSuccess]);
 
@@ -95,7 +96,7 @@ const Profile = () => {
             {/* Container for the image */}
             <div className="relative w-[100px] h-[100px] rounded-full overflow-hidden flex justify-center items-center">
               <Image
-                src={profile}
+                src={user?.avatar || profile}
                 alt="profile"
                 width={300}
                 height={300}

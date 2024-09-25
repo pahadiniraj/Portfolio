@@ -1,40 +1,65 @@
-import Image from "next/image";
-import React from "react";
-import profile from "../../Assets/ProfileImg/profile.jpg";
+import React, { useState } from "react";
+import { toast } from "react-toastify";
+import { useUpdateAvatarMutation } from "@/Redux/Services/user"; // Adjust this path based on your folder structure
+import { useRouter } from "next/navigation";
 
-const PersonalPhoto = () => {
+const FileUpload = () => {
+  const [file, setFile] = useState<File | null>(null); // State to store selected file
+  const [uploadFile, { isLoading }] = useUpdateAvatarMutation(); // Hook to trigger file upload API
+  const router = useRouter();
+
+  // Handle file selection
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const selectedFile = e.target.files?.[0];
+    if (selectedFile) {
+      setFile(selectedFile);
+    }
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!file) {
+      toast.error("Please select a file!");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("avatar", file); // 'avatar' is the key, update if backend expects a different key
+
+    try {
+      const response = await uploadFile(formData).unwrap();
+      toast.success("File uploaded successfully!");
+      console.log("Upload response:", response);
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      toast.error("File upload failed!");
+    }
+  };
+
   return (
-    <>
-      <div className="p-4">
-        <div className="py-2 mb-2 border-b ">
-          <p>Your Photo</p>
-        </div>
-        <div className="flex gap-3 p-2 items-center">
-          <div className="relative w-[70px] h-[70px] rounded-full overflow-hidden flex justify-center items-center">
-            <Image
-              src={profile}
-              alt="profile"
-              width={200}
-              height={200}
-              style={{ objectFit: "cover" }}
-              className="rounded-full"
-            />
-          </div>
-          <div>
-            <p className="text-base font-semibold">Edit your photo</p>
-            <div className="flex gap-3">
-              <button className="text-sm text-slate-300 hover:text-red-500  duration-300">
-                Delete
-              </button>
-              <button className="text-sm text-slate-300 hover:text-green-500 duration-300">
-                Update
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
+    <div className="flex  h-full justify-center items-start p-4">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col justify-center items-center w-full max-w-md p-4 bg-gray-500 rounded-lg shadow-lg"
+      >
+        <input
+          type="file"
+          onChange={handleFileChange}
+          className="mb-4 p-2 bg-gray-400 border  rounded-md w-full"
+        />
+        <button
+          type="submit"
+          disabled={isLoading}
+          className={`p-2 w-full rounded-md text-white ${
+            isLoading ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-600"
+          } transition duration-300`}
+        >
+          {isLoading ? "Uploading..." : "Upload File"}
+        </button>
+      </form>
+    </div>
   );
 };
 
-export default PersonalPhoto;
+export default FileUpload;

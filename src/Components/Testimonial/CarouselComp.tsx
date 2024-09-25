@@ -13,6 +13,7 @@ interface User {
   lastName: string;
   jobTitle: string;
   _id: string;
+  avatar?: string;
 }
 
 // Define Data interface
@@ -113,40 +114,43 @@ const CarouselComp = () => {
         customRightArrow={<CustomRightArrow />}
       >
         {testimonials.length > 0 ? (
-          testimonials.map((item) => (
-            <div
-              key={item._id}
-              className="w-full flex justify-center items-center mt-5"
-            >
-              <div className="h-[280px] w-full flex justify-center items-center">
-                <div className="w-[95%] md:w-5/6 bg-slate-800 flex items-center h-[90%] rounded-2xl flex-col">
-                  <div className="w-[80px] h-[80px] rounded-full overflow-hidden flex justify-center items-center border relative bottom-4">
-                    <Image
-                      src={profile}
-                      alt="profile"
-                      width={80}
-                      height={80}
-                      style={{ objectFit: "cover" }}
-                      className="rounded-full"
-                      priority
-                    />
-                  </div>
-                  <div className="text-center text-sm mb-2">
-                    <h3 className="text-lg font-semibold">
-                      {item.user.firstName} {item.user.lastName}
-                    </h3>
-                    <p className="text-xs text-slate-200">
-                      {item.user.jobTitle}
+          testimonials
+            .concat()
+            .reverse()
+            .map((item) => (
+              <div
+                key={item._id}
+                className="w-full flex justify-center items-center mt-5"
+              >
+                <div className="h-[280px] w-full flex justify-center items-center">
+                  <div className="w-[95%] md:w-5/6 bg-slate-800 flex items-center h-[90%] rounded-2xl flex-col">
+                    <div className="w-[80px] h-[80px] rounded-full overflow-hidden flex justify-center items-center border relative bottom-4">
+                      <Image
+                        src={item.user?.avatar || profile}
+                        alt="profile"
+                        width={80}
+                        height={80}
+                        style={{ objectFit: "cover" }}
+                        className="rounded-full"
+                        priority
+                      />
+                    </div>
+                    <div className="text-center text-sm mb-2">
+                      <h3 className="text-lg font-semibold">
+                        {item.user.firstName} {item.user.lastName}
+                      </h3>
+                      <p className="text-xs text-slate-200">
+                        {item.user.jobTitle}
+                      </p>
+                    </div>
+                    <p className="px-2 text-center text-xs mb-2 line-clamp-5">
+                      "{item.message}"
                     </p>
+                    <StarRating rating={item.rating} />
                   </div>
-                  <p className="px-2 text-center text-xs mb-2 line-clamp-5">
-                    "{item.message}"
-                  </p>
-                  <StarRating rating={item.rating} />
                 </div>
               </div>
-            </div>
-          ))
+            ))
         ) : (
           <p>No testimonials available</p>
         )}

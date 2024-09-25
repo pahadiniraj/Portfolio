@@ -12,7 +12,7 @@ const AdminDashboard = () => {
         <TotalInfo />
         <div className="w-full flex justify-end my-4 ">
           <button
-            className=" text-end  p-2 bg-blue-500 rounded-md"
+            className=" text-end  p-2 bg-blue-500 rounded-md hover:bg-blue-600 duration-300 active:scale-90 "
             onClick={() => router.push("/dashboard/client-messages")}
           >
             Client Message

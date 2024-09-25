@@ -82,6 +82,16 @@ export const userApi = createApi({
         };
       },
     }),
+    updateAvatar: builder.mutation({
+      query: (avatar) => {
+        return {
+          url: `update-user-avatar`,
+          method: "POST",
+          body: avatar,
+          credentials: "include",
+        };
+      },
+    }),
   }),
 });
 
@@ -90,4 +100,5 @@ export const {
   useUpdateUserMutation,
   useChangeUserPasswordMutation,
   useDeleteUserMutation,
+  useUpdateAvatarMutation,
 } = userApi;
