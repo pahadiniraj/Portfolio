@@ -10,6 +10,30 @@ interface Response {
   success: boolean;
 }
 
+// Define User interface
+interface User {
+  firstName: string;
+  lastName: string;
+  jobTitle: string;
+  _id: string;
+}
+
+// Define Data interface
+interface Data {
+  message: string;
+  rating: number;
+  user: User;
+  _id: string;
+}
+
+// Define GetResponse interface where data is an array of Data
+export interface GetResponse {
+  data: Data[]; // Change this to Data[] instead of TestimonialData[]
+  message: string;
+  success: boolean;
+  statusCode: number;
+}
+
 // Define a service using a base URL and expected endpoints
 export const testimonialApi = createApi({
   reducerPath: "testimonialApi",
@@ -30,8 +54,15 @@ export const testimonialApi = createApi({
         };
       },
     }),
-    
+    getAllTestimonials: builder.query<GetResponse, void>({
+      query: () => ({
+        url: "get-testimonial",
+        method: "GET",
+        credentials: "include",
+      }),
+    }),
   }),
 });
 
-export const { useCreateTestimonialMutation } = testimonialApi;
+export const { useCreateTestimonialMutation, useGetAllTestimonialsQuery } =
+  testimonialApi;
