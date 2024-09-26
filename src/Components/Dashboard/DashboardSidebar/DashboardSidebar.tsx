@@ -82,7 +82,7 @@ const SidebarDashboard = () => {
       <div className="text-center font-bold text-2xl">
         <Link href="/">Niraj's Portfolio</Link>
       </div>
-      <div className="flex flex-col gap-4 mt-5 text-lg">
+      <div className="flex  flex-col gap-4 mt-5 text-lg">
         {link.map((item, index) => (
           <Link
             key={index}

@@ -12,6 +12,7 @@ export const WebDev = [
     name: "Grace International",
     description:
       "I developed a modern, responsive consultancy website featuring user-friendly navigation, dynamic content management, and a professional design to enhance client engagement and showcase the consultancy's services effectively.",
+    technology: ["NextJS", "MongoDB", "Express", "NodeJS", "PostgreSQL"],
   },
   {
     image: img2,
@@ -19,6 +20,7 @@ export const WebDev = [
     name: "Portfolio",
     description:
       "I developed a modern, responsive consultancy website featuring user-friendly navigation, dynamic content management, and a professional design to enhance client engagement and showcase the consultancy's services effectively.",
+    technology: ["NextJS", "MongoDB", "Express", "NodeJS"],
   },
   {
     image: img3,
@@ -26,6 +28,7 @@ export const WebDev = [
     name: "Portfolio",
     description:
       "I developed a modern, responsive consultancy website featuring user-friendly navigation, dynamic content management, and a professional design to enhance client engagement and showcase the consultancy's services effectively.",
+    technology: ["NextJS", "MongoDB", "Express", "NodeJS"],
   },
   {
     image: img4,
@@ -33,12 +36,14 @@ export const WebDev = [
     name: "Portfolio",
     description:
       "I developed a modern, responsive consultancy website featuring user-friendly navigation, dynamic content management, and a professional design to enhance client engagement and showcase the consultancy's services effectively.",
+    technology: ["NextJS", "MongoDB", "Express", "NodeJS"],
   },
 
   {
-    image: img4,
+    image: img5,
     category: "digitalmarketing",
     name: "Portfolio",
     description: "Hello From the new world",
+    technology: ["NextJS", "MongoDB", "Express", "NodeJS"],
   },
 ];

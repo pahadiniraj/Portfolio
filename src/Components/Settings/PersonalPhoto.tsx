@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { useUpdateAvatarMutation } from "@/Redux/Services/user"; // Adjust this path based on your folder structure
+import {
+  useGetUserQuery,
+  useUpdateAvatarMutation,
+} from "@/Redux/Services/user"; // Adjust this path based on your folder structure
 import { useRouter } from "next/navigation";
 
 const FileUpload = () => {
   const [file, setFile] = useState<File | null>(null); // State to store selected file
-  const [uploadFile, { isLoading }] = useUpdateAvatarMutation(); // Hook to trigger file upload API
+  const [uploadFile, { isLoading }] = useUpdateAvatarMutation();
+  const { refetch } = useGetUserQuery();
   const router = useRouter();
 
   // Handle file selection
@@ -31,6 +35,7 @@ const FileUpload = () => {
       const response = await uploadFile(formData).unwrap();
       toast.success("File uploaded successfully!");
       console.log("Upload response:", response);
+      refetch();
     } catch (error) {
       console.error("Error uploading file:", error);
       toast.error("File upload failed!");
@@ -41,7 +46,7 @@ const FileUpload = () => {
     <div className="flex  h-full justify-center items-start p-4">
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col justify-center items-center w-full max-w-md p-4 bg-gray-500 rounded-lg shadow-lg"
+        className="flex flex-col justify-center items-center w-full max-w-md p-4  rounded-lg shadow-lg"
       >
         <input
           type="file"

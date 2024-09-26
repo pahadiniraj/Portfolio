@@ -29,7 +29,8 @@ const Settings = () => {
             <PersonalFormik />
           </div>
           <div className="w-2/5 flex flex-col gap-4 ">
-            <div className="bg-black shadow-md border-slate-700 border  shadow-slate-700 text-lg rounded-md h-[400px]">
+            <div className="bg-black shadow-md border-slate-700 border  shadow-slate-700 text-lg rounded-md h-[250px] p-2">
+              <p className="text-lg py-2 border-b mb-2">Update Avatar</p>
               <PersonalPhoto />
             </div>
             <div className="flex w-full  justify-center px-2 bg-black shadow-md border-slate-700 border  shadow-slate-700 text-lg rounded-md flex-col items-center py-5 gap-1 ">

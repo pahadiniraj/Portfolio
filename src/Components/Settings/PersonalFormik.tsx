@@ -38,7 +38,11 @@ const PersonalFormik = () => {
     display: "block",
     margin: "0 auto",
   };
-  const { data: fetchedData, isSuccess: userFetchSuccess } = useGetUserQuery();
+  const {
+    data: fetchedData,
+    isSuccess: userFetchSuccess,
+    refetch,
+  } = useGetUserQuery();
   const [userData, setUserData] = useState<UserData | null | undefined>(null);
   const user = fetchedData?.user;
 
@@ -47,6 +51,7 @@ const PersonalFormik = () => {
   useEffect(() => {
     if (userFetchSuccess) {
       setUserData(user);
+      refetch();
     }
   });
 
@@ -69,7 +74,6 @@ const PersonalFormik = () => {
       if (response.data && response.data.success === true) {
         console.log("success", response.data?.message);
         toast.success(response.data?.message);
-        router.push("/dashboard/profile");
       }
       console.log(response);
     } catch (error) {

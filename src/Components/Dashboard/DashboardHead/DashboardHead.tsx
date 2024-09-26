@@ -6,6 +6,7 @@ import profile from "../../../Assets/ProfileImg/profile.jpg";
 import { useGetUserQuery } from "@/Redux/Services/user";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useRouter } from "next/navigation";
 
 interface UserData {
   firstName: string | null;
@@ -15,13 +16,18 @@ interface UserData {
 }
 
 const DashboardHead = () => {
-  const { data, isSuccess, isError, isLoading } = useGetUserQuery(undefined, {
-    refetchOnMountOrArgChange: true,
-  });
+  const { data, isSuccess, isError, isLoading, refetch } = useGetUserQuery(
+    undefined,
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  );
+  const router = useRouter();
   const [user, setUser] = useState<UserData | null>(null);
   useEffect(() => {
     if (data && isSuccess) {
       setUser(data.user);
+      refetch();
     }
   }, [data, isSuccess]);
   return (

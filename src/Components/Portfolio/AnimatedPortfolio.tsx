@@ -10,6 +10,7 @@ interface AnimatedPortfolioProps {
     category: string;
     name: string;
     description: string;
+    technology: string[];
   }[];
 }
 
@@ -57,9 +58,14 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
                 priority
               />
             </div>
-            <div className="absolute inset-0 flex items-end justify-start bg-black  text-white opacity-0 group-hover:opacity-80 transition-opacity duration-300 ">
-              <div className="flex flex-col gap-4 px-4 py-2 ">
-                <p className="text-md pb-5 font-light">{value.description}</p>
+            <div className="absolute inset-0 flex items-end justify-start bg-black  text-white opacity-0 group-hover:opacity-95 transition-opacity duration-300 ">
+              <div className="absolute inset-y-0 left-[-100%] flex flex-col items-center justify-start bg-black text-white  group-hover:left-0 transition-all duration-300 ease-in-out ">
+                <div className="flex flex-col gap-4 px-4 py-2">
+                  <div className="text-start  w-full font-bold">
+                    {value.name}
+                  </div>
+                  <p className="text-xs  font-medium">{value.description}</p>
+                </div>
               </div>
             </div>
           </div>
