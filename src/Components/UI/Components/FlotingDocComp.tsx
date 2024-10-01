@@ -1,47 +1,39 @@
 "use client";
 import React from "react";
 import { FloatingDock } from "../Helper/FloatingDoc";
-import {
-  IconBrandGithub,
-  IconBrandX,
-  IconExchange,
-  IconHome,
-  IconNewSection,
-  IconTerminal2,
-} from "@tabler/icons-react";
+import { IoHome } from "react-icons/io5";
+import { FaUserTie } from "react-icons/fa";
+import { FaDiagramProject } from "react-icons/fa6";
+import { MdMessage } from "react-icons/md";
+import { FaPersonCircleQuestion } from "react-icons/fa6";
+
 export function FloatingDockDemo() {
   const links = [
     {
       title: "Home",
-      icon: <IconHome className="h-full w-full " />,
+      icon: <IoHome className="h-full w-full " />,
       href: "/",
     },
 
     {
       title: "About",
-      icon: <IconTerminal2 className="h-full w-full" />,
+      icon: <FaUserTie className="h-full w-full" />,
       href: "/about",
     },
     {
       title: "Portfolio",
-      icon: <IconNewSection className="h-full w-full " />,
+      icon: <FaDiagramProject className="h-full w-full " />,
       href: "/portfolio",
     },
 
     {
       title: "Why Me?",
-      icon: <IconExchange className="h-full w-full " />,
+      icon: <FaPersonCircleQuestion className="h-full w-full " />,
       href: "why-me",
-    },
-
-    {
-      title: "Blogs",
-      icon: <IconBrandGithub className="h-full w-full " />,
-      href: "/blogs",
     },
     {
       title: "Contact",
-      icon: <IconBrandX className="h-full w-full " />,
+      icon: <MdMessage className="h-full w-full " />,
       href: "/contact",
     },
   ];

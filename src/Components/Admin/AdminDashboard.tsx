@@ -3,6 +3,7 @@ import React from "react";
 import TotalInfo from "./TotalInfo/TotalInfo";
 import { useRouter } from "next/navigation";
 import AllUsers from "./Users/AllUsers";
+import AdminProject from "./Projects/AdminProject";
 
 const AdminDashboard = () => {
   const router = useRouter();
@@ -18,11 +19,16 @@ const AdminDashboard = () => {
             Client Message
           </button>
         </div>
-        <div className="w-full flex gap-10 ">
-          <div className="w-3/5 bg-slate-950 border-slate-700 p-4 h-[340px] rounded-xl overflow-y-auto">
+        <div className="w-full flex gap-5 ">
+          <div className="w-3/5 bg-slate-950 border-slate-700 p-4 h-[340px] rounded-2xl overflow-y-auto">
             <AllUsers />
           </div>
-          <div className="w-2/5 bg-blue-200">Latest Blogs</div>
+          <div className="w-2/5 bg-slate-950 rounded-2xl ">Latest Blogs</div>
+        </div>
+        <div className="w-full flex gap-10 mt-6 ">
+          <div className=" w-full bg-slate-950 border-slate-700 p-4 h-[340px] rounded-2xl overflow-y-auto">
+            <AdminProject />
+          </div>
         </div>
       </div>
     </>

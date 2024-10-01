@@ -1,10 +1,7 @@
 "use client";
-import { loginSchema } from "@/Utils/YupSchema/loginandRegister";
 import { SettingPersonalSchema } from "@/Utils/YupSchema/SettingPersonal";
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import Link from "next/link";
 import React, { CSSProperties, useEffect, useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { TbWorldWww } from "react-icons/tb";
 import { useGetUserQuery, useUpdateUserMutation } from "@/Redux/Services/user";
@@ -51,7 +48,6 @@ const PersonalFormik = () => {
   useEffect(() => {
     if (userFetchSuccess) {
       setUserData(user);
-      refetch();
     }
   });
 
@@ -74,6 +70,7 @@ const PersonalFormik = () => {
       if (response.data && response.data.success === true) {
         console.log("success", response.data?.message);
         toast.success(response.data?.message);
+        refetch();
       }
       console.log(response);
     } catch (error) {
@@ -100,7 +97,7 @@ const PersonalFormik = () => {
                   id="jobTitle"
                   type="text"
                   name="jobTitle"
-                  className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+                  className="p-3 bg-slate-900 border border-gray-600 rounded-lg w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                 />
                 <ErrorMessage
                   name="jobTitle"
@@ -119,7 +116,7 @@ const PersonalFormik = () => {
                   rows="4"
                   cols="50"
                   placeholder="Write something about yourself..."
-                  className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+                  className="p-3 bg-slate-900  border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                 />
                 <ErrorMessage name="bio" component="div" className="error" />
               </div>
@@ -129,7 +126,7 @@ const PersonalFormik = () => {
                   <Field
                     type="url"
                     name="facebook"
-                    className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
+                    className="p-3 bg-slate-900 border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
                     placeholder="Facebook URL"
                   />
                   <ErrorMessage
@@ -145,7 +142,7 @@ const PersonalFormik = () => {
                   <Field
                     type="url"
                     name="instagram"
-                    className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
+                    className="p-3 bg-slate-900 border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
                     placeholder="Instagram URL"
                   />
                   <ErrorMessage
@@ -163,7 +160,7 @@ const PersonalFormik = () => {
                   <Field
                     type="url"
                     name="twitter"
-                    className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
+                    className="p-3 bg-slate-900 border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
                     placeholder="Twitter URL"
                   />
                   <ErrorMessage
@@ -179,7 +176,7 @@ const PersonalFormik = () => {
                   <Field
                     type="url"
                     name="github"
-                    className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
+                    className="p-3 bg-slate-900 border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
                     placeholder="Github URL"
                   />
                   <ErrorMessage
@@ -197,7 +194,7 @@ const PersonalFormik = () => {
                   <Field
                     type="url"
                     name="linkedin"
-                    className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
+                    className="p-3 bg-slate-900 border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
                     placeholder="LinkedIn URL"
                   />
                   <ErrorMessage
@@ -213,7 +210,7 @@ const PersonalFormik = () => {
                   <Field
                     type="url"
                     name="youtube"
-                    className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
+                    className="p-3 bg-slate-900 border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
                     placeholder="Youtube URL"
                   />
                   <ErrorMessage
@@ -230,7 +227,7 @@ const PersonalFormik = () => {
                 <Field
                   type="url"
                   name="personalWebsite"
-                  className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
+                  className="p-3 bg-slate-900 border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
                   placeholder="Personal Website URL"
                 />
                 <ErrorMessage

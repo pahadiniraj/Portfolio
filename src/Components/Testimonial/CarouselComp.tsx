@@ -87,7 +87,7 @@ const CarouselComp = () => {
   if (isLoading) {
     return (
       <div className="w-full  h-[280px] flex justify-center items-center">
-        <p>Loading testimonials...</p>;
+        <p>Loading testimonials...</p>
       </div>
     );
   }

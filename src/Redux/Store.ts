@@ -5,6 +5,7 @@ import { userApi } from "./Services/user";
 import { contactApi } from "./Services/contact";
 import { adminApi } from "./Services/admin";
 import { testimonialApi } from "./Services/testimonial";
+import { projectApi } from "./Services/project";
 export const store = configureStore({
   reducer: {
     [testimonialApi.reducerPath]: testimonialApi.reducer,
@@ -12,6 +13,7 @@ export const store = configureStore({
     [userApi.reducerPath]: userApi.reducer,
     [contactApi.reducerPath]: contactApi.reducer,
     [adminApi.reducerPath]: adminApi.reducer,
+    [projectApi.reducerPath]: projectApi.reducer,
   },
 
   middleware: (getDefaultMiddleware) =>
@@ -20,7 +22,8 @@ export const store = configureStore({
       userApi.middleware,
       contactApi.middleware,
       adminApi.middleware,
-      testimonialApi.middleware
+      testimonialApi.middleware,
+      projectApi.middleware
     ),
 });
 

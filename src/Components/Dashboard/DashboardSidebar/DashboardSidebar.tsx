@@ -23,23 +23,22 @@ const SidebarDashboard = () => {
       label: "Admin Dashboard",
     },
     {
-      href: "/dashboard/admin-blog",
-      label: "Admin Blogs",
+      href: "/dashboard/dashboard",
+      label: "Dashboard",
     },
     {
       href: "/dashboard/profile",
       label: "Profile",
     },
     {
+      href: "/dashboard/blog",
+      label: "Blogs",
+    },
+    {
       href: "/dashboard/setting",
       label: "Settings",
     },
-    {
-      href: "/dashboard/testimonial",
-      label: "Testimonials",
-    },
   ].filter((item) => {
-    // Only show "Admin Dashboard" and "Admin Blogs" if userRole is "admin"
     if (
       userRole === "user" &&
       (item.href === "/dashboard/admin-dashboard" ||
@@ -50,10 +49,10 @@ const SidebarDashboard = () => {
     return true;
   });
 
-  const pathname = usePathname(); // Get the current route's pathname
+  const pathname = usePathname();
 
   const isActive = (href: string) => pathname === href;
-  const router = useRouter(); // Import useRouter
+  const router = useRouter();
 
   const [logoutUser, { isLoading, isError, isSuccess, error }] =
     useLogoutUserMutation();
@@ -89,8 +88,8 @@ const SidebarDashboard = () => {
             href={item.href}
             className={`flex justify-start p-2 rounded-md font-semibold duration-300 ${
               isActive(item.href)
-                ? "bg-purple-400 text-black"
-                : "hover:bg-purple-400 hover:text-black"
+                ? "bg-gradient-to-r from-indigo-800 to-indigo-800  "
+                : "hover:bg-gradient-to-r from-indigo-800 to-indigo-800 hover:text-white"
             }`}
           >
             {item.label}

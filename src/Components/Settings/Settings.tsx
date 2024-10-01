@@ -4,6 +4,8 @@ import PersonalFormik from "./PersonalFormik";
 import PersonalPhoto from "./PersonalPhoto";
 import { useRouter } from "next/navigation";
 import { useGetUserQuery, UserData } from "@/Redux/Services/user";
+import Testimonial from "../Testimonial/testimonial";
+import CreateTestimonialFormik from "../Dashboard/Testimonial/CreateTestimonial";
 
 const Settings = () => {
   const router = useRouter();
@@ -24,16 +26,16 @@ const Settings = () => {
       <div className="px-8 py-5  overflow-y-auto">
         <p className="text-2xl font-semibold">Setting Page</p>
         <div className="flex w-full gap-8 mt-4">
-          <div className="w-3/5 backdrop-blur-sm  bg-black shadow-md border-slate-700  shadow-slate-700 text-lg p-4 rounded-md border ">
+          <div className="w-3/5 backdrop-blur-sm bg-slate-950 shadow-md border-slate-700  shadow-slate-700 text-lg p-4 rounded-2xl border ">
             <p className="text-lg py-2 border-b mb-2">Personal Information</p>
             <PersonalFormik />
           </div>
           <div className="w-2/5 flex flex-col gap-4 ">
-            <div className="bg-black shadow-md border-slate-700 border  shadow-slate-700 text-lg rounded-md h-[250px] p-2">
+            <div className="bg-slate-950 shadow-md border-slate-700 border  shadow-slate-700 text-lg rounded-2xl h-[240px] p-2">
               <p className="text-lg py-2 border-b mb-2">Update Avatar</p>
               <PersonalPhoto />
             </div>
-            <div className="flex w-full  justify-center px-2 bg-black shadow-md border-slate-700 border  shadow-slate-700 text-lg rounded-md flex-col items-center py-5 gap-1 ">
+            <div className="flex w-full  justify-center px-2 bg-slate-950 shadow-md border-slate-700 border  shadow-slate-700 text-lg rounded-2xl flex-col items-center py-5 gap-1 ">
               <p className="font-bold">Trying to Change Password</p>
               <p className="text-xs text-center">
                 Click the button below and put the current and new password{" "}
@@ -51,22 +53,32 @@ const Settings = () => {
                 </span>
               </p>
             </div>
-            <div className="flex justify-end">
-              <button
-                className=" bg-red-600 hover:bg-red-700 p-1 text-sm rounded-md duration-300 ease-linear active:scale-90"
-                onClick={() => {
-                  if (user?._id) {
-                    console.log(
-                      `Navigating to: /dashboard/delete-account/${user._id}`
-                    );
-                    router.push(`/dashboard/delete-account/${user._id}`);
-                  } else {
-                    console.error("User ID is not defined.");
-                  }
-                }}
-              >
-                Delete account
-              </button>
+
+            <div className="bg-slate-950 shadow-md border-slate-700 border  shadow-slate-700 text-lg h-[315px] p-3 overflow-y-auto rounded-2xl">
+              <p className="text-lg py-2 border-b mb-2">Give Ratings</p>
+              <CreateTestimonialFormik />
+            </div>
+            <div className="flex justify-end text-sm ">
+              <p>
+                Are you having difficulties in this app and want to
+                <span className="hover:text-red-600  font-semibold">
+                  <button
+                    className="  rounded-md duration-300 ease-linear active:scale-90"
+                    onClick={() => {
+                      if (user?._id) {
+                        console.log(
+                          `Navigating to: /dashboard/delete-account/${user._id}`
+                        );
+                        router.push(`/dashboard/delete-account/${user._id}`);
+                      } else {
+                        console.error("User ID is not defined.");
+                      }
+                    }}
+                  >
+                    Delete account ?
+                  </button>
+                </span>
+              </p>
             </div>
           </div>
         </div>

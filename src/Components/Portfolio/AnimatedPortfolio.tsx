@@ -36,7 +36,7 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
 
   return (
     <motion.div
-      className="grid md:grid-cols-3 sm:grid-cols-3 grid-cols-1 md:max-h-[250px] md:scrollbar-hide max-h-[450px] gap-5 py-2  overflow-x-hidden"
+      className="grid md:grid-cols-3 sm:grid-cols-3 grid-cols-1 md:max-h-[250px] md:scrollbar-hide  gap-5 py-2  overflow-x-hidden"
       variants={containerVariants}
       initial="hidden"
       animate="visible"

@@ -51,7 +51,7 @@ const FileUpload = () => {
         <input
           type="file"
           onChange={handleFileChange}
-          className="mb-4 p-2 bg-gray-400 border  rounded-md w-full"
+          className="mb-4 p-2 bg-slate-900 border border-slate-700   rounded-md w-full"
         />
         <button
           type="submit"

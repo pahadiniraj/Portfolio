@@ -46,20 +46,19 @@ const CreateTestimonialFormik = () => {
   }, [error, isError]);
 
   return (
-    <div className="flex flex-col  h-[500px] justify-center items-center ">
-      <div className="bg-black rounded-xl w-2/4 px-4 py-4">
-        <p className="text-xl text-center font-semibold">Give your Ratings</p>
+    <div className="flex flex-col   justify-center items-center ">
+      <div className="rounded-xl ">
         <Formik
           initialValues={initialValues}
           validationSchema={testimonialSchema} // Use the schema here
           onSubmit={handleSubmit}
         >
           {({ setFieldValue, values, isValid }) => (
-            <Form className="flex flex-col mt-4 md:mt-2 gap-2   py-4">
+            <Form className="flex flex-col mt-4 md:mt-2 gap-2  ">
               <div className=" w-full flex gap-2 flex-col">
                 <div className="flex  w-full ">
                   <div className="w-full flex gap-2 flex-col">
-                    <label htmlFor="message" className="text-lg ml-1 ">
+                    <label htmlFor="message" className="text-sm  ">
                       Give your message.
                     </label>
                     <Field
@@ -67,9 +66,9 @@ const CreateTestimonialFormik = () => {
                       name="message"
                       id="message"
                       as="textarea"
-                      rows="4"
+                      rows="3"
                       cols="50"
-                      className="p-3 bg-black border rounded-lg border-gray-600  w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+                      className="p-1 bg-slate-900 border rounded-lg border-gray-600  w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                       placeholder="Message"
                     />
                     <ErrorMessage

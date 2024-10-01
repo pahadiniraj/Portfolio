@@ -3,8 +3,10 @@ import Button from "@/Components/Button/Button";
 import { FiExternalLink } from "react-icons/fi";
 import { BsDownload } from "react-icons/bs";
 import { HoverBorderGradientDemo } from "@/Components/UI/Components/HoverGradientComp";
+import { useRouter } from "next/navigation";
 
 const HomeButtons = () => {
+  const router = useRouter();
   return (
     <div className="flex gap-3">
       <Button
@@ -16,6 +18,7 @@ const HomeButtons = () => {
       <Button
         className="py-2 px-3 rounded-md border hover:bg-white hover:text-black font-semibold flex justify-center items-center gap-2 "
         text="Portfolio "
+        onClick={() => router.push("/portfolio")}
       >
         <FiExternalLink className="text-lg" />
       </Button>

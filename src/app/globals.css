@@ -19,3 +19,7 @@ body {
     text-wrap: balance;
   }
 }
+
+#particles {
+  z-index: -1;
+}
