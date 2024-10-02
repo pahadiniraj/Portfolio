@@ -14,8 +14,10 @@ export default function RootLayout({
   return (
     <>
       <div className="h-screen w-full justify-center  items-center flex-col md:overflow-x-hidden  md:flex md:justify-center md:items-center gap-2  relative  ">
+        <div className="absolute ">
+          <ParticlesComponent />
+        </div>
         <MainLayout>{children}</MainLayout>
-        <ParticlesComponent id="particles" />
         <Navbar />
       </div>
     </>

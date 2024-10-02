@@ -11,7 +11,7 @@ const WhyMe = () => {
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
         transition={{ type: "spring", stiffness: 250, damping: 40 }}
-        className="h-[390px] w-[900px] bg-black overflow-hidden rounded-[50px] "
+        className="md:h-[390px] md:w-[900px] bg-black w-full h-full overflow-hidden md:rounded-[50px] z-10 "
       >
         <div className="text-center mt-5">
           <h3 className="text-2xl font-semibold px-4  ">

@@ -6,6 +6,7 @@ import profile from "../../Assets/ProfileImg/profile.jpg";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useGetAllTestimonialsQuery } from "@/Redux/Services/testimonial";
 import StarRating from "./StarRating";
+import ClipLoader from "react-spinners/ClipLoader";
 
 // Define User interface
 interface User {
@@ -84,10 +85,23 @@ const CarouselComp = () => {
   const testimonials = testimonial ?? [];
 
   // Show loading state while data is being fetched
+
+  const override = {
+    display: "block",
+    margin: "0 auto",
+  };
+  const [color] = useState("#ffffff");
   if (isLoading) {
     return (
       <div className="w-full  h-[280px] flex justify-center items-center">
-        <p>Loading testimonials...</p>
+        <ClipLoader
+          color={color}
+          loading={true}
+          cssOverride={override}
+          size={50}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
       </div>
     );
   }

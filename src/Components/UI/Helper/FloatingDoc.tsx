@@ -74,7 +74,7 @@ const FloatingDockMobile = ({
                   href={item.href}
                   key={item.title}
                   onClick={handleLinkClick}
-                  className=" h-14 w-14 border-gray-400 border  bg-black shadow-white rounded-full flex items-center justify-center shadow-inner-md "
+                  className=" h-14 w-14 border-gray-600 border  bg-black shadow-md shadow-gray-400 rounded-full flex items-center justify-center  "
                 >
                   <div
                     className={`h-7 w-7   ${

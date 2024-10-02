@@ -20,6 +20,22 @@ body {
   }
 }
 
-#particles {
-  z-index: -1;
+.scrollbar-container {
+  padding-right: 20px; /* Simulates moving scrollbar inward */
+  height: 400px;
+  overflow-y: scroll;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-image: linear-gradient(to bottom, rgb(92, 1, 158), rgb(100, 0, 100));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
 }

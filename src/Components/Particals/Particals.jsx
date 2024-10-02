@@ -26,6 +26,7 @@ const ParticlesComponent = (props) => {
       },
       fpsLimit: 120,
       interactivity: {
+        detectsOn: "canvas",
         events: {
           onClick: {
             enable: true,
@@ -57,7 +58,7 @@ const ParticlesComponent = (props) => {
 
       particles: {
         color: {
-          value: "#000000",
+          value: "#242424",
         },
         links: {
           color: "#000000",
@@ -80,17 +81,25 @@ const ParticlesComponent = (props) => {
           density: {
             enable: true,
           },
-          value: 200,
+          value: 250,
         },
 
         shape: {
           type: "circle",
-          opacity: {
-            value: 1.0,
+        },
+
+        // Blinking effect through opacity animation
+        opacity: {
+          value: { min: 0, max: 1 }, // Opacity range for blinking
+          animation: {
+            enable: true,
+            speed: 5, // Speed of the blink (adjust as needed)
+            sync: false, // Independent blinking for each particle
           },
         },
+
         size: {
-          value: { min: 3, max: 7 },
+          value: { min: 5, max: 10 },
         },
       },
       detectRetina: true,
