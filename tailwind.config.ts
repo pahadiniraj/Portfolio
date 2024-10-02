@@ -1,13 +1,12 @@
 import type { Config } from "tailwindcss";
+import type { PluginAPI } from "tailwindcss/types/config";
 
 const config: Config = {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx,mdx}", // Note the addition of the `app` directory.
+    "./app/**/*.{js,ts,jsx,tsx,mdx}", // Includes the `app` directory
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-
-    // Or if using `src` directory:
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}", // If using `src` directory
   ],
   theme: {
     extend: {
@@ -20,6 +19,22 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("@tailwindcss/line-clamp")],
+  plugins: [
+    require("@tailwindcss/line-clamp"),
+    function ({ addUtilities }: PluginAPI) {
+      const newUtilities = {
+        ".scrollbar-none": {
+          "-ms-overflow-style": "none",
+          "scrollbar-width": "none",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        },
+      };
+
+      addUtilities(newUtilities);
+    },
+  ],
 };
+
 export default config;

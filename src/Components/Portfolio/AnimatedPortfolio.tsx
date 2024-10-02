@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Image, { StaticImageData } from "next/image";
-import { GiAllSeeingEye } from "react-icons/gi";
+import { RiSearchEyeLine } from "react-icons/ri";
 import { useRouter } from "next/navigation";
 
 interface AnimatedPortfolioProps {
@@ -62,7 +62,8 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
             </div>
             <div className="absolute inset-0 flex  justify-center items-center bg-black  text-white opacity-0 group-hover:opacity-90 transition-opacity duration-300 ">
               <div className="flex flex-col justify-center items-center gap-4 px-4 py-2 ">
-                <GiAllSeeingEye className="text-4xl" />
+                <RiSearchEyeLine className="text-4xl" />
+                <p>View Details</p>
               </div>
             </div>
           </div>
