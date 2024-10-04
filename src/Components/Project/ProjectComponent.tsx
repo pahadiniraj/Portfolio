@@ -12,6 +12,7 @@ import { useInView } from "react-intersection-observer";
 const ProjectComponent = () => {
   const router = useRouter();
 
+
   return (
     <>
       <motion.div
@@ -35,9 +36,9 @@ const ProjectComponent = () => {
         </h2>
 
         <div className="md:overflow-hidden overflow-y-auto scrollbar-none  flex flex-col md:flex-row w-full gap-1 md:gap-4 ">
-          <div className="h-full md:w-2/5 py-4">
+          <div className="h-[320px] md:w-2/5 py-4">
             <div className="w-full h-full mb-4 flex justify-start items-start relative">
-              <div className="relative md:w-full h-[300px] md:h-full overflow-y-auto flex justify-start items-start border border-slate-800">
+              <div className="relative md:w-full h-[300px] md:h-full overflow-y-auto flex justify-start items-start border-2 border-slate-600 ">
                 <Image
                   src={image}
                   alt="Grace International Project"

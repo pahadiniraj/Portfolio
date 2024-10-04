@@ -90,10 +90,7 @@ const Profile = () => {
       ) : (
         <div className="h-[370px] w-full bg-gradient-to-r from-slate-950 to-slate-900 shadow-md border-slate-500 border shadow-slate-700 mt-4 rounded-2xl flex justify-center items-center flex-col overflow-y-auto py-2 relative">
           <div className="w-[110px] h-[110px] rounded-full flex justify-center items-center overflow-hidden relative border border-slate-800">
-            {/* Blurred background */}
             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-gray-800 to-gray-600 rounded-full shadow-xl"></div>
-
-            {/* Container for the image */}
             <div className="relative w-[100px] h-[100px] rounded-full overflow-hidden flex justify-center items-center">
               <Image
                 src={user?.avatar || profile}

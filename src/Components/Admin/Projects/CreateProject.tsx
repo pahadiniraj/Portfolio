@@ -1,32 +1,23 @@
 "use client";
-import { SettingPersonalSchema } from "@/Utils/YupSchema/SettingPersonal";
-import { ErrorMessage, Field, Form, Formik } from "formik";
-import React, { CSSProperties, useEffect, useState } from "react";
+import React, { CSSProperties } from "react";
+import { ErrorMessage, Field, FieldArray, Form, Formik } from "formik";
 import { useRouter } from "next/navigation";
-import { TbWorldWww } from "react-icons/tb";
-import { useGetUserQuery, useUpdateUserMutation } from "@/Redux/Services/user";
-
-import {
-  FacebookIcon,
-  GithubIcon,
-  InstagramIcon,
-  LinkedInIcon,
-  TwitterIcon,
-  YoutubeIcon,
-} from "@/Assets/Svg/Svg";
-import { toast } from "react-toastify";
 import ClipLoader from "react-spinners/ClipLoader";
+import { toast } from "react-toastify";
+import { useCreateProjectMutation } from "@/Redux/Services/project";
+import { ProjectSchema } from "@/Utils/YupSchema/ProjectSchema";
+import { MdDelete, MdLibraryAdd } from "react-icons/md";
 
 interface UserData {
-  bio?: string | null;
-  jobTitle?: string | null;
-  instagram?: string | null;
-  twitter?: string | null;
-  linkedin?: string | null;
-  github?: string | null;
-  personalWebsite?: string | null;
-  facebook?: string | null;
-  youtube?: string | null;
+  title: string;
+  description: string;
+  features: string[];
+  technologies: string[];
+  githubLink?: string;
+  liveDemoLink?: string;
+  category: string;
+  image?: File | string;
+  thumbnail?: File | string;
 }
 
 const CreateProject = () => {
@@ -35,258 +26,327 @@ const CreateProject = () => {
     display: "block",
     margin: "0 auto",
   };
-  const {
-    data: fetchedData,
-    isSuccess: userFetchSuccess,
-    refetch,
-  } = useGetUserQuery();
-  const [userData, setUserData] = useState<UserData | null | undefined>(null);
-  const user = fetchedData?.user;
 
-  const [UpdateUser, { isLoading, isError, error }] = useUpdateUserMutation();
-
-  useEffect(() => {
-    if (userFetchSuccess) {
-      setUserData(user);
-    }
-  });
+  const [createProject, { isLoading }] = useCreateProjectMutation();
 
   const initialValues: UserData = {
-    jobTitle: user?.jobTitle || "",
-    bio: user?.bio || "",
-    facebook: user?.facebook || "",
-    twitter: user?.twitter || "",
-    linkedin: user?.linkedin || "",
-    instagram: user?.instagram || "",
-    youtube: user?.youtube || "",
-    github: user?.github || "",
-    personalWebsite: user?.personalWebsite || "",
+    title: "",
+    description: "",
+    features: [""],
+    technologies: [""],
+    githubLink: "",
+    liveDemoLink: "",
+    category: "",
+    image: "",
+    thumbnail: "",
   };
 
-  const handleSubmit = async (value: UserData) => {
+  const handleSubmit = async (values: UserData, { resetForm }: any) => {
     try {
-      console.log(value);
-      const response = await UpdateUser(value);
-      if (response.data && response.data.success === true) {
-        console.log("success", response.data?.message);
-        toast.success(response.data?.message);
-        refetch();
+      const formData = new FormData();
+      formData.append("title", values.title),
+        formData.append("description", values.description),
+        formData.append("features", values.features as any),
+        formData.append("technologies", values.technologies as any),
+        formData.append("githubLink", values.githubLink as string);
+      formData.append("liveDemoLink", values.liveDemoLink as string);
+      formData.append("category", values.category);
+      if (values.image) {
+        formData.append("image", values.image as File);
       }
-      console.log(response);
-    } catch (error) {
-      console.error("somthing went wrong", error);
+      if (values.thumbnail) {
+        formData.append("thumbnail", values.thumbnail as File);
+      }
+
+      console.log("Form Values:", values);
+      const response = await createProject(formData).unwrap();
+      toast.success(response.message);
+      resetForm();
+    } catch (error: any) {
+      toast.error(error.message || "Failed to create project");
     }
   };
 
   return (
-    <>
-      <div className="p-10 ">
-        <div className="bg-black p-5 rounded-xl relative">
-          <button
-            onClick={() => router.push("/dashboard/admin-dashboard")}
-            className="absolute right-4 top-2 text-xl"
-          >
-            x
-          </button>
-          <div className="w-full border-b border-gray-300 text-xl font-semibold pb-3 ">
-            Create Project
-          </div>
-          <Formik
-            initialValues={initialValues}
-            validationSchema={SettingPersonalSchema}
-            onSubmit={handleSubmit}
-            enableReinitialize={true}
-          >
-            {({ isValid }) => (
-              <Form className="flex flex-col mt-8 md:mt-4 w-full">
-                <div className="space-y-4 w-full">
-                  <div className="relative">
-                    <label htmlFor="jobTitle" className="text-sm">
-                      Job Title
-                    </label>
-                    <Field
-                      id="jobTitle"
-                      type="text"
-                      name="jobTitle"
-                      className="p-3 bg-slate-900 border border-gray-600 rounded-lg w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
-                    />
-                    <ErrorMessage
-                      name="jobTitle"
-                      component="div"
-                      className="text-red-500 text-xs ml-1"
-                    />
-                  </div>
-                  <div className="relative">
-                    <label htmlFor="bio" className="text-sm">
-                      Bio
-                    </label>
-                    <Field
-                      id="bio"
-                      as="textarea"
-                      name="bio"
-                      rows="4"
-                      cols="50"
-                      placeholder="Write something about yourself..."
-                      className="p-3 bg-slate-900  border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
-                    />
-                    <ErrorMessage
-                      name="bio"
-                      component="div"
-                      className="error"
-                    />
-                  </div>
-                  <p className="text-lg py-2 border-b  ">Social Links</p>
-                  <div className="flex gap-5">
-                    <div className="relative">
-                      <Field
-                        type="url"
-                        name="facebook"
-                        className="p-3 bg-slate-900 border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
-                        placeholder="Facebook URL"
-                      />
-                      <ErrorMessage
-                        name="facebook"
-                        component="div"
-                        className="text-red-500 text-xs ml-1"
-                      />
-                      <span className="absolute top-6 right-1">
-                        <FacebookIcon />
-                      </span>
-                    </div>
-                    <div className="relative">
-                      <Field
-                        type="url"
-                        name="instagram"
-                        className="p-3 bg-slate-900 border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
-                        placeholder="Instagram URL"
-                      />
-                      <ErrorMessage
-                        name="instagram"
-                        component="div"
-                        className="text-red-500 text-xs ml-1"
-                      />
-                      <span className="absolute top-6 right-1">
-                        <InstagramIcon />
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex gap-6">
-                    <div className="relative">
-                      <Field
-                        type="url"
-                        name="twitter"
-                        className="p-3 bg-slate-900 border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
-                        placeholder="Twitter URL"
-                      />
-                      <ErrorMessage
-                        name="twitter"
-                        component="div"
-                        className="text-red-500 text-xs ml-1"
-                      />
-                      <span className="absolute top-6 right-1">
-                        <TwitterIcon />
-                      </span>
-                    </div>
-                    <div className="relative">
-                      <Field
-                        type="url"
-                        name="github"
-                        className="p-3 bg-slate-900 border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
-                        placeholder="Github URL"
-                      />
-                      <ErrorMessage
-                        name="github"
-                        component="div"
-                        className="text-red-500 text-xs ml-1"
-                      />
-                      <span className="absolute top-6 right-1">
-                        <GithubIcon />
-                      </span>
-                    </div>{" "}
-                  </div>
-                  <div className="flex gap-6">
-                    <div className="relative">
-                      <Field
-                        type="url"
-                        name="linkedin"
-                        className="p-3 bg-slate-900 border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
-                        placeholder="LinkedIn URL"
-                      />
-                      <ErrorMessage
-                        name="linkedin"
-                        component="div"
-                        className="text-red-500 text-xs ml-1"
-                      />
-                      <span className="absolute top-6 right-1">
-                        <LinkedInIcon />
-                      </span>
-                    </div>
-                    <div className="relative">
-                      <Field
-                        type="url"
-                        name="youtube"
-                        className="p-3 bg-slate-900 border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
-                        placeholder="Youtube URL"
-                      />
-                      <ErrorMessage
-                        name="youtube"
-                        component="div"
-                        className="text-red-500 text-xs ml-1"
-                      />
-                      <span className="absolute top-6 right-1">
-                        <YoutubeIcon />
-                      </span>
-                    </div>
-                  </div>
-                  <div className="relative">
-                    <Field
-                      type="url"
-                      name="personalWebsite"
-                      className="p-3 bg-slate-900 border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300 mt-4"
-                      placeholder="Personal Website URL"
-                    />
-                    <ErrorMessage
-                      name="personalWebsite"
-                      component="div"
-                      className="text-red-500 text-xs ml-1"
-                    />
-                    <span className="absolute top-6 right-1">
-                      <TbWorldWww className="text-4xl" />
-                    </span>
-                  </div>
-                </div>
-                <div className="flex justify-end">
-                  <button
-                    className={`${
-                      isValid
-                        ? "bg-gradient-to-r from-blue-500 to-slate-500 font-bold text-white hover:shadow-lg"
-                        : "bg-gray-600 text-gray-400 cursor-not-allowed"
-                    } rounded-2xl  mt-4 px-4 py-2 transition-all duration-300`}
-                    type="submit"
-                    disabled={!isValid}
-                  >
-                    {isLoading ? (
-                      <>
-                        <ClipLoader
-                          color={"#000000999"}
-                          loading={isLoading}
-                          cssOverride={override}
-                          size={25}
-                          aria-label="Loading Spinner"
-                          data-testid="loader"
-                        />
-                      </>
-                    ) : (
-                      "Submit"
-                    )}
-                  </button>
-                </div>
-              </Form>
-            )}
-          </Formik>
+    <div className="p-10 ">
+      <div className="relative p-5 bg-black rounded-xl">
+        <div className="w-full border-b border-gray-300 text-xl font-semibold pb-3">
+          Create Project
         </div>
+        <button
+          onClick={() => router.push("/dashboard/admin-dashboard")}
+          className="absolute right-4 top-2 text-xl"
+        >
+          x
+        </button>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={ProjectSchema} // Validation schema from Yup
+          onSubmit={handleSubmit}
+        >
+          {({ values, isValid, setFieldValue }) => (
+            <Form
+              encType="multipart/form-data"
+              className="flex flex-col mt-8 md:mt-4 w-full"
+            >
+              <div className="space-y-4 w-full">
+                {/* Title */}
+                <div className="relative">
+                  <label htmlFor="title" className="text-sm">
+                    Title
+                  </label>
+                  <Field
+                    id="title"
+                    type="text"
+                    name="title"
+                    className="p-3 bg-slate-900 border border-gray-600 rounded-lg w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+                  />
+                  <ErrorMessage
+                    name="title"
+                    component="div"
+                    className="text-red-500 text-xs ml-1"
+                  />
+                </div>
+
+                {/* Description */}
+                <div className="relative">
+                  <label htmlFor="description" className="text-sm">
+                    Description
+                  </label>
+                  <Field
+                    as="textarea"
+                    id="description"
+                    name="description"
+                    rows="4"
+                    cols="50"
+                    className="p-3 bg-slate-900 border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+                  />
+                  <ErrorMessage
+                    name="description"
+                    component="div"
+                    className="text-red-500 text-xs ml-1"
+                  />
+                </div>
+
+                {/* Features FieldArray */}
+                <div className="relative">
+                  <p className="text-sm">Features</p>
+                  <FieldArray name="features">
+                    {({ push, remove }) => (
+                      <div>
+                        {values.features.map((feature, index) => (
+                          <div
+                            key={index}
+                            className="flex items-center justify-center mb-2"
+                          >
+                            <label
+                              htmlFor={`feature-${index}`}
+                              className="sr-only"
+                            >
+                              Features
+                            </label>
+                            <Field
+                              name={`features[${index}]`}
+                              id={`feature-${index}`} // Unique id for features
+                              className="p-3 bg-slate-900 border border-gray-600 rounded-lg w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+                              placeholder="Enter a feature"
+                            />
+                            <button
+                              type="button"
+                              className="ml-4"
+                              onClick={() => push("")}
+                            >
+                              <MdLibraryAdd className="text-2xl hover:text-green-500 duration-200" />
+                            </button>
+                            <button
+                              type="button"
+                              className="ml-2"
+                              onClick={() => remove(index)}
+                            >
+                              <MdDelete className="text-2xl hover:text-red-500 duration-200" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </FieldArray>
+                  <ErrorMessage
+                    name="features"
+                    component="div"
+                    className="text-red-500 text-xs ml-1"
+                  />
+                </div>
+
+                {/* Technologies FieldArray */}
+                <div className="relative">
+                  <p className="text-sm">Technologies</p>
+                  <FieldArray name="technologies">
+                    {({ push, remove }) => (
+                      <div>
+                        {values.technologies.map((tech, index) => (
+                          <div key={index} className="flex items-center mb-2">
+                            <label
+                              htmlFor={`technology-${index}`}
+                              className="sr-only"
+                            >
+                              Technology {index + 1}
+                            </label>
+                            <Field
+                              name={`technologies[${index}]`}
+                              id={`technology-${index}`} // Unique id for technologies
+                              className="p-3 bg-slate-900 border border-gray-600 rounded-lg w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+                              placeholder="Enter a technology"
+                            />
+                            <button
+                              type="button"
+                              className="ml-4"
+                              onClick={() => push("")}
+                            >
+                              <MdLibraryAdd className="text-2xl hover:text-green-500 duration-200" />
+                            </button>
+                            <button
+                              type="button"
+                              className="ml-2"
+                              onClick={() => remove(index)}
+                            >
+                              <MdDelete className="text-2xl hover:text-red-500 duration-200" />
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </FieldArray>
+                  <ErrorMessage
+                    name="technologies"
+                    component="div"
+                    className="text-red-500 text-xs ml-1"
+                  />
+                </div>
+
+                {/* GitHub Link */}
+                <div className="relative">
+                  <label htmlFor="githubLink" className="text-sm">
+                    GitHub Link
+                  </label>
+                  <Field
+                    id="githubLink"
+                    type="url"
+                    name="githubLink"
+                    className="p-3 bg-slate-900 border border-gray-600 rounded-lg w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+                    placeholder="GitHub URL (optional)"
+                  />
+                  <ErrorMessage
+                    name="githubLink"
+                    component="div"
+                    className="text-red-500 text-xs ml-1"
+                  />
+                </div>
+
+                {/* Live Demo Link */}
+                <div className="relative">
+                  <label htmlFor="liveDemoLink" className="text-sm">
+                    Live Demo Link
+                  </label>
+                  <Field
+                    id="liveDemoLink"
+                    type="url"
+                    name="liveDemoLink"
+                    className="p-3 bg-slate-900 border border-gray-600 rounded-lg w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+                    placeholder="Live Demo URL (optional)"
+                  />
+                  <ErrorMessage
+                    name="liveDemoLink"
+                    component="div"
+                    className="text-red-500 text-xs ml-1"
+                  />
+                </div>
+
+                {/* Category */}
+                <div className="relative">
+                  <label htmlFor="category" className="text-sm">
+                    Category
+                  </label>
+                  <Field
+                    id="category"
+                    type="text"
+                    name="category"
+                    className="p-3 bg-slate-900 border border-gray-600 rounded-lg w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+                    placeholder="Enter category"
+                  />
+                  <ErrorMessage
+                    name="category"
+                    component="div"
+                    className="text-red-500 text-xs ml-1"
+                  />
+                </div>
+
+                {/* Image Upload */}
+                <div className="relative">
+                  <label htmlFor="image" className="text-sm">
+                    Upload Image
+                  </label>
+                  <input
+                    id="image"
+                    type="file"
+                    name="image"
+                    accept="image/*"
+                    className="p-3 bg-slate-900 border border-gray-600 rounded-lg w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+                    onChange={(event: any) =>
+                      setFieldValue("image", event.currentTarget.files[0]!)
+                    }
+                  />
+                  <ErrorMessage
+                    name="image"
+                    component="div"
+                    className="text-red-500 text-xs ml-1"
+                  />
+                </div>
+
+                {/* Thumbnail Upload */}
+                <div className="relative">
+                  <label htmlFor="thumbnail" className="text-sm">
+                    Upload Thumbnail
+                  </label>
+                  <input
+                    id="thumbnail"
+                    type="file"
+                    name="thumbnail"
+                    accept="image/*"
+                    className="p-3 bg-slate-900 border border-gray-600 rounded-lg w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
+                    onChange={(event: any) =>
+                      setFieldValue("thumbnail", event.currentTarget.files[0]!)
+                    }
+                  />
+                  <ErrorMessage
+                    name="thumbnail"
+                    component="div"
+                    className="text-red-500 text-xs ml-1"
+                  />
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isLoading || !isValid}
+                  className="mt-4 p-3 bg-blue-600 rounded-lg text-white hover:bg-blue-700 transition duration-200"
+                >
+                  {isLoading ? (
+                    <ClipLoader
+                      color="#ffffff"
+                      loading={isLoading}
+                      cssOverride={override}
+                      size={20}
+                    />
+                  ) : (
+                    "Create Project"
+                  )}
+                </button>
+              </div>
+            </Form>
+          )}
+        </Formik>
       </div>
-    </>
+    </div>
   );
 };
 

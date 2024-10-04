@@ -31,7 +31,7 @@ const Settings = () => {
             <PersonalFormik />
           </div>
           <div className="w-2/5 flex flex-col gap-4 ">
-            <div className="bg-slate-950 shadow-md border-slate-700 border  shadow-slate-700 text-lg rounded-2xl h-[240px] p-2">
+            <div className="bg-slate-950 shadow-md border-slate-700 border  shadow-slate-700 text-lg rounded-2xl h-[280px] p-2   scrollbar-none">
               <p className="text-lg py-2 border-b mb-2">Update Avatar</p>
               <PersonalPhoto />
             </div>
@@ -55,7 +55,9 @@ const Settings = () => {
             </div>
 
             <div className="bg-slate-950 shadow-md border-slate-700 border  shadow-slate-700 text-lg h-[315px] p-3 overflow-y-auto rounded-2xl">
-              <p className="text-lg py-2 border-b mb-2">Give Ratings</p>
+              <p className="text-lg py-2 border-b mb-2">
+                Give Ratings to Niraj's Portfolio
+              </p>
               <CreateTestimonialFormik />
             </div>
             <div className="flex justify-end text-sm ">

@@ -1,14 +1,19 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-interface Contact {
-  fullName: string;
-  email: string;
-  subject: string;
-  message: string;
+interface formData {
+  title: string;
+  description: string;
+  features: string[];
+  technologies: string[];
+  githubLink?: string;
+  liveDemoLink?: string;
+  category: string;
+  image?: File | string;
+  thumbnail?: File | string;
 }
 
 interface Response {
-  data: Contact[];
+  data: formData[];
   message: string;
   success: boolean;
 }
@@ -21,15 +26,13 @@ export const projectApi = createApi({
     credentials: "include",
   }),
   endpoints: (builder) => ({
-    createProject: builder.mutation<Response, Contact>({
+    createProject: builder.mutation<Response, FormData>({
       query: (project) => {
+        console.log("redux data", project);
         return {
           url: "create-project",
           method: "POST",
           body: project,
-          headers: {
-            "Content-Type": "application/json",
-          },
         };
       },
     }),
