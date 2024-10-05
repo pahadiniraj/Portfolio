@@ -78,8 +78,11 @@ const SidebarDashboard = () => {
 
   return (
     <div className="bg-gradient-to-r from-slate-900 h-full text-white   px-4 py-4 shadow-lg shadow-gray-700 ">
-      <div className="text-center font-bold text-2xl">
-        <Link href="/">Niraj's Portfolio</Link>
+      <div className="text-center font-bold text-2xl relative group">
+        <Link href="/" className="relative inline-block">
+          Niraj's Portfolio
+          <span className="absolute block w-full h-[2px] bg-blue-500 transform scale-x-0 transition-transform duration-300 group-hover:scale-x-100 bottom-0 left-0" />
+        </Link>
       </div>
       <div className="flex  flex-col gap-4 mt-5 text-lg">
         {link.map((item, index) => (

@@ -7,8 +7,8 @@ const ProjectContainer = () => {
   const router = useRouter();
   return (
     <>
-      <div className="w-full flex ">
-        <div className=" bg-black rounded-xl ">
+      <div className="w-full  p-5 ">
+        <div className=" bg-black rounded-xl  ">
           <CreateProject />
         </div>
       </div>

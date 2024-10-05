@@ -18,6 +18,39 @@ interface Response {
   success: boolean;
 }
 
+interface CreatedBy {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  jobTitle: string;
+}
+
+interface Data {
+  category: string;
+  createdAt: string; // You may consider using Date type if you parse it
+  createdBy: CreatedBy;
+  description: string;
+  features: string[]; // Array of strings
+  githubLink: string;
+  image: string;
+  liveDemoLink: string;
+  technologies: string[]; // Array of strings
+  thumbnail: string;
+  title: string;
+  updatedAt: string; // You may consider using Date type if you parse it
+  __v: number; // Assuming this is a version number
+  _id: string; // Unique identifier for the project
+}
+
+// Define GetResponse interface where data is an array of Data
+export interface GetResponse {
+  data: Data[]; // Change this to Data[] instead of TestimonialData[]
+  message: string;
+  success: boolean;
+  statusCode: number;
+}
+
 // Define a service using a base URL and expected endpoints
 export const projectApi = createApi({
   reducerPath: "projectApi",
@@ -36,7 +69,14 @@ export const projectApi = createApi({
         };
       },
     }),
+    getAllProject: builder.query<GetResponse, void>({
+      query: () => ({
+        url: "get-all-projects",
+        method: "GET",
+        credentials: "include",
+      }),
+    }),
   }),
 });
 
-export const { useCreateProjectMutation } = projectApi;
+export const { useCreateProjectMutation, useGetAllProjectQuery } = projectApi;

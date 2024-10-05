@@ -46,9 +46,14 @@ const CreateProject = () => {
       const formData = new FormData();
       formData.append("title", values.title),
         formData.append("description", values.description),
-        formData.append("features", values.features as any),
-        formData.append("technologies", values.technologies as any),
-        formData.append("githubLink", values.githubLink as string);
+        values.features.forEach((feature) => {
+          formData.append("features", feature);
+        });
+      values.technologies.forEach((tech) => {
+        formData.append("technologies", tech);
+      });
+
+      formData.append("githubLink", values.githubLink as string);
       formData.append("liveDemoLink", values.liveDemoLink as string);
       formData.append("category", values.category);
       if (values.image) {
@@ -68,8 +73,8 @@ const CreateProject = () => {
   };
 
   return (
-    <div className="p-10 ">
-      <div className="relative p-5 bg-black rounded-xl">
+    <div className=" ">
+      <div className="relative p-7 bg-black rounded-xl">
         <div className="w-full border-b border-gray-300 text-xl font-semibold pb-3">
           Create Project
         </div>
@@ -261,18 +266,25 @@ const CreateProject = () => {
                   />
                 </div>
 
-                {/* Category */}
                 <div className="relative">
                   <label htmlFor="category" className="text-sm">
                     Category
                   </label>
                   <Field
+                    as="select"
                     id="category"
-                    type="text"
                     name="category"
                     className="p-3 bg-slate-900 border border-gray-600 rounded-lg w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
-                    placeholder="Enter category"
-                  />
+                  >
+                    <option value="" disabled>
+                      Select a category
+                    </option>
+                    <option value="webdevelopment">Web Development</option>
+                    <option value="graphicdesign">Graphic Design</option>
+                    <option value="wordpress">WordPress</option>
+                    <option value="digitalmarketing">Digital Marketing</option>
+                    <option value="music">Music</option>
+                  </Field>
                   <ErrorMessage
                     name="category"
                     component="div"
