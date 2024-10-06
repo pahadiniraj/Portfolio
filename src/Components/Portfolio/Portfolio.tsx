@@ -1,47 +1,28 @@
 "use client";
-import React, { useState, useEffect } from "react"; // Import useEffect
+import React, { useState, useEffect } from "react";
 import { WebDev } from "./PortfolioData";
 import Button from "../Button/Button";
 import AnimatedPortfolio from "./AnimatedPortfolio";
 import { AnimatePresence, motion } from "framer-motion";
 import { useGetAllProjectQuery } from "@/Redux/Services/project";
+import LoaderComponent from "../Loader/LoaderComponent";
 
-interface CreatedBy {
-  _id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  jobTitle: string;
-}
-
-// Define the main interface for the project data
 interface Data {
   category: string;
-  createdAt: string; // You may consider using Date type if you parse it
-  createdBy: CreatedBy;
-  description: string;
-  features: string[]; // Array of strings
-  githubLink: string;
-  image: string;
-  liveDemoLink: string;
-  technologies: string[]; // Array of strings
   thumbnail: string;
   title: string;
-  updatedAt: string; // You may consider using Date type if you parse it
-  __v: number; // Assuming this is a version number
-  _id: string; // Unique identifier for the project
+  _id: string;
 }
 
 const Portfolio: React.FC = () => {
-  const { isLoading, error, data } = useGetAllProjectQuery(); // Added error handling
-  const [projectData, setProjectData] = useState<Data[] | null>(null); // Define state type
+  const { isLoading, error, data } = useGetAllProjectQuery();
+  const [projectData, setProjectData] = useState<Data[] | null>(null);
 
   useEffect(() => {
-    // Set project data when data is available
     if (data?.data) {
-      setProjectData(data.data); // Access the array of Data objects
+      setProjectData(data.data);
     }
-  }, [data]); // Add data to dependency array
+  }, [data]);
 
   const categories = [
     { name: "All", category: "all" },
@@ -54,16 +35,42 @@ const Portfolio: React.FC = () => {
 
   const [activeCategory, setActiveCategory] = useState("all");
 
-  const filterSkill = () => {
-    if (activeCategory === "all") {
-      return WebDev;
+  const filterSkill = (): {
+    category: string;
+    name: string;
+    thumbnail: string;
+    _id: string;
+  }[] => {
+    if (!projectData) {
+      return [];
     }
-    return WebDev.filter((item) => item.category === activeCategory);
+
+    if (activeCategory === "all") {
+      return projectData.map(({ category, title: name, thumbnail, _id }) => ({
+        category,
+        name,
+        thumbnail,
+        _id,
+      }));
+    }
+
+    return projectData
+      .filter((item) => item.category === activeCategory)
+      .map(({ category, title: name, thumbnail, _id }) => ({
+        category,
+        name,
+        thumbnail,
+        _id,
+      }));
   };
 
-  // Show loading or error message if applicable
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading projects.</div>;
+  if (isLoading) {
+    return (
+      <div className="w-full h-screen flex justify-center items-center">
+        <LoaderComponent />
+      </div>
+    );
+  }
 
   return (
     <>

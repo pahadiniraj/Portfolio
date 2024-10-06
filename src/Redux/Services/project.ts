@@ -51,7 +51,13 @@ export interface GetResponse {
   statusCode: number;
 }
 
-// Define a service using a base URL and expected endpoints
+export interface GetProjectResponse {
+  data: Data;
+  message: string;
+  success: boolean;
+  statusCode: number;
+}
+
 export const projectApi = createApi({
   reducerPath: "projectApi",
   baseQuery: fetchBaseQuery({
@@ -76,7 +82,18 @@ export const projectApi = createApi({
         credentials: "include",
       }),
     }),
+    getProjectById: builder.query<GetProjectResponse, string>({
+      query: (id) => ({
+        url: `get-project/${id}`,
+        method: "GET",
+        credentials: "include",
+      }),
+    }),
   }),
 });
 
-export const { useCreateProjectMutation, useGetAllProjectQuery } = projectApi;
+export const {
+  useCreateProjectMutation,
+  useGetAllProjectQuery,
+  useGetProjectByIdQuery,
+} = projectApi;

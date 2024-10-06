@@ -20,25 +20,10 @@ const HomeComponent = () => {
       className="flex flex-col md:flex-row md:justify-center md:items-center md:h-[390px] md:w-[900px] bg-black bg-opacity-90 md:bg-opacity-100 overflow-hidden md:rounded-[50px] h-screen w-full overflow-y-scroll md:overflow-visible z-10"
     >
       <div className="md:w-2/6  order-1 md:order-2 px-4    flex flex-col gap-4 justify-center items-center  ">
-        <div className="md:hidden">
-          <h1
-            id="contact-request-text"
-            className="contact-request-paragraph "
-            onClick={() => router.push("/")}
-          >
-            <span id="contact-link" className="contact-link">
-              <span className="text-xl font-semibold font-serif italic ">
-                Niraj
-              </span>
-              <svg
-                id="contact-link-icon"
-                viewBox="0 0 70 36"
-                className="contact-icon"
-              >
-                <path d="M6.9739 30.8153H63.0244C65.5269 30.8152 75.5358 -3.68471 35.4998 2.81531C-16.1598 11.2025 0.894099 33.9766 26.9922 34.3153C104.062 35.3153 54.5169 -6.68469 23.489 9.31527" />
-              </svg>
-            </span>
-          </h1>
+        <div className="glitch-wrapper md:hidden">
+          <div className="glitch" data-glitch="Niraj ">
+            Niraj
+          </div>
         </div>
         <Image
           src={profile}
