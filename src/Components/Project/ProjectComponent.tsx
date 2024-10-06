@@ -8,6 +8,7 @@ import image from "../../Assets/PortfolioImg/long.png";
 import { FaFacebookSquare, FaLinkedin } from "react-icons/fa";
 import { FaSquareGithub } from "react-icons/fa6";
 import { useGetProjectByIdQuery } from "@/Redux/Services/project";
+import img from "../../Assets/ProfileImg/profile.jpg";
 
 const ProjectComponent = () => {
   const router = useRouter();
@@ -52,13 +53,14 @@ const ProjectComponent = () => {
         <div className="md:overflow-hidden overflow-y-auto scrollbar-none  flex flex-col md:flex-row w-full gap-1 md:gap-4 ">
           <div className="h-[320px] md:w-2/5 py-4">
             <div className="w-full h-full mb-4 flex justify-start items-start relative">
-              <div className="relative md:w-full h-[300px] md:h-full overflow-y-auto flex justify-start items-start border-2 border-slate-600 ">
+              <div className="relative md:w-full h-[300px] w-full md:h-full overflow-y-auto flex justify-start items-start border-2 border-slate-600 ">
                 <Image
-                  src={image}
-                  alt="Grace International Project"
-                  style={{ objectFit: "cover" }}
-                  className=""
+                  src={data?.data?.image || img.src}
+                  alt={`Image for ${data?.data?.title}`}
+                  className=" object-cover  w-[100%]"
                   priority
+                  width={400}
+                  height={400}
                 />
               </div>
             </div>

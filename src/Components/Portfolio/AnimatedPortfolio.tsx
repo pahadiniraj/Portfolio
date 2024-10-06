@@ -53,17 +53,14 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
         >
           <div className="relative w-full h-full rounded-2xl overflow-hidden group bg-slate-800 border border-slate-700 px-3 pt-1 pb-3 hover:shadow-lg cursor-pointer">
             <h2 className="font-bold p-1">{value.name}</h2>
-            <div className="md:h-[190px]">
+            <div className="md:h-[190px] ">
               <Image
-                src={value.thumbnail ? value.thumbnail : `${value.thumbnail}`}
+                src={value.thumbnail || img.src}
                 alt={`Thumbnail for ${value.name}`}
-                className="w-full h-full object-cover rounded-md"
+                className="w-[100%] object-cover rounded-md"
                 priority
                 width={400}
                 height={400}
-                onError={(e) => {
-                  e.currentTarget.src = "../../Assets/ProfileImg/profile.jpg";
-                }}
               />
             </div>
             <div className="absolute inset-0 flex justify-center items-center bg-black text-white opacity-0 group-hover:opacity-90 transition-opacity duration-300">
