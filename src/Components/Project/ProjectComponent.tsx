@@ -10,6 +10,7 @@ import img from "../../Assets/ProfileImg/profile.jpg";
 import LoaderComponent from "../Loader/LoaderComponent";
 import { TbWorldWww } from "react-icons/tb";
 import { TfiYoutube } from "react-icons/tfi";
+import { convertISOToDate } from "../ConvertISO/convertDate";
 
 const ProjectComponent = () => {
   const router = useRouter();
@@ -18,11 +19,13 @@ const ProjectComponent = () => {
 
   if (isLoading) {
     return (
-      <div className="w-full h-screen flex justify-center items-center md:hidde ">
+      <div className="w-full h-screen flex justify-center items-center md:hidden ">
         <LoaderComponent />
       </div>
     );
   }
+
+  console.log(data?.data);
 
   return (
     <>
@@ -92,11 +95,11 @@ const ProjectComponent = () => {
           )}
 
           <div className="text-white md:w-3/5  py-4 flex flex-col gap-4 md:overflow-y-auto  md:h-[300px] ">
-            <p className="text-2xl font-semibold mt-1  text-start">
-              <span className="py-1 px-2 rounded-lg bg-gradient-to-r from-indigo-300 to-purple-300 dark:from-indigo-500 dark:to-purple-500">
-                {data?.data.title}
+            <div className="text-2xl w-full mt-1  text-start flex justify-between items-center">
+              <span className="py-1 px-2 rounded-lg bg-gradient-to-r from-indigo-300 to-purple-300 dark:from-indigo-500 dark:to-purple-500 font-semibold ">
+                {data?.data?.title}
               </span>
-            </p>
+            </div>
             <p className="text-sm">{data?.data?.description}</p>
             <div>
               {data?.data?.category === "graphicdesign" && (
@@ -137,13 +140,14 @@ const ProjectComponent = () => {
                 ))}
               </div>
             </div>
-            <div className="right-6 top-5 flex  gap-3">
+            <div className="right-6 top-5 flex justify-start items-center  gap-3">
               <div className="font-semibold text-base">Links:</div>
               {data?.data?.category === "music" ? (
                 <a
                   href={data?.data?.liveDemoLink}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="bg-red-600 p-1 rounded-md "
                 >
                   <TfiYoutube className="text-2xl" />
                 </a>
@@ -165,6 +169,16 @@ const ProjectComponent = () => {
                   </a>
                 </div>
               )}
+            </div>
+            <div className="flex  justify-start items-start w-full ">
+              <div className="flex justify-start gap-2 items-center">
+                <p className="text-sm font-semibold">Created At:</p>
+                <p className="text-xs">
+                  {data?.data?.createdAt
+                    ? convertISOToDate(data.data.createdAt)
+                    : "N/A"}
+                </p>
+              </div>
             </div>
           </div>
         </div>

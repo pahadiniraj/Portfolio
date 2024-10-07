@@ -31,7 +31,7 @@ const Skills: React.FC = () => {
   const renderSkills = () => {
     const skillsToShow = showAll ? skillsData : skillsData.slice(0, 2);
     return skillsToShow.map((value, index) => (
-      <div key={index} className="mb-3 pr-2 ">
+      <div key={index} className="mb-3 pr-5 ">
         <div className="font-semibold">{value.name}</div>
         {value.line1}
         {value.line2}

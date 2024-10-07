@@ -5,7 +5,7 @@ import {
 import { UserData } from "@/Redux/Services/user";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import profile from "../../../Assets/ProfileImg/profile.jpg";
+import profile from "../../../Assets/ProfileImg/DefaultProfile.jpg";
 import Skeleton from "react-loading-skeleton";
 import { toast } from "react-toastify";
 import { handleError } from "@/Redux/handleErrror";
@@ -76,7 +76,7 @@ const AllUsers = () => {
                   <div className="flex gap-4 items-center ">
                     <div className="relative w-[50px] h-[50px] rounded-full overflow-hidden flex justify-center items-center">
                       <Image
-                        src={profile}
+                        src={(value.avatar as string) || profile}
                         alt="profile"
                         width={100}
                         height={100}
