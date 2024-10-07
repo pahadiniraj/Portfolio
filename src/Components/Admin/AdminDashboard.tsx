@@ -26,7 +26,7 @@ const AdminDashboard = () => {
           <div className="w-2/5 bg-slate-950 rounded-2xl ">Latest Blogs</div>
         </div>
         <div className="w-full flex gap-10 mt-6 ">
-          <div className=" w-full bg-slate-950 border-slate-700 p-4 h-[340px] rounded-2xl overflow-y-auto">
+          <div className=" w-full bg-slate-950 border-slate-700 p-4 h-[340px] rounded-2xl ">
             <AdminProject />
           </div>
         </div>

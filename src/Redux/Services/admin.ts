@@ -39,6 +39,24 @@ interface GetUserResponse {
   data: UserData[];
 }
 
+interface formData {
+  title: string;
+  description: string;
+  features: string[];
+  technologies: string[];
+  githubLink?: string;
+  liveDemoLink?: string;
+  category: string;
+  image?: File | string;
+  thumbnail?: File | string;
+}
+
+interface ResponseProject {
+  data: formData;
+  message: string;
+  success: boolean;
+}
+
 // Define a service using a base URL and expected endpoints
 export const adminApi = createApi({
   reducerPath: "adminApi",
@@ -101,6 +119,17 @@ export const adminApi = createApi({
         };
       },
     }),
+    updateProject: builder.mutation<ResponseProject, FormData>({
+      query: (data) => {
+        console.log("redux delete", data);
+        return {
+          url: `update-project`,
+          method: "POST",
+          body: data,
+          credentials: "include",
+        };
+      },
+    }),
   }),
 });
 
@@ -110,4 +139,5 @@ export const {
   useDeleteContactMutation,
   useGetAllUsersQuery,
   useDeleteAllUsersMutation,
+  useUpdateProjectMutation,
 } = adminApi;
