@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { RiSearchEyeLine } from "react-icons/ri";
 import { useRouter } from "next/navigation";
-import img from "../../Assets/ProfileImg/profile.jpg";
+import img from "../../Assets/Logo/logo.png";
 
 interface AnimatedPortfolioProps {
   filterSkill: () => {
@@ -51,13 +51,13 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
           transition={{ duration: 0.5, ease: "easeInOut" }}
           onClick={() => router.push(`/project/${value._id}`)}
         >
-          <div className="relative w-full h-full rounded-2xl overflow-hidden group bg-slate-800 border border-slate-700 px-3 pt-1 pb-3 hover:shadow-lg cursor-pointer">
+          <div className="relative w-full h-full rounded-2xl overflow-hidden group bg-slate-800 border border-slate-700 px-3  pb-3 hover:shadow-lg cursor-pointer">
             <h2 className="font-bold p-1">{value.name}</h2>
-            <div className="md:h-[190px] ">
+            <div className="md:h-[190px]  ">
               <Image
                 src={value.thumbnail || img.src}
                 alt={`Thumbnail for ${value.name}`}
-                className="w-[100%] object-cover rounded-md"
+                className="w-[100%] md:h-[190px]  object-cover rounded-md"
                 priority
                 width={400}
                 height={400}

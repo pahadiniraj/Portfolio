@@ -27,10 +27,7 @@ export const HeroHighlight = ({
   }
   return (
     <div
-      className={cn(
-        "  flex text-3xl mb-2  bg-white dark:bg-black ",
-        containerClassName
-      )}
+      className={cn("  flex text-3xl mb-2  ", containerClassName)}
       onMouseMove={handleMouseMove}
     >
       <div className="absolute inset-0 bg-dot-thick-neutral-300 dark:bg-dot-thick-neutral-800  pointer-events-none" />

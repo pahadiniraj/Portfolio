@@ -13,7 +13,7 @@ const About = () => {
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
       transition={{ type: "spring", stiffness: 250, damping: 40 }}
-      className="flex flex-col md:flex-row md:justify-center md:items-center md:h-[390px] md:w-[900px] bg-black   overflow-hidden md:rounded-[50px] h-screen w-full overflow-y-scroll md:overflow-hidden z-10"
+      className="flex flex-col md:flex-row md:justify-center md:items-center md:h-[390px] md:w-[900px] bg-black bg-opacity-90 md:bg-opacity-100  overflow-hidden md:rounded-[50px] h-screen w-full overflow-y-scroll md:overflow-hidden z-10"
     >
       <div className="md:w-2/6 order-2 md:order-1 p-4  flex flex-col gap-4 justify-center items-center">
         <Image

@@ -35,7 +35,6 @@ export const FloatingDock = ({
   );
 };
 
-// FloatingDockMobile Component
 const FloatingDockMobile = ({
   items,
   className,
@@ -154,14 +153,15 @@ const FloatingDockDesktop = ({
         className
       )}
     >
-      {items.map((item) => (
-        <IconContainer mouseX={mouseX} key={item.title} {...item} />
-      ))}
+      <AnimatePresence>
+        {items.map((item) => (
+          <IconContainer mouseX={mouseX} key={item.title} {...item} />
+        ))}
+      </AnimatePresence>
     </motion.div>
   );
 };
 
-// IconContainer Component
 function IconContainer({
   mouseX,
   title,

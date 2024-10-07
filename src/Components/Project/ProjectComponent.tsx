@@ -4,17 +4,25 @@ import { motion } from "framer-motion";
 import { IoCaretBack } from "react-icons/io5";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
-import image from "../../Assets/PortfolioImg/long.png";
-import { FaFacebookSquare, FaLinkedin } from "react-icons/fa";
 import { FaSquareGithub } from "react-icons/fa6";
 import { useGetProjectByIdQuery } from "@/Redux/Services/project";
 import img from "../../Assets/ProfileImg/profile.jpg";
+import LoaderComponent from "../Loader/LoaderComponent";
+import { TbWorldWww } from "react-icons/tb";
+import { TfiYoutube } from "react-icons/tfi";
 
 const ProjectComponent = () => {
   const router = useRouter();
   const { id } = useParams();
-  const { data } = useGetProjectByIdQuery(id as string);
-  console.log(data?.data?.image);
+  const { data, isLoading } = useGetProjectByIdQuery(id as string);
+
+  if (isLoading) {
+    return (
+      <div className="w-full h-screen flex justify-center items-center md:hidde ">
+        <LoaderComponent />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -23,7 +31,7 @@ const ProjectComponent = () => {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.2, filter: "blur(20px)" }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="flex flex-col md:px-12 px-5 md:h-[390px] md:w-[900px] bg-black overflow-hidden md:rounded-[50px] h-screen w-full overflow-y-auto md:overflow-visible z-10 relative "
+        className="flex flex-col md:px-12 px-5 md:h-[390px] md:w-[900px] bg-black overflow-hidden md:rounded-[50px] bg-opacity-90 md:bg-opacity-100 h-screen w-full overflow-y-auto md:overflow-visible z-10 relative "
       >
         <button
           onClick={() => router.push("/portfolio")}
@@ -50,21 +58,39 @@ const ProjectComponent = () => {
           </span>
         </h1>
 
-        <div className="md:overflow-hidden overflow-y-auto scrollbar-none  flex flex-col md:flex-row w-full gap-1 md:gap-4 ">
-          <div className="h-[320px] md:w-2/5 py-4">
-            <div className="w-full h-full mb-4 flex justify-start items-start relative">
-              <div className="relative md:w-full h-[300px] w-full md:h-full overflow-y-auto flex justify-start items-start border-2 border-slate-600 ">
-                <Image
-                  src={data?.data?.image || img.src}
-                  alt={`Image for ${data?.data?.title}`}
-                  className=" object-cover  w-[100%]"
-                  priority
-                  width={400}
-                  height={400}
-                />
+        <div className="md:overflow-hidden overflow-y-auto scrollbar-none   flex flex-col md:flex-row w-full gap-1 md:gap-4 ">
+          {data?.data?.category === "music" ? (
+            <div className="flex justify-center items-center py-4">
+              <div className=" w-full max-w-4xl h-[300px]">
+                <iframe
+                  width="100%"
+                  height="100%"
+                  src="https://www.youtube.com/embed/IBGNoUzfYdM"
+                  title={data?.data?.title}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
               </div>
             </div>
-          </div>
+          ) : (
+            <div className="h-[320px] md:w-2/5 py-4 ">
+              <div className="w-full h-full mb-4 flex justify-start items-start relative">
+                <div className="relative md:w-full h-[300px] w-full md:h-full overflow-y-auto flex justify-start items-start ">
+                  <Image
+                    src={data?.data?.image || img.src}
+                    alt={`Image for ${data?.data?.title}`}
+                    className=" object-cover  w-[100%]"
+                    priority
+                    width={400}
+                    height={400}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
           <div className="text-white md:w-3/5  py-4 flex flex-col gap-4 md:overflow-y-auto  md:h-[300px] ">
             <p className="text-2xl font-semibold mt-1  text-start">
               <span className="py-1 px-2 rounded-lg bg-gradient-to-r from-indigo-300 to-purple-300 dark:from-indigo-500 dark:to-purple-500">
@@ -73,17 +99,34 @@ const ProjectComponent = () => {
             </p>
             <p className="text-sm">{data?.data?.description}</p>
             <div>
-              <p className="font-semibold mb-1">Key Features:</p>
-              <ul className="list-disc ml-5 text-sm">
-                {data?.data.features.map((feature, index) => (
-                  <li key={index}>{feature}</li>
-                ))}
-              </ul>
+              {data?.data?.category === "graphicdesign" && (
+                <p className="font-semibold mb-1">Key Elements:</p>
+              )}
+              {data?.data?.category === "digitalmarketing" && (
+                <p className="font-semibold mb-1">Core Components:</p>
+              )}
+              {data?.data?.category === "webdevelopment" && (
+                <p className="font-semibold mb-1">Key Features:</p>
+              )}
+
+              {/* Render the feature list for all categories except music */}
+              {data?.data?.category !== "music" && (
+                <ul className="list-disc ml-5 text-sm">
+                  {data?.data?.features.map((feature, index) => (
+                    <li key={index}>{feature}</li>
+                  ))}
+                </ul>
+              )}
             </div>
 
             <div>
-              <p className="font-semibold mb-2">Technologies Used:</p>
-              <div className=" text-xs grid md:grid-cols-5 grid-cols-4 gap-2 pr-5">
+              {data?.data.category === "music" ? (
+                <p className="font-semibold mb-2">Tags:</p>
+              ) : (
+                <p className="font-semibold mb-2">Technologies Used:</p>
+              )}
+
+              <div className=" text-xs grid md:grid-cols-4 grid-cols-3 gap-2 pr-5">
                 {data?.data.technologies.map((value, index) => (
                   <p
                     className="border-2 border-slate-600 rounded-lg text-center p-1"
@@ -96,21 +139,32 @@ const ProjectComponent = () => {
             </div>
             <div className="right-6 top-5 flex  gap-3">
               <div className="font-semibold text-base">Links:</div>
-              <div className="flex gap-3">
+              {data?.data?.category === "music" ? (
                 <a
-                  href="https://www.facebook.com/"
+                  href={data?.data?.liveDemoLink}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <FaFacebookSquare className="text-xl" />
+                  <TfiYoutube className="text-2xl" />
                 </a>
-                <div>
-                  <FaSquareGithub className="text-xl" />
+              ) : (
+                <div className="flex gap-3">
+                  <a
+                    href={data?.data?.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaSquareGithub className="text-2xl" />
+                  </a>
+                  <a
+                    href={data?.data?.liveDemoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <TbWorldWww className="text-2xl" />
+                  </a>
                 </div>
-                <div>
-                  <FaLinkedin className="text-xl" />
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
