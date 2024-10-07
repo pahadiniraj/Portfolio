@@ -4,16 +4,28 @@ import profile from "../../../Assets/ProfileImg/DefaultProfile.jpg";
 import { MdDelete } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
 import { useRouter } from "next/navigation";
-import {
-  useGetAllProjectQuery,
-  useGetProjectByIdQuery,
-} from "@/Redux/Services/project";
+import { useGetAllProjectQuery } from "@/Redux/Services/project";
 import { convertISOToDate } from "@/Components/ConvertISO/convertDate";
+import { useDeleteProjectMutation } from "@/Redux/Services/admin";
+import { toast } from "react-toastify";
 
 const AdminProject = () => {
   const router = useRouter();
   const { data } = useGetAllProjectQuery();
   console.log(data?.data);
+  const [DeleteProject, { isLoading, isError, error, isSuccess }] =
+    useDeleteProjectMutation();
+  const handleDelete = async (id: string) => {
+    try {
+      const response = await DeleteProject(id);
+      if (response.data && response.data.success === true) {
+        toast.success(response?.data?.message);
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("Error while deleting project", error);
+    }
+  };
   return (
     <>
       <div className="h-full overflow-hidden ">
@@ -81,9 +93,7 @@ const AdminProject = () => {
                     </div>
                   </div>
                   <div className=" gap-8 flex flex-col justify-center items-center py-2 w-1/6">
-                    <button
-                      onClick={() => router.push(`/dashboard/update-project`)}
-                    >
+                    <button onClick={() => handleDelete(value?._id as string)}>
                       <MdDelete className="text-3xl hover:text-red-600 duration-200 " />
                     </button>
                     <button

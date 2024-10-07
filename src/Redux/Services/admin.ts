@@ -107,7 +107,6 @@ export const adminApi = createApi({
     }),
     deleteAllUsers: builder.mutation<UpdateResponse, DeleteUser>({
       query: (id) => {
-        console.log("redux delete", id);
         return {
           url: "delete-all-users",
           method: "DELETE",
@@ -121,11 +120,21 @@ export const adminApi = createApi({
     }),
     updateProject: builder.mutation<ResponseProject, FormData>({
       query: (data) => {
-        console.log("redux delete", data);
         return {
           url: `update-project`,
           method: "POST",
           body: data,
+          credentials: "include",
+        };
+      },
+    }),
+    deleteProject: builder.mutation<ResponseProject, string>({
+      query: (_id) => {
+        console.log("redux delete data is comming ", _id);
+        return {
+          url: `delete-project`,
+          method: "POST",
+          body: { _id },
           credentials: "include",
         };
       },
@@ -140,4 +149,5 @@ export const {
   useGetAllUsersQuery,
   useDeleteAllUsersMutation,
   useUpdateProjectMutation,
+  useDeleteProjectMutation,
 } = adminApi;
