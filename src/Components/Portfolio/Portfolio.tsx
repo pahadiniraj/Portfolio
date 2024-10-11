@@ -46,12 +46,14 @@ const Portfolio: React.FC = () => {
     }
 
     if (activeCategory === "all") {
-      return projectData.map(({ category, title: name, thumbnail, _id }) => ({
-        category,
-        name,
-        thumbnail,
-        _id,
-      }));
+      return projectData
+        .filter((item) => item.category !== "music")
+        .map(({ category, title: name, thumbnail, _id }) => ({
+          category,
+          name,
+          thumbnail,
+          _id,
+        }));
     }
 
     return projectData

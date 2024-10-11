@@ -1,16 +1,27 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { jwtDecode } from "jwt-decode"; // Make sure jwt-decode is installed
+
+interface TokenPayload {
+  role: string;
+  exp: number;
+}
 
 export async function middleware(request: NextRequest) {
   try {
-    // Get cookies
     const isVerified = request.cookies.get("isVerified")?.value;
-    const userRole = request.cookies.get("role")?.value;
+    console.log("isVerified:", isVerified);
 
-    // If the user is not verified, redirect to the login page
     if (!isVerified) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
+
+    const refreshToken = request.cookies.get("accessToken")?.value;
+
+    const decode: TokenPayload = jwtDecode(refreshToken as string);
+
+    const userRole = decode.role;
+    console.log("user role", userRole);
 
     // Admin can access any route
     if (userRole === "admin") {
@@ -29,6 +40,7 @@ export async function middleware(request: NextRequest) {
         "/dashboard/testimonial",
         "/dashboard/change-password",
         "/dashboard/delete-account",
+        "/dashboard",
       ];
 
       // If the user tries to access a restricted route, redirect them
@@ -44,12 +56,8 @@ export async function middleware(request: NextRequest) {
 
     // If the role is neither admin nor user, redirect to login
     return NextResponse.redirect(new URL("/login", request.url));
-  } catch (error) {
-    console.error("Middleware error:", error);
-    return NextResponse.redirect(new URL("/login", request.url));
-  }
+  } catch (error) {}
 }
-
 // Matcher config to apply the middleware to all dashboard routes
 export const config = {
   matcher: ["/dashboard/:path*"],

@@ -7,6 +7,7 @@ import LoginButton from "@/Components/Auth/Login/LoginButton";
 import Cookies from "js-cookie";
 import { HoverBorderGradientDemo } from "@/Components/UI/Components/HoverGradientComp";
 import { useRouter } from "next/navigation";
+import AlertButton from "@/Components/Auth/Login/LoginButton";
 
 const iconVariants = {
   hidden: {
@@ -91,7 +92,12 @@ const SocialLinks: React.FC = () => {
           <HoverBorderGradientDemo />
         </div>
       ) : (
-        <LoginButton />
+        <AlertButton
+          text="Login"
+          color1="#FF0000"
+          color2="#cf0000"
+          color3="#088e2c"
+        />
       )}
     </div>
   );

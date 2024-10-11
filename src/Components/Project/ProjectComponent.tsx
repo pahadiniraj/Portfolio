@@ -11,6 +11,7 @@ import LoaderComponent from "../Loader/LoaderComponent";
 import { TbWorldWww } from "react-icons/tb";
 import { TfiYoutube } from "react-icons/tfi";
 import { convertISOToDate } from "../ConvertISO/convertDate";
+import AlertButton from "../Auth/Login/LoginButton";
 
 const ProjectComponent = () => {
   const router = useRouter();
@@ -147,9 +148,14 @@ const ProjectComponent = () => {
                   href={data?.data?.liveDemoLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-red-600 p-1 rounded-md "
+                  className="  rounded-md mb-2"
                 >
-                  <TfiYoutube className="text-2xl" />
+                  <AlertButton
+                    text="Subscribe"
+                    color1="#cf0000"
+                    color2="#cf0000"
+                    color3="#cf0000"
+                  />
                 </a>
               ) : (
                 <div className="flex gap-3">

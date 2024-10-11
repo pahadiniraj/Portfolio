@@ -106,10 +106,9 @@ const CarouselComp = () => {
     );
   }
 
-  // Show error message if there is an error
   if (isError) {
     return (
-      <div className="w-full  h-[280px] flex justify-center items-center">
+      <div className="w-full  h-[280px] bg-pink-100  flex justify-center items-center">
         <p>Failed to load testimonials.</p>
       </div>
     );
@@ -166,7 +165,9 @@ const CarouselComp = () => {
               </div>
             ))
         ) : (
-          <p>No testimonials available</p>
+          <div className="h-[280px] w-full flex justify-center items-center">
+            <p>No testimonials available...</p>
+          </div>
         )}
       </Carousel>
     </div>

@@ -104,6 +104,13 @@ export const authApi = createApi({
         };
       },
     }),
+    getToken: builder.query<Response, void>({
+      query: () => ({
+        url: "refresh-token",
+        method: "GET",
+        credentials: "include",
+      }),
+    }),
   }),
 });
 
@@ -116,4 +123,5 @@ export const {
   useLogoutUserMutation,
   useResetUserPasswordLinkMutation,
   useResetUserPasswordMutation,
+  useGetTokenQuery,
 } = authApi;

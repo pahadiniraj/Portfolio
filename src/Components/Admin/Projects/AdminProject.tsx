@@ -8,6 +8,7 @@ import { useGetAllProjectQuery } from "@/Redux/Services/project";
 import { convertISOToDate } from "@/Components/ConvertISO/convertDate";
 import { useDeleteProjectMutation } from "@/Redux/Services/admin";
 import { toast } from "react-toastify";
+import LoaderComponent from "@/Components/Loader/LoaderComponent";
 
 const AdminProject = () => {
   const router = useRouter();
@@ -16,16 +17,21 @@ const AdminProject = () => {
   const [DeleteProject, { isLoading, isError, error, isSuccess }] =
     useDeleteProjectMutation();
   const handleDelete = async (id: string) => {
-    try {
-      const response = await DeleteProject(id);
-      if (response.data && response.data.success === true) {
-        toast.success(response?.data?.message);
-        window.location.reload();
+    const isConfirm = window.confirm("Are you sure you want to delete?");
+
+    if (isConfirm) {
+      try {
+        const response = await DeleteProject(id);
+        if (response.data && response.data.success === true) {
+          toast.success(response?.data?.message);
+          window.location.reload();
+        }
+      } catch (error) {
+        console.error("Error while deleting project", error);
       }
-    } catch (error) {
-      console.error("Error while deleting project", error);
     }
   };
+
   return (
     <>
       <div className="h-full overflow-hidden ">
