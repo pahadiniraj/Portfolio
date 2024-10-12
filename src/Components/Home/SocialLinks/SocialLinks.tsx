@@ -87,7 +87,7 @@ const SocialLinks: React.FC = () => {
       {isVerified ? (
         <div
           className="relative top-1 duration-300 active:scale-90"
-          onClick={() => router.push("/dashboard/profile")}
+          onClick={() => router.push("/dashboard/setting")}
         >
           <HoverBorderGradientDemo />
         </div>

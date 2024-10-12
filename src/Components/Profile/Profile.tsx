@@ -16,6 +16,7 @@ import {
   TwitterIcon,
   YoutubeIcon,
 } from "@/Assets/Svg/Svg";
+import LoaderComponent from "../Loader/LoaderComponent";
 
 interface UserData {
   _id: string;
@@ -78,20 +79,23 @@ const Profile = () => {
     },
     {
       href: user?.personalWebsite,
-      icon: <TbWorldWww className="text-4xl" />,
+      icon: <TbWorldWww className="md:text-4xl text-2xl " />,
     },
   ];
 
   return (
-    <div className="px-8 py-2">
-      <p className="text-2xl font-bold mt-2 ">Profile</p>
+    <div className="md:px-8 px-4">
+      <p className="text-2xl font-bold mt-4 ">Profile</p>
       {isLoading ? (
-        <Skeleton className="w-full h-[370px] mt-4" borderRadius={20} />
+        <Skeleton
+          className="w-full md:h-[370px] h-[200px] mt-4 "
+          borderRadius={20}
+        />
       ) : (
-        <div className="h-[370px] w-full bg-gradient-to-r from-slate-950 to-slate-900 shadow-md border-slate-500 border shadow-slate-700 mt-4 rounded-2xl flex justify-center items-center flex-col overflow-y-auto py-2 relative">
-          <div className="w-[110px] h-[110px] rounded-full flex justify-center items-center overflow-hidden relative border border-slate-800">
+        <div className="md:h-[370px] h-full py-5 w-full bg-gradient-to-r from-slate-950 to-slate-900 shadow-md border-slate-500 border shadow-slate-700 mt-4 rounded-2xl flex justify-center items-center flex-col overflow-y-auto  relative  ">
+          <div className="md:w-[110px] md:h-[110px] h-[70px] w-[70px] rounded-full flex justify-center items-center overflow-hidden relative border border-slate-800 ml-3 md:ml-0">
             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-gray-800 to-gray-600 rounded-full shadow-xl"></div>
-            <div className="relative w-[100px] h-[100px] rounded-full overflow-hidden flex justify-center items-center">
+            <div className="relative md:w-[100px] md:h-[100px] h-[80px] w-[80px] rounded-full overflow-hidden flex justify-center items-center">
               <Image
                 src={user?.avatar || profile}
                 alt="profile"
@@ -108,9 +112,9 @@ const Profile = () => {
           </p>
           <p className="text-[12px] text-slate-300">{user?.jobTitle}</p>
           <p className="mt-4 font-semibold">About Me</p>
-          <p className="px-8 text-xs text-center">{user?.bio}</p>
+          <p className="md:px-8 px-4 text-xs text-center">{user?.bio}</p>
           <div className="mt-3 absolute top-2 right-5 flex">
-            <div className="flex">
+            <div className="grid grid-cols-2  ">
               {userData.map(
                 (value, index) =>
                   value.href && (

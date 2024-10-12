@@ -64,7 +64,7 @@ const ChangePassword = () => {
         onSubmit={handleSubmit}
       >
         {({ isValid }) => (
-          <Form className="flex flex-col mt-8 md:mt-4 w-2/5 relative  rounded-xl bg-black   border-slate-700 p-6  border">
+          <Form className="flex flex-col mt-8 md:mt-4 md:w-2/5 relative  rounded-xl bg-black   border-slate-700 p-6  border">
             <div className="space-y-4 w-full">
               <div className=" ">
                 <p className="text-center text-xl font-bold">Change Password</p>

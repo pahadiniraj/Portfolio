@@ -11,7 +11,7 @@ import { FaComments } from "react-icons/fa6";
 
 const TotalInfo = () => {
   return (
-    <div className=" grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-7 gap-2">
+    <div className=" grid grid-cols-3  md:grid-cols-3 lg:grid-cols-7 gap-2">
       <div className="bg-gradient-to-r from-blue-500 to-blue-800 text-white shadow-md border border-blue-700 rounded-lg overflow-hidden flex items-center ">
         <div className="w-full px-2 py-1">
           <p className="text-xs text-end font-medium ">Total Users</p>

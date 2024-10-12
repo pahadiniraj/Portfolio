@@ -75,7 +75,7 @@ const FileUpload = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-start h-full px-4 overflow-y-auto">
+    <div className="flex flex-col items-center justify-start h-full px-4 ">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col justify-center items-center w-full max-w-md p-4 rounded-lg shadow-lg"
@@ -115,7 +115,7 @@ const FileUpload = () => {
           <button
             type="submit"
             disabled={isLoading}
-            className={`p-2 w-full rounded-md text-white ${
+            className={`p-1 w-full rounded-md text-white ${
               isLoading ? "bg-gray-500" : "bg-blue-500 hover:bg-blue-600"
             } transition duration-300`}
           >
@@ -126,7 +126,7 @@ const FileUpload = () => {
             <button
               type="button"
               onClick={handleCancel}
-              className="p-2 w-full rounded-md text-white bg-red-500 hover:bg-red-600 transition duration-300"
+              className=" p-1 w-full rounded-md text-white bg-red-500 hover:bg-red-600 transition duration-300"
             >
               Cancel
             </button>

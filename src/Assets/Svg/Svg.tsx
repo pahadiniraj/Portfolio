@@ -3,11 +3,8 @@ import React from "react";
 export const FacebookIcon: React.FC = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    x="0px"
-    y="0px"
-    width="40"
-    height="40"
     viewBox="0 0 48 48"
+    className="w-6 h-6  md:w-10 md:h-10"
   >
     <path
       fill="#3F51B5"
@@ -19,14 +16,12 @@ export const FacebookIcon: React.FC = () => (
     />
   </svg>
 );
-
 export const InstagramIcon: React.FC = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="40"
-    height="40"
+    className="w-6 h-6  md:w-10 md:h-10"
     viewBox="0 0 48 48"
   >
     <path
@@ -126,8 +121,7 @@ export const TwitterIcon: React.FC = () => (
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="40"
-    height="40"
+    className="w-6 h-6  md:w-10 md:h-10"
     viewBox="0 0 48 48"
   >
     <linearGradient
@@ -153,8 +147,7 @@ export const GithubIcon: React.FC = () => (
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="40"
-    height="40"
+    className="w-6 h-6  md:w-10 md:h-10"
     viewBox="0 0 48 48"
   >
     <path
@@ -185,8 +178,7 @@ export const LinkedInIcon: React.FC = () => (
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="40"
-    height="40"
+    className="w-6 h-6  md:w-10 md:h-10"
     viewBox="0 0 48 48"
   >
     <path
@@ -205,8 +197,7 @@ export const YoutubeIcon: React.FC = () => (
     xmlns="http://www.w3.org/2000/svg"
     x="0px"
     y="0px"
-    width="40"
-    height="40"
+    className="w-6 h-6  md:w-10 md:h-10"
     viewBox="0 0 48 48"
   >
     <path

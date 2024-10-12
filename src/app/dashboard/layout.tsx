@@ -12,11 +12,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="w-full bg-black h-screen flex ">
-      <div className="md:w-1/4 ">
+    <div className="w-full  bg-black h-screen flex ">
+      <div className="md:w-1/4 hidden md:block ">
         <SidebarDashboard />
       </div>
-      <div className="md:w-3/4 md:h-screen bg-gradient-to-r from-indigo-800 to-indigo-950 overflow-y-auto">
+      <div className="md:w-3/4 w-full md:h-screen bg-gradient-to-r from-indigo-800 to-indigo-950 overflow-y-auto">
         <div className="h-full  ">
           <div className="border-b border-gray-500">
             <DashboardHead />
