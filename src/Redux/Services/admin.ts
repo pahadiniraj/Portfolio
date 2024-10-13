@@ -56,6 +56,11 @@ interface ResponseProject {
   message: string;
   success: boolean;
 }
+interface ResponseTestimonial {
+  data: string;
+  message: string;
+  success: boolean;
+}
 
 // Define a service using a base URL and expected endpoints
 export const adminApi = createApi({
@@ -139,6 +144,17 @@ export const adminApi = createApi({
         };
       },
     }),
+    deleteTestimonial: builder.mutation<ResponseTestimonial, string>({
+      query: (_id) => {
+        console.log("redux delete data is comming ", _id);
+        return {
+          url: `delete-testimonial`,
+          method: "DELETE",
+          body: { _id },
+          credentials: "include",
+        };
+      },
+    }),
   }),
 });
 
@@ -150,4 +166,5 @@ export const {
   useDeleteAllUsersMutation,
   useUpdateProjectMutation,
   useDeleteProjectMutation,
+  useDeleteTestimonialMutation,
 } = adminApi;

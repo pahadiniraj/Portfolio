@@ -29,10 +29,6 @@ const SidebarDashboard: React.FC<SidebarProps> = ({ close }) => {
       label: "Admin Dashboard",
     },
     {
-      href: "/dashboard/dashboard",
-      label: "Dashboard",
-    },
-    {
       href: "/dashboard/profile",
       label: "Profile",
     },

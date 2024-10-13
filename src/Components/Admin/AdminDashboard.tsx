@@ -4,6 +4,7 @@ import TotalInfo from "./TotalInfo/TotalInfo";
 import { useRouter } from "next/navigation";
 import AllUsers from "./Users/AllUsers";
 import AdminProject from "./Projects/AdminProject";
+import DeleteTestimonial from "./Testimonial/DeleteTestimonial";
 
 const AdminDashboard = () => {
   const router = useRouter();
@@ -23,7 +24,9 @@ const AdminDashboard = () => {
           <div className="lg:w-3/5  bg-slate-950 border-slate-700 md:p-4 p-3  h-[340px] rounded-2xl overflow-y-auto">
             <AllUsers />
           </div>
-          <div className="md:w-2/5 bg-slate-950 rounded-2xl ">Latest Blogs</div>
+          <div className="md:w-2/5 bg-slate-950 rounded-2xl h-[340px]  ">
+            <DeleteTestimonial />
+          </div>
         </div>
         <div className="w-full flex gap-10 mt-6 ">
           <div className=" w-full bg-slate-950 border-slate-700 p-4 h-[340px] rounded-2xl ">

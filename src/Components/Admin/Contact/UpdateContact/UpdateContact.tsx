@@ -103,7 +103,7 @@ const UpdateContact: React.FC<UpdateContactProps> = ({
     <>
       <div className="inset-0 bg-white/2 fixed h-screen flex justify-center items-center backdrop-blur-sm">
         <div
-          className="p-6 rounded-xl md:w-2/4 w-full md:border h-full bg-black md:h-[500px] border-slate-700 relative shadow-2xl"
+          className="p-6 md:rounded-xl md:w-2/4 w-full md:border h-full bg-black md:h-[500px] border-slate-700 relative shadow-2xl"
           onClick={(e) => e.stopPropagation()}
         >
           <button

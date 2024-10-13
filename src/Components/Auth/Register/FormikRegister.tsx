@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { handleError } from "@/Redux/handleErrror";
 import ClipLoader from "react-spinners/ClipLoader";
+import { registerAction } from "@/action";
+import { getCaptchaToken } from "@/Utils/captcha";
 
 interface RegistrationFormValues {
   firstName: string;
@@ -43,10 +45,23 @@ const FormikRegister = () => {
 
   const handleSubmit = async (values: RegistrationFormValues) => {
     try {
-      const response = await RegisterUser(values);
-      if (response.data && response.data.success === true) {
-        toast.success(response.data?.message);
-        router.push("/otp");
+      const token = await getCaptchaToken();
+      if (!token) {
+        toast.error("reCAPTCHA validation failed");
+        return;
+      }
+
+      console.log({ token });
+      const res = await registerAction(token, values);
+
+      if (res.success) {
+        const response = await RegisterUser(values);
+        if (response.data && response.data.success === true) {
+          toast.success(response.data?.message);
+          router.push("/otp");
+        }
+      } else {
+        toast.error(res.message);
       }
     } catch (err) {
       console.error("Error while registration", err);

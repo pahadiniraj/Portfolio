@@ -26,16 +26,16 @@ const Settings = () => {
       <div className="md:px-8 px-2  py-5  overflow-y-auto">
         <p className="text-2xl font-semibold">Setting Page</p>
         <div className="flex flex-col md:flex-row w-full md:gap-8 gap-2 mt-4">
-          <div className="md:w-3/5 backdrop-blur-sm bg-slate-950 shadow-md border-slate-700  shadow-slate-700 text-lg p-4 md:rounded-2xl border ">
+          <div className="md:w-3/5 backdrop-blur-sm bg-slate-950 shadow-md border-slate-700  shadow-slate-700 text-lg p-4 md:rounded-2xl rounded-xl border ">
             <p className="text-lg py-2 border-b mb-2">Personal Information</p>
             <PersonalFormik />
           </div>
           <div className="md:w-2/5 flex flex-col md:gap-4 gap-2 ">
-            <div className="bg-slate-950 shadow-md border-slate-700 border  shadow-slate-700 text-lg md:rounded-2xl h-[280px] p-2 scrollbar-none">
+            <div className="bg-slate-950 shadow-md border-slate-700 border  shadow-slate-700 text-lg md:rounded-2xl h-[280px] rounded-xl p-2 scrollbar-none">
               <p className="text-lg py-2 border-b mb-2">Update Avatar</p>
               <PersonalPhoto />
             </div>
-            <div className="flex w-full  justify-center px-2 bg-slate-950 shadow-md border-slate-700 border  shadow-slate-700 text-lg md:rounded-2xl flex-col items-center py-5 gap-1 ">
+            <div className="flex w-full  justify-center px-2 bg-slate-950 shadow-md border-slate-700 border  shadow-slate-700 text-lg md:rounded-2xl flex-col rounded-xl items-center py-5 gap-1 ">
               <p className="font-bold">Trying to Change Password</p>
               <p className="text-xs text-center">
                 Click the button below and put the current and new password{" "}
@@ -48,13 +48,16 @@ const Settings = () => {
               </button>
               <p className="text-xs mt-2">
                 Facing Problem ?{" "}
-                <span className="hover:text-purple-500 cursor-pointer duration-300">
+                <span
+                  className="hover:text-purple-500 cursor-pointer duration-300"
+                  onClick={() => router.push("/contact")}
+                >
                   Contact
                 </span>
               </p>
             </div>
 
-            <div className="bg-slate-950 shadow-md border-slate-700 border  shadow-slate-700 text-lg h-[320px] p-3 overflow-y-auto scrollbar-none md:rounded-2xl">
+            <div className="bg-slate-950 shadow-md border-slate-700 border  shadow-slate-700 text-lg h-[320px] p-3 overflow-y-auto rounded-xl scrollbar-none md:rounded-2xl">
               <p className="text-lg py-2 border-b mb-2">
                 Give Ratings to Niraj's Portfolio
               </p>
