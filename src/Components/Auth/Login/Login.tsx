@@ -3,38 +3,16 @@ import Button from "../../Button/Button";
 import React from "react";
 import { FcGoogle } from "react-icons/fc";
 import FormikLogin from "./FormikLogin";
-import { useGoogleLogin } from "@react-oauth/google";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { IoCaretBack } from "react-icons/io5";
-import { googleAuth } from "@/Services/googleApi";
 
 const Login: React.FC = () => {
   const router = useRouter();
 
-  const responeGoogle = async (authresult: any) => {
-    try {
-      if (authresult["code"]) {
-        const result = await googleAuth(authresult["code"]);
-        console.log(result);
-        // toast.success(result.data.message);
-        // dispatch(
-        //   setUser({
-        //     accessToken: result.data.tokens,
-        //   })
-        // );
-        // router.push("/dashboard");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+  const googleLogin = async () => {
+    window.open(`http://localhost:8000/auth/google`, "_self");
   };
-
-  const googleLogin = useGoogleLogin({
-    onError: responeGoogle,
-    onSuccess: responeGoogle,
-    flow: "auth-code",
-  });
   return (
     <>
       <div className=" w-full flex justify-center items-center bg-gray-900 md:bg-transparent h-full ">
