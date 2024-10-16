@@ -2,6 +2,7 @@ import * as Yup from "yup";
 
 const contactFormSchema = Yup.object().shape({
   fullName: Yup.string()
+    .matches(/^[^0-9]*$/, "Numbers are not allowed")
     .min(2, "Full name must be at least 2 characters")
     .max(50, "Full name can't be longer than 50 characters")
     .required("Full name is required"),

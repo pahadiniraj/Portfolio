@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} `}>
         <Provider store={store}>
-          <main className="bg-transparent h-screen flex justify-center items-center bg-pink-200">
+          <main className="bg-transparent h-screen flex justify-center items-center ">
             <GoogleOAuthProvider
               clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string}`}
             >
@@ -30,9 +30,7 @@ export default function RootLayout({
               </SkeletonTheme>
             </GoogleOAuthProvider>
             <ContainerWrapper />
-            <div className="hidden">
-              <Capcha />
-            </div>
+            <Capcha />
           </main>
         </Provider>
       </body>

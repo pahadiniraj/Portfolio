@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
-import profile from "../../Assets/ProfileImg/profile.jpg";
+import profile from "../../Assets/ProfileImg/DefaultProfile.jpg";
 import { useGetUserQuery } from "@/Redux/Services/user";
 import Link from "next/link";
 import { TbWorldWww } from "react-icons/tb";
@@ -112,7 +112,9 @@ const Profile = () => {
           </p>
           <p className="text-[12px] text-slate-300">{user?.jobTitle}</p>
           <p className="mt-4 font-semibold">About Me</p>
-          <p className="md:px-8 px-4 text-xs text-center">{user?.bio}</p>
+          <p className="md:px-8 px-4 text-xs text-center break-all">
+            {user?.bio}
+          </p>
           <div className="mt-3 absolute top-2 right-5 flex">
             <div className="grid grid-cols-2  ">
               {userData.map(

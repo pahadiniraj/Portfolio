@@ -118,7 +118,11 @@ const PersonalFormik = () => {
                   placeholder="Write something about yourself..."
                   className="p-3 bg-slate-900  border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                 />
-                <ErrorMessage name="bio" component="div" className="error" />
+                <ErrorMessage
+                  name="bio"
+                  component="div"
+                  className="text-red-500 text-xs ml-1"
+                />
               </div>
               <p className="text-lg py-2 border-b  ">Social Links</p>
               <div className="flex gap-5">

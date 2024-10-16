@@ -12,13 +12,12 @@ export async function middleware(request: NextRequest) {
     const isVerified = request.cookies.get("isVerified")?.value;
     console.log("isVerified:", isVerified);
 
-    if (!isVerified) {
+    const accessToken = request.cookies.get("accessToken")?.value;
+    if (!isVerified && !accessToken) {
       return NextResponse.redirect(new URL("/login", request.url));
     }
 
-    const refreshToken = request.cookies.get("accessToken")?.value;
-
-    const decode: TokenPayload = jwtDecode(refreshToken as string);
+    const decode: TokenPayload = jwtDecode(accessToken as string);
 
     const userRole = decode.role;
     console.log("user role", userRole);

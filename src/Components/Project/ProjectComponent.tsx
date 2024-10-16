@@ -9,7 +9,6 @@ import { useGetProjectByIdQuery } from "@/Redux/Services/project";
 import img from "../../Assets/ProfileImg/profile.jpg";
 import LoaderComponent from "../Loader/LoaderComponent";
 import { TbWorldWww } from "react-icons/tb";
-import { TfiYoutube } from "react-icons/tfi";
 import { convertISOToDate } from "../ConvertISO/convertDate";
 import AlertButton from "../Auth/Login/LoginButton";
 
@@ -35,7 +34,7 @@ const ProjectComponent = () => {
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.2, filter: "blur(20px)" }}
         transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        className="flex flex-col md:px-12 px-5 md:h-[390px] md:w-[900px] bg-black overflow-hidden md:rounded-[50px] bg-opacity-90 md:bg-opacity-100 h-screen w-full overflow-y-auto md:overflow-visible z-10 relative "
+        className="flex flex-col md:px-12 px-5 md:h-[390px] md:w-[900px] bg-black overflow-hidden md:rounded-[50px] bg-opacity-90 md:bg-opacity-100 h-screen w-full overflow-y-auto md:overflow-visible z-10 relative  "
       >
         <button
           onClick={() => router.push("/portfolio")}
@@ -95,13 +94,13 @@ const ProjectComponent = () => {
             </div>
           )}
 
-          <div className="text-white md:w-3/5  py-4 flex flex-col gap-4 md:overflow-y-auto  md:h-[300px] ">
+          <div className="text-white md:w-3/5  py-4 flex flex-col gap-4 md:overflow-y-auto  md:h-[300px] md:pr-2">
             <div className="text-2xl w-full mt-1  text-start flex justify-between items-center">
               <span className="py-1 px-2 rounded-lg bg-gradient-to-r from-indigo-300 to-purple-300 dark:from-indigo-500 dark:to-purple-500 font-semibold ">
                 {data?.data?.title}
               </span>
             </div>
-            <p className="text-sm">{data?.data?.description}</p>
+            <p className="text-sm ">{data?.data?.description}</p>
             <div>
               {data?.data?.category === "graphicdesign" && (
                 <p className="font-semibold mb-1">Key Elements:</p>
@@ -113,7 +112,6 @@ const ProjectComponent = () => {
                 <p className="font-semibold mb-1">Key Features:</p>
               )}
 
-              {/* Render the feature list for all categories except music */}
               {data?.data?.category !== "music" && (
                 <ul className="list-disc ml-5 text-sm">
                   {data?.data?.features.map((feature, index) => (
@@ -141,41 +139,50 @@ const ProjectComponent = () => {
                 ))}
               </div>
             </div>
-            <div className="right-6 top-5 flex justify-start items-center  gap-3">
-              <div className="font-semibold text-base">Links:</div>
-              {data?.data?.category === "music" ? (
-                <a
-                  href={data?.data?.liveDemoLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="  rounded-md mb-2"
-                >
-                  <AlertButton
-                    text="Subscribe"
-                    color1="#cf0000"
-                    color2="#cf0000"
-                    color3="#cf0000"
-                  />
-                </a>
-              ) : (
-                <div className="flex gap-3">
-                  <a
-                    href={data?.data?.githubLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaSquareGithub className="text-2xl" />
-                  </a>
-                  <a
-                    href={data?.data?.liveDemoLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <TbWorldWww className="text-2xl" />
-                  </a>
-                </div>
-              )}
-            </div>
+            {(data?.data?.githubLink?.trim() ||
+              data?.data?.liveDemoLink?.trim()) && (
+              <div className="right-6 top-5 flex justify-start items-center gap-3">
+                <div className="font-semibold text-base">Links:</div>
+
+                {data?.data?.category === "music"
+                  ? data?.data?.liveDemoLink && (
+                      <a
+                        href={data?.data?.liveDemoLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-md mb-2"
+                      >
+                        <AlertButton
+                          text="Subscribe"
+                          color1="#cf0000"
+                          color2="#cf0000"
+                          color3="#cf0000"
+                        />
+                      </a>
+                    )
+                  : // Check for both githubLink and liveDemoLink before rendering the links
+                    data?.data?.githubLink?.trim() &&
+                    data?.data?.liveDemoLink?.trim() && (
+                      <div className="flex gap-3">
+                        <a
+                          href={data?.data?.githubLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <FaSquareGithub className="text-2xl" />
+                        </a>
+
+                        <a
+                          href={data?.data?.liveDemoLink}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <TbWorldWww className="text-2xl" />
+                        </a>
+                      </div>
+                    )}
+              </div>
+            )}
             <div className="flex  justify-start items-start w-full ">
               <div className="flex justify-start gap-2 items-center">
                 <p className="text-sm font-semibold">Created At:</p>

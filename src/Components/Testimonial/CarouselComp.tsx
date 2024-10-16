@@ -2,11 +2,12 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import profile from "../../Assets/ProfileImg/profile.jpg";
+import profile from "../../Assets/ProfileImg/DefaultProfile.jpg";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { useGetAllTestimonialsQuery } from "@/Redux/Services/testimonial";
 import StarRating from "./StarRating";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useRouter } from "next/navigation";
 
 // Define User interface
 interface User {
@@ -54,6 +55,8 @@ const CarouselComp = () => {
       <FaArrowRight size={10} />
     </button>
   );
+
+  const router = useRouter();
 
   const responsive = {
     superLargeDesktop: { breakpoint: { max: 4000, min: 3000 }, items: 1 },
@@ -149,9 +152,14 @@ const CarouselComp = () => {
                       />
                     </div>
                     <div className="text-center text-sm mb-2">
-                      <h3 className="text-lg font-semibold">
+                      <button
+                        className="text-lg font-semibold text-blue-500 hover:underline cursor-pointer"
+                        onClick={() =>
+                          router.push(`/user-profile/${item?._id}`)
+                        }
+                      >
                         {item.user.firstName} {item.user.lastName}
-                      </h3>
+                      </button>
                       <p className="text-xs text-slate-200">
                         {item.user.jobTitle}
                       </p>
