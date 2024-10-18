@@ -108,7 +108,13 @@ const FormikLogin = () => {
                     id="acceptTermAndCondition"
                   />
                   <label htmlFor="acceptTermAndCondition" className="text-sm">
-                    I accept the terms and conditions
+                    I accept the{" "}
+                    <span
+                      onClick={() => router.push("/term-condition")}
+                      className="hover:text-blue-500 duration-200 cursor-pointer"
+                    >
+                      terms and conditions
+                    </span>
                   </label>
                 </div>
                 <ErrorMessage

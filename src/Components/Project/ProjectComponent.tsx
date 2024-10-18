@@ -25,8 +25,6 @@ const ProjectComponent = () => {
     );
   }
 
-  console.log(data?.data);
-
   return (
     <>
       <motion.div

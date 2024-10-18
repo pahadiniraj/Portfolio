@@ -57,16 +57,16 @@ const Settings = () => {
               </p>
             </div>
 
-            <div className="bg-slate-950 shadow-md border-slate-700 border  shadow-slate-700 text-lg h-[320px] p-3 overflow-y-auto rounded-xl scrollbar-none md:rounded-2xl">
+            <div className="bg-slate-950 shadow-md border-slate-700 border  shadow-slate-700 text-lg h-[320px] px-3 overflow-y-auto rounded-xl scrollbar-none md:rounded-2xl">
               <p className="text-lg py-2 border-b mb-2">
                 Give Ratings to Niraj's Portfolio
               </p>
               <CreateTestimonialFormik />
             </div>
-            <div className="flex justify-end text-sm text-center ">
+            <div className="flex justify-center text-sm  ">
               <p>
                 Are you having difficulties in this app and want to
-                <span className="hover:text-red-600  font-semibold">
+                <span className="hover:text-red-600  font-semibold ml-1">
                   <button
                     className="  rounded-md duration-300 ease-linear active:scale-90"
                     onClick={() => {

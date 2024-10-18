@@ -17,8 +17,6 @@ const CreateTestimonialFormik = () => {
   const [createTestimonial, { isError, isLoading, isSuccess, error, data }] =
     useCreateTestimonialMutation();
 
-  console.log("data heer", data);
-
   const initialValues: TestimonialFormikValues = {
     message: "",
     rating: 5, // Initial rating

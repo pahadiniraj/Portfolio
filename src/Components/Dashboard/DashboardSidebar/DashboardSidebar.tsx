@@ -21,7 +21,6 @@ interface SidebarProps {
 const SidebarDashboard: React.FC<SidebarProps> = ({ close }) => {
   const [userRole, setUserRole] = useState<string | null>(null);
   const { data, isLoading: getUserLoading } = useGetUserQuery();
-  console.log(data);
 
   const link = [
     {

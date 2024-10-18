@@ -26,10 +26,8 @@ const Portfolio: React.FC = () => {
 
   const categories = [
     { name: "All", category: "all" },
-    { name: "Web/App", category: "webdevelopment" },
-    { name: "Graphic", category: "graphicdesign" },
-    { name: "Wordpress", category: "wordpress" },
-    { name: "Marketing", category: "digitalmarketing" },
+    { name: "Web", category: "webdevelopment" },
+    { name: "Mobile", category: "appdevelopment" },
     { name: "Music", category: "music" },
   ];
 
@@ -90,13 +88,13 @@ const Portfolio: React.FC = () => {
               Portfolio
             </span>
           </h2>
-          <div className="md:grid grid grid-cols-3 md:grid-cols-6 gap-2 mb-5 w-full">
+          <div className="md:grid  grid grid-cols-4 md:grid-cols-4 gap-2 mb-5 w-full">
             {categories.map((value, index) => (
               <Button
                 key={index}
                 text={value.name}
                 onClick={() => setActiveCategory(value.category)}
-                className={`border text-xs md:text-xs py-1 rounded-[5px] font-semibold ${
+                className={`border text-xs md:text-xs py-1 rounded-[5px] font-semibold  ${
                   activeCategory === value.category ? "bg-white text-black" : ""
                 }`}
               />

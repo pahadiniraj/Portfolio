@@ -110,7 +110,7 @@ const HomeComponent = () => {
           <h2 className="text-4xl font-bold ">
             {" "}
             <ReactTyped
-              strings={["I Make Web Apps", "I Make Web APIs"]}
+              strings={["I Make Web Apps", "I Make Web APIs", "I Make Music!"]}
               typeSpeed={60}
               backSpeed={65}
               loop

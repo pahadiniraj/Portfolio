@@ -19,6 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="icon" href="/logo.png" sizes="any" />
+      </head>
       <body className={`${inter.className} `}>
         <Provider store={store}>
           <main className="bg-transparent h-screen flex justify-center items-center ">

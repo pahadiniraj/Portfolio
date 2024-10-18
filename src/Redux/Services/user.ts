@@ -26,6 +26,35 @@ interface ApiResponse {
   user: UserData;
 }
 
+interface socialLinks {
+  github?: string | null;
+  linkedin?: string | null;
+  twitter?: string | null;
+  facebook?: string | null;
+  instagram?: string | null;
+  personalWebsite?: string | null;
+  youtube?: string | null;
+}
+
+interface data {
+  _id: string;
+  jobTitle?: string | null;
+  firstName: string;
+  lastName: string;
+  email: string;
+  isVerified: boolean;
+  role: string;
+  createdAt: string;
+  updatedAt: string;
+  avatar?: string | null;
+  bio?: string | null;
+  socialLinks?: socialLinks;
+}
+
+interface ApiRes {
+  data: data;
+}
+
 // Your API response will be of type UserData (not the `Response` type you previously used)
 export const userApi = createApi({
   reducerPath: "userApi",
@@ -92,6 +121,15 @@ export const userApi = createApi({
         };
       },
     }),
+    getUserById: builder.mutation<ApiRes, string>({
+      query: (id) => {
+        return {
+          url: `get-user/${id}`,
+          method: "GET",
+          credentials: "include",
+        };
+      },
+    }),
   }),
 });
 
@@ -101,4 +139,5 @@ export const {
   useChangeUserPasswordMutation,
   useDeleteUserMutation,
   useUpdateAvatarMutation,
+  useGetUserByIdMutation,
 } = userApi;

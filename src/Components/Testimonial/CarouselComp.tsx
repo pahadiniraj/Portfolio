@@ -66,7 +66,6 @@ const CarouselComp = () => {
   };
 
   const [testimonial, setTestimonial] = useState<Data[] | undefined>(undefined);
-  console.log(testimonial);
 
   const {
     isError,
@@ -155,7 +154,7 @@ const CarouselComp = () => {
                       <button
                         className="text-lg font-semibold text-blue-500 hover:underline cursor-pointer"
                         onClick={() =>
-                          router.push(`/user-profile/${item?._id}`)
+                          router.push(`/user-profile/${item?.user?._id}`)
                         }
                       >
                         {item.user.firstName} {item.user.lastName}

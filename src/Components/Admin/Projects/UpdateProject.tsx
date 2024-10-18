@@ -251,7 +251,7 @@ const UpdateProject = () => {
                 {/* GitHub Link */}
                 <div className="relative">
                   <label htmlFor="githubLink" className="text-sm">
-                    GitHub Link 
+                    GitHub Link
                   </label>
                   <Field
                     id="githubLink"
@@ -300,9 +300,7 @@ const UpdateProject = () => {
                       Select a category
                     </option>
                     <option value="webdevelopment">Web Development</option>
-                    <option value="graphicdesign">Graphic Design</option>
-                    <option value="wordpress">WordPress</option>
-                    <option value="digitalmarketing">Digital Marketing</option>
+                    <option value="appdevelopment">App Development</option>
                     <option value="music">Music</option>
                   </Field>
                   <ErrorMessage
