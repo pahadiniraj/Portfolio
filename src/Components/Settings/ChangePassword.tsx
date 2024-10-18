@@ -46,7 +46,6 @@ const ChangePassword = () => {
   ) => {
     try {
       const response = await changeUserPassword(values);
-      console.log(response);
       if (response.data && response.data.success === true) {
         toast.success(response.data?.data);
         resetForm();
@@ -82,6 +81,7 @@ const ChangePassword = () => {
                   name="currentPassword"
                   className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                   placeholder="Current Password"
+                  autoComplete="current-password"
                 />
                 <ErrorMessage
                   name="currentPassword"
@@ -102,6 +102,7 @@ const ChangePassword = () => {
                   name="newPassword"
                   className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                   placeholder="New Password"
+                  autoComplete="new-password"
                 />
                 <ErrorMessage
                   name="newPassword"
@@ -122,6 +123,7 @@ const ChangePassword = () => {
                   name="newConfirmPassword"
                   className="p-3 bg-black border border-gray-600 rounded-md w-full text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-all duration-300"
                   placeholder="New Confirm Password"
+                  autoComplete="new-password"
                 />
                 <ErrorMessage
                   name="newConfirmPassword"

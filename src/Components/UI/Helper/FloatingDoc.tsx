@@ -1,6 +1,5 @@
 import { cn } from "../../../Utils/cn";
 import { TbLayoutNavbarCollapseFilled } from "react-icons/tb";
-
 import {
   AnimatePresence,
   MotionValue,
@@ -13,19 +12,25 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 
+// Type Definitions
+type DockItem = {
+  title: string;
+  icon: React.ReactNode;
+  href: string;
+};
+
+interface FloatingDockProps {
+  items: DockItem[];
+  desktopClassName?: string;
+  mobileClassName?: string;
+  className?: string;
+}
+
 // FloatingDock Component
-export const FloatingDock = ({
+export const FloatingDock: React.FC<FloatingDockProps> = ({
   items,
   desktopClassName,
   mobileClassName,
-}: {
-  items: {
-    title: string;
-    icon: React.ReactNode;
-    href: string;
-  }[];
-  desktopClassName?: string;
-  mobileClassName?: string;
 }) => {
   return (
     <>
@@ -35,33 +40,26 @@ export const FloatingDock = ({
   );
 };
 
-const FloatingDockMobile = ({
+// FloatingDockMobile Component
+const FloatingDockMobile: React.FC<FloatingDockProps> = ({
   items,
   className,
-}: {
-  items: { title: string; icon: React.ReactNode; href: string }[];
-  className?: string;
 }) => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const dockRef = useRef<HTMLDivElement>(null);
 
-  const handleLinkClick = () => {
-    setOpen(false);
-  };
+  const handleLinkClick = () => setOpen(false);
   const handleClickOutside = (event: MouseEvent) => {
     if (dockRef.current && !dockRef.current.contains(event.target as Node)) {
-      setOpen(false); // Close the dock when clicking outside
+      setOpen(false);
     }
   };
 
   useEffect(() => {
     if (open) {
       document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
     }
-
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
@@ -77,19 +75,13 @@ const FloatingDockMobile = ({
                 key={item.title}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{
-                  opacity: 0,
-                  y: 10,
-                  transition: {
-                    delay: idx * 0.05,
-                  },
-                }}
+                exit={{ opacity: 0, y: 10, transition: { delay: idx * 0.05 } }}
                 transition={{ delay: (items.length - 1 - idx) * 0.05 }}
               >
                 <Link
                   href={item.href}
                   onClick={handleLinkClick}
-                  className="h-14 w-14 border-gray-600 border bg-black shadow-md shadow-gray-400 rounded-full flex items-center justify-center"
+                  className="h-14 w-14 border-gray-600 border bg-black shadow-md rounded-full flex items-center justify-center"
                 >
                   <div
                     className={`h-7 w-7 ${
@@ -111,16 +103,14 @@ const FloatingDockMobile = ({
         className="h-14 w-14 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center"
       >
         <motion.div
-          animate={{
-            y: [0, -3, 0], // Move up and down
-          }}
+          animate={{ y: [0, -3, 0] }}
           transition={{
-            repeat: Infinity, // Loop the animation
-            repeatType: "loop", // Loop type
-            duration: 1.5, // Duration of one loop
-            ease: "easeInOut", // Smooth easing
+            repeat: Infinity,
+            repeatType: "loop",
+            duration: 1.5,
+            ease: "easeInOut",
           }}
-          whileHover={{ y: 0 }} // Stop jumping on hover
+          whileHover={{ y: 0 }}
           className="text-neutral-500 dark:text-neutral-400"
         >
           <TbLayoutNavbarCollapseFilled className="text-white text-3xl" />
@@ -131,16 +121,9 @@ const FloatingDockMobile = ({
 };
 
 // FloatingDockDesktop Component
-const FloatingDockDesktop = ({
+const FloatingDockDesktop: React.FC<FloatingDockProps> = ({
   items,
   className,
-}: {
-  items: {
-    title: string;
-    icon: React.ReactNode;
-    href: string;
-  }[];
-  className?: string;
 }) => {
   let mouseX = useMotionValue(Infinity);
 
@@ -149,7 +132,7 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        `mx-auto hidden md:flex h-16 gap-4 items-end rounded-2xl bg-gray-50 dark:bg-neutral-900 px-4 pb-3`,
+        `mx-auto text-white hidden md:flex h-16 gap-4 items-end rounded-2xl bg-gray-50 dark:bg-neutral-900 px-4 pb-3`,
         className
       )}
     >
@@ -162,6 +145,7 @@ const FloatingDockDesktop = ({
   );
 };
 
+// IconContainer Component
 function IconContainer({
   mouseX,
   title,
@@ -173,42 +157,28 @@ function IconContainer({
   icon: React.ReactNode;
   href: string;
 }) {
-  let ref = useRef<HTMLDivElement>(null);
-
-  let distance = useTransform(mouseX, (val) => {
-    let bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+  const ref = useRef<HTMLDivElement>(null);
+  const distance = useTransform(mouseX, (val) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
     return val - bounds.x - bounds.width / 2;
   });
 
-  let widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-  let heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-  let widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
-  let heightTransformIcon = useTransform(
-    distance,
-    [-150, 0, 150],
-    [20, 40, 20]
+  const width = useSpring(
+    useTransform(distance, [-150, 0, 150], [40, 80, 40]),
+    { mass: 0.1, stiffness: 150, damping: 12 }
   );
-
-  let width = useSpring(widthTransform, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
-  });
-  let height = useSpring(heightTransform, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
-  });
-  let widthIcon = useSpring(widthTransformIcon, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
-  });
-  let heightIcon = useSpring(heightTransformIcon, {
-    mass: 0.1,
-    stiffness: 150,
-    damping: 12,
-  });
+  const height = useSpring(
+    useTransform(distance, [-150, 0, 150], [40, 80, 40]),
+    { mass: 0.1, stiffness: 150, damping: 12 }
+  );
+  const widthIcon = useSpring(
+    useTransform(distance, [-150, 0, 150], [20, 40, 20]),
+    { mass: 0.1, stiffness: 150, damping: 12 }
+  );
+  const heightIcon = useSpring(
+    useTransform(distance, [-150, 0, 150], [20, 40, 20]),
+    { mass: 0.1, stiffness: 150, damping: 12 }
+  );
 
   const [hovered, setHovered] = useState(false);
   const pathname = usePathname();
@@ -237,7 +207,7 @@ function IconContainer({
         <motion.div
           style={{ width: widthIcon, height: heightIcon }}
           className={`flex items-center justify-center text-xl ${
-            pathname.endsWith(href) ? "text-purple-400" : ""
+            pathname.endsWith(href) ? "text-purple-500" : "text-white-800"
           }`}
         >
           {icon}

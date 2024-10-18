@@ -37,7 +37,6 @@ const OtpComp = () => {
   const handleSubmit = async (value: OtpFormValue) => {
     try {
       const response = await verifyOtp(value);
-      console.log(response);
       if (response.data && response.data.success === true) {
         toast.success(response.data.message);
         router.push("/login");

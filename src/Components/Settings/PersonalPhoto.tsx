@@ -4,7 +4,6 @@ import {
   useGetUserQuery,
   useUpdateAvatarMutation,
 } from "@/Redux/Services/user";
-import { useRouter } from "next/navigation";
 
 const FileUpload = () => {
   const [file, setFile] = useState<File | null>(null);
@@ -12,7 +11,6 @@ const FileUpload = () => {
   const [dragActive, setDragActive] = useState(false);
   const [uploadFile, { isLoading }] = useUpdateAvatarMutation();
   const { refetch } = useGetUserQuery();
-  const router = useRouter();
 
   const handleFileChange = (selectedFile: File | null) => {
     if (selectedFile) {
@@ -59,7 +57,6 @@ const FileUpload = () => {
     try {
       const response = await uploadFile(formData).unwrap();
       toast.success("File uploaded successfully!");
-      console.log("Upload response:", response);
       refetch();
       setPreview(null);
       setFile(null);

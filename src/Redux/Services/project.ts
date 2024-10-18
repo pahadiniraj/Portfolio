@@ -67,7 +67,6 @@ export const projectApi = createApi({
   endpoints: (builder) => ({
     createProject: builder.mutation<Response, FormData>({
       query: (project) => {
-        console.log("redux data", project);
         return {
           url: "create-project",
           method: "POST",

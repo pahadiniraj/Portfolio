@@ -37,7 +37,6 @@ const UpdateProject = () => {
   } = useGetProjectByIdQuery(id as string);
   const [UpdateProject, { isLoading }] = useUpdateProjectMutation();
 
-  console.log(data?.data?._id);
 
   if (isFetchingProject) {
     return (
@@ -82,7 +81,6 @@ const UpdateProject = () => {
         formData.append("thumbnail", values.thumbnail as File);
       }
 
-      console.log("Form Values:", values);
       const response = await UpdateProject(formData).unwrap();
       toast.success(response.message);
       refetch();

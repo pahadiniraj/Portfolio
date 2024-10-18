@@ -65,14 +65,11 @@ const PersonalFormik = () => {
 
   const handleSubmit = async (value: UserData) => {
     try {
-      console.log(value);
       const response = await UpdateUser(value);
       if (response.data && response.data.success === true) {
-        console.log("success", response.data?.message);
         toast.success(response.data?.message);
         refetch();
       }
-      console.log(response);
     } catch (error) {
       console.error("somthing went wrong", error);
     }

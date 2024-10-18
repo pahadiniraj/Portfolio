@@ -135,7 +135,6 @@ export const adminApi = createApi({
     }),
     deleteProject: builder.mutation<ResponseProject, string>({
       query: (_id) => {
-        console.log("redux delete data is comming ", _id);
         return {
           url: `delete-project`,
           method: "POST",
@@ -146,7 +145,6 @@ export const adminApi = createApi({
     }),
     deleteTestimonial: builder.mutation<ResponseTestimonial, string>({
       query: (_id) => {
-        console.log("redux delete data is comming ", _id);
         return {
           url: `delete-testimonial`,
           method: "DELETE",

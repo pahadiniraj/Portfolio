@@ -49,5 +49,4 @@ export const handleError = (
   }
 
   toast.error(errorMessage);
-  console.log(error);
 };

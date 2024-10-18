@@ -33,7 +33,6 @@ const InputForResetPassword = () => {
     try {
       const data = { ...value, id, token };
       const response = await resetUserPassword(data);
-      console.log(response);
       if (response.data && response.data.success === true) {
         router.push("/login");
         toast.success(response.data?.data);

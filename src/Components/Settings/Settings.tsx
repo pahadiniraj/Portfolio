@@ -71,9 +71,6 @@ const Settings = () => {
                     className="  rounded-md duration-300 ease-linear active:scale-90"
                     onClick={() => {
                       if (user?._id) {
-                        console.log(
-                          `Navigating to: /dashboard/delete-account/${user._id}`
-                        );
                         router.push(`/dashboard/delete-account/${user._id}`);
                       } else {
                         console.error("User ID is not defined.");

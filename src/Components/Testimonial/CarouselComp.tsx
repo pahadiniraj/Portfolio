@@ -134,14 +134,14 @@ const CarouselComp = () => {
             .reverse()
             .map((item) => (
               <div
-                key={item._id}
+                key={item?._id}
                 className="w-full flex justify-center items-center mt-5"
               >
                 <div className="h-[280px] w-full flex justify-center items-center">
                   <div className="w-[95%] md:w-5/6 bg-slate-800 flex items-center h-[90%] rounded-2xl flex-col">
                     <div className="w-[80px] h-[80px] rounded-full overflow-hidden flex justify-center items-center border relative bottom-4">
                       <Image
-                        src={item.user?.avatar || profile}
+                        src={item?.user?.avatar || profile}
                         alt="profile"
                         width={80}
                         height={80}
@@ -157,16 +157,16 @@ const CarouselComp = () => {
                           router.push(`/user-profile/${item?.user?._id}`)
                         }
                       >
-                        {item.user.firstName} {item.user.lastName}
+                        {item?.user?.firstName} {item?.user?.lastName}
                       </button>
                       <p className="text-xs text-slate-200">
-                        {item.user.jobTitle}
+                        {item?.user?.jobTitle}
                       </p>
                     </div>
                     <p className="px-2 text-center text-xs mb-2 line-clamp-5">
-                      "{item.message}"
+                      "{item?.message}"
                     </p>
-                    <StarRating rating={item.rating} />
+                    <StarRating rating={item?.rating} />
                   </div>
                 </div>
               </div>

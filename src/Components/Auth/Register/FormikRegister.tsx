@@ -51,7 +51,6 @@ const FormikRegister = () => {
         return;
       }
 
-      console.log({ token });
       const res = await registerAction(token, values);
 
       if (res.success) {

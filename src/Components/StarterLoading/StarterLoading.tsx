@@ -1,6 +1,7 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
-import ParticlesComponent from "../Particals/Particals";
+import ParticlesComponent from "../Particals/Particals"; // Ensure the path is correct
 import MainLayout from "../RootLayout/MainLayout";
 import Navbar from "../Navbar/Navbar";
 import LoaderComponent from "../Loader/LoaderComponent";
@@ -9,11 +10,12 @@ const StarterLoading = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Simulate a loading period of 2 seconds
     const timer = setTimeout(() => {
       setLoading(false);
     }, 2000);
 
-    return () => clearTimeout(timer);
+    return () => clearTimeout(timer); // Cleanup the timer on component unmount
   }, []);
 
   return (
@@ -23,10 +25,7 @@ const StarterLoading = ({ children }: { children: React.ReactNode }) => {
           <LoaderComponent />
         </div>
       ) : (
-        <div className="h-screen w-full justify-center  items-center flex-col md:overflow-x-hidden  md:flex md:justify-center md:items-center gap-2  relative  ">
-          <div className="absolute ">
-            <ParticlesComponent />
-          </div>
+        <div className="h-screen w-full flex flex-col justify-center items-center md:overflow-x-hidden relative">
           <MainLayout>{children}</MainLayout>
           <Navbar />
         </div>

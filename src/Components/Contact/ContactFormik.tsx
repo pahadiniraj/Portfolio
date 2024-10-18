@@ -31,7 +31,6 @@ const ContactFormik = () => {
   ) => {
     try {
       const response = await CreateContact(values);
-      console.log(response);
       if (response.data && response.data.success === true) {
         toast.success(response.data?.message);
         resetForm();

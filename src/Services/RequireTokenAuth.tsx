@@ -8,7 +8,6 @@ const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
-    console.log("access token", token);
 
     if (!token) {
       toast.error("Access not granted. Please login to get access.");

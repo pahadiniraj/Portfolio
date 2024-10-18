@@ -63,7 +63,6 @@ const CreateProject = () => {
         formData.append("thumbnail", values.thumbnail as File);
       }
 
-      console.log("Form Values:", values);
       const response = await createProject(formData).unwrap();
       toast.success(response.message);
       resetForm();

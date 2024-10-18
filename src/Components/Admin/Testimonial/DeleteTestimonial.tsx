@@ -18,7 +18,6 @@ const DeleteTestimonial = () => {
         toast.success(response.message);
         refetch();
       }
-      console.log(response);
     } catch (error) {
       console.error(error);
       toast.error("Failed to delete the testimonial.");
