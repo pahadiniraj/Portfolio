@@ -81,7 +81,7 @@ const FloatingDockMobile: React.FC<FloatingDockProps> = ({
                 <Link
                   href={item.href}
                   onClick={handleLinkClick}
-                  className="h-14 w-14 border-gray-600 border bg-black shadow-md rounded-full flex items-center justify-center"
+                  className="h-14 w-14 border-gray-600 border bg-black  shadow-inner shadow-white rounded-full flex items-center justify-center"
                 >
                   <div
                     className={`h-7 w-7 ${

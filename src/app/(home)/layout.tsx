@@ -2,6 +2,7 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import StarterLoading from "@/Components/StarterLoading/StarterLoading";
 import ParticlesComponent from "@/Components/Particals/Particals";
+import BackgroundComponent from "@/Components/Background/background";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +15,9 @@ export default function RootLayout({
     <>
       <StarterLoading>{children}</StarterLoading>
       <div className="absolute w-full h-full">
-        <ParticlesComponent key="particles" id="tsparticles" />
+        <div className="w-full h-full">
+          <BackgroundComponent />
+        </div>
       </div>
     </>
   );

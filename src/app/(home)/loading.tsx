@@ -9,7 +9,7 @@ const loading = () => {
     margin: "0 auto",
     borderRadius: "50%",
     color: "black",
-    borderWidth: "3px",
+    borderWidth: "2px",
   };
   const [color] = useState("#000000");
 

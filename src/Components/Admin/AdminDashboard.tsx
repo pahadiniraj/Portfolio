@@ -11,7 +11,7 @@ const AdminDashboard = () => {
   return (
     <>
       <div className="md:px-4 px-3 py-4 relative">
-        <TotalInfo />
+        {/* <TotalInfo /> */}
         <div className="w-full flex justify-end my-4 ">
           <button
             className=" text-end  p-2 bg-blue-500 rounded-md hover:bg-blue-600 duration-300 active:scale-90 "

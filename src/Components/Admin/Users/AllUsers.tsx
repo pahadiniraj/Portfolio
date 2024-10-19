@@ -12,7 +12,7 @@ import { handleError } from "@/Redux/handleErrror";
 import { MdDelete } from "react-icons/md";
 
 const AllUsers = () => {
-  const [user, setUser] = useState<UserData[]>();
+  const [users, setUsers] = useState<UserData[]>([]);
   const [deletingUserId, setDeletingUserId] = useState<string | null>(null); // To manage delete loading
 
   const { data, isLoading, isError, error, isSuccess, refetch } =
@@ -21,7 +21,7 @@ const AllUsers = () => {
 
   useEffect(() => {
     if (data && isSuccess) {
-      setUser(data?.data);
+      setUsers(data?.data.reverse() || []); // Reverse users only once here
     }
   }, [data, isSuccess]);
 
@@ -29,7 +29,6 @@ const AllUsers = () => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this user?"
     );
-
     if (!confirmDelete) {
       return;
     }
@@ -38,20 +37,19 @@ const AllUsers = () => {
 
     try {
       const response = await DeleteUser({ _id });
-      toast.success(response?.data?.message);
-      refetch();
+      if (response.error) {
+        toast.error("Error deleting user. Please try again.");
+      } else {
+        toast.success(response?.data?.message);
+        refetch();
+      }
     } catch (error) {
       console.error("Error while deleting user", error);
+      toast.error("An unexpected error occurred. Please try again.");
     } finally {
       setDeletingUserId(null); // Reset after deletion is complete
     }
   };
-
-  useEffect(() => {
-    if (error) {
-      handleError(error);
-    }
-  }, [error, isError]);
 
   return (
     <div className="w-full">
@@ -84,70 +82,70 @@ const AllUsers = () => {
       {/* Display users once data is loaded */}
       {!isLoading && (
         <div className="flex flex-col gap-4">
-          {user &&
-            user
-              .concat()
-              .reverse()
-              .map((value, index) => {
-                const isDeleting = deletingUserId === value._id; // Check if the user is being deleted
+          {users.length > 0 ? (
+            users.map((user, index) => {
+              const isDeleting = deletingUserId === user._id; // Check if the user is being deleted
 
-                return (
-                  <div
-                    key={index}
-                    className="flex justify-between items-center bg-slate-700 px-2 py-3 rounded-md md:gap-5 overflow-hidden"
-                  >
-                    <div className="flex md:gap-4 gap-2 items-center">
-                      <div className="relative w-[50px] h-[50px] rounded-full overflow-hidden flex justify-center items-center">
-                        {isDeleting ? (
-                          <Skeleton circle={true} height={50} width={50} />
-                        ) : (
-                          <Image
-                            src={(value.avatar as string) || profile}
-                            alt="profile"
-                            width={100}
-                            height={100}
-                            style={{ objectFit: "cover" }}
-                            className="rounded-full"
-                            priority
-                          />
-                        )}
-                      </div>
-                      <div className="flex flex-col gap-1">
-                        {isDeleting ? (
-                          <>
-                            <Skeleton width={80} height={20} />
-                            <Skeleton width={100} height={15} />
-                          </>
-                        ) : (
-                          <>
-                            <div className="text-sm font-semibold">
-                              <p>{value.firstName}</p>
-                              <p>{value.lastName}</p>
-                            </div>
-                            <div>
-                              <p className="text-xs">{value.jobTitle}</p>
-                            </div>
-                          </>
-                        )}
-                      </div>
+              return (
+                <div
+                  key={user._id} // Use user._id as key for better uniqueness
+                  className="flex justify-between items-center bg-slate-700 px-2 py-3 rounded-md md:gap-5 overflow-hidden"
+                >
+                  <div className="flex md:gap-4 gap-2 items-center">
+                    <div className="relative w-[50px] h-[50px] rounded-full overflow-hidden flex justify-center items-center">
+                      {isDeleting ? (
+                        <Skeleton circle={true} height={50} width={50} />
+                      ) : (
+                        <Image
+                          src={(user.avatar as string) || profile}
+                          alt="profile"
+                          width={100}
+                          height={100}
+                          style={{ objectFit: "cover" }}
+                          className="rounded-full"
+                          priority
+                        />
+                      )}
                     </div>
-
-                    {isDeleting ? (
-                      <Skeleton width={150} height={20} />
-                    ) : (
-                      <p className="md:text-sm text-xs">{value.email}</p>
-                    )}
-
-                    {isDeleting ? (
-                      <Skeleton width={30} height={30} />
-                    ) : (
-                      <button onClick={() => handleDeleteUser(value._id)}>
-                        <MdDelete className="text-2xl hover:text-red-600 duration-300" />
-                      </button>
-                    )}
+                    <div className="flex flex-col gap-1">
+                      {isDeleting ? (
+                        <>
+                          <Skeleton width={80} height={20} />
+                          <Skeleton width={100} height={15} />
+                        </>
+                      ) : (
+                        <>
+                          <div className="text-sm font-semibold">
+                            <p>{user.firstName}</p>
+                            <p>{user.lastName}</p>
+                          </div>
+                          <div>
+                            <p className="text-xs">{user.jobTitle}</p>
+                          </div>
+                        </>
+                      )}
+                    </div>
                   </div>
-                );
-              })}
+
+                  {isDeleting ? (
+                    <Skeleton width={150} height={20} />
+                  ) : (
+                    <p className="md:text-sm text-xs">{user.email}</p>
+                  )}
+
+                  {isDeleting ? (
+                    <Skeleton width={30} height={30} />
+                  ) : (
+                    <button onClick={() => handleDeleteUser(user._id)}>
+                      <MdDelete className="text-2xl hover:text-red-600 duration-300" />
+                    </button>
+                  )}
+                </div>
+              );
+            })
+          ) : (
+            <p className="text-center">No users found.</p>
+          )}
         </div>
       )}
     </div>
