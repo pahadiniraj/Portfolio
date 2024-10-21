@@ -42,8 +42,7 @@ const SidebarDashboard: React.FC<SidebarProps> = ({ close }) => {
   ].filter((item) => {
     if (
       data?.user?.role === "user" &&
-      (item.href === "/dashboard/admin-dashboard" ||
-        item.href === "/dashboard/admin-blog")
+      item.href === "/dashboard/admin-dashboard"
     ) {
       return false;
     }

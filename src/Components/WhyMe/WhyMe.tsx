@@ -9,7 +9,6 @@ const WhyMe = () => {
       <motion.div
         initial={{ opacity: 0, x: "-100vw" }}
         animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
         transition={{ type: "spring", stiffness: 250, damping: 40 }}
         className="md:h-[390px] md:w-[900px] bg-black w-full h-full overflow-hidden md:rounded-[50px] z-10 "
       >

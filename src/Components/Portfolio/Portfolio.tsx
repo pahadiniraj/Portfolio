@@ -78,7 +78,6 @@ const Portfolio: React.FC = () => {
         <motion.div
           initial={{ opacity: 0, x: "-100vw" }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
           transition={{ type: "spring", stiffness: 250, damping: 40 }}
           className="flex flex-col md:px-10 px-5 md:h-[390px] md:w-[900px] bg-black overflow-hidden md:rounded-[50px] bg-opacity-90 md:bg-opacity-100  h-screen w-full overflow-y-scroll md:overflow-visible z-10 relative"
         >

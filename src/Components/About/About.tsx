@@ -9,9 +9,9 @@ import { motion } from "framer-motion";
 const About = () => {
   return (
     <motion.div
+      key="about"
       initial={{ opacity: 0, x: "-100vw" }}
       animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
       transition={{ type: "spring", stiffness: 250, damping: 40 }}
       className="flex flex-col md:flex-row md:justify-center md:items-center md:h-[390px] md:w-[900px] bg-black bg-opacity-90 md:bg-opacity-100  overflow-hidden md:rounded-[50px] h-screen w-full overflow-y-scroll md:overflow-hidden z-10"
     >
@@ -34,9 +34,9 @@ const About = () => {
           </h1>
           <HeroHighlightDemo text="on FullStack Development" />
           <p className="text-sm mt-4">
-            Hello there! I'm Niraj. I specialize in Web development. I'm
-            deeply committed to my craft. With a years of experience, I'm
-            profound in what I do.
+            Hello there! I'm Niraj. I specialize in Web development. I'm deeply
+            committed to my craft. With a years of experience, I'm profound in
+            what I do.
           </p>
         </section>
         <div className="hidden md:block order-3 py-4 overflow-y-auto">
