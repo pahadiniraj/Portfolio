@@ -11,6 +11,7 @@ import { SkeletonTheme } from "react-loading-skeleton";
 import Capcha from "@/Components/Capcha/Capcha";
 
 const inter = Inter({ subsets: ["latin"] });
+export const runtime = "edge";
 
 export default function RootLayout({
   children,

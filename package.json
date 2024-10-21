@@ -41,6 +41,7 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.13.5",
     "@types/grecaptcha": "^3.0.9",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
