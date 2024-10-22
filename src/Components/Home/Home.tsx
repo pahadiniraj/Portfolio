@@ -12,7 +12,6 @@ const HomeComponent = () => {
   const router = useRouter();
   return (
     <motion.div
-      key="home"
       initial={{ opacity: 0, x: "-100vw" }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
@@ -116,7 +115,7 @@ const HomeComponent = () => {
               loop
             />
           </h2>
-          <p className="text-sm mt-3">
+          <p className="text-sm mt-3 mr-2">
             Collaborating with highly skilled professionals, I deliver top-notch
             services alongside my team. With a broad spectrum of knowledge, I am
             particularly inclined, towards

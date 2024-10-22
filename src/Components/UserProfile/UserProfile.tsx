@@ -64,10 +64,6 @@ const Profile = () => {
       ]
     : [];
 
-  if (isLoading) {
-    return <Skeleton count={5} />; // Show a loading skeleton while data is being fetched
-  }
-
   if (!isSuccess || !user) {
     return <p>User not found</p>; // Handle the case when user data is not available
   }

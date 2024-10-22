@@ -8,7 +8,7 @@ const TermsAndConditions = () => {
   return (
     <div className="h-screen  text-gray-200 overflow-y-auto relative w-full">
       <div className="max-w-2xl mx-auto p-6  w-full">
-        <h1 className="text-3xl font-bold text-center text-blue-400">
+        <h1 className="md:text-3xl text-xl font-bold text-center text-blue-400">
           Terms and Conditions
         </h1>
         <p className="mt-4">
@@ -75,7 +75,7 @@ const TermsAndConditions = () => {
         className="hover:to-blue-500 duration-200  absolute top-7 left-5"
         onClick={() => router.push("/login")}
       >
-        <IoMdArrowDropleft className="text-4xl" />
+        <IoMdArrowDropleft className="text-3xl" />
       </button>
     </div>
   );

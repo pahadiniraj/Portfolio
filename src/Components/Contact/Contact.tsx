@@ -13,7 +13,7 @@ const Contact = () => {
         animate={{ opacity: 1, x: 0 }}
         exit={{ opacity: 0, x: "100vw", filter: "blur(20px)" }}
         transition={{ type: "spring", stiffness: 250, damping: 40 }}
-        className="md:h-[390px] md:w-[900px] h-full  bg-black overflow-hidden md:rounded-[50px] p-5 relative z-10 md:overflow-y-hidden overflow-y-auto"
+        className="md:h-[390px] md:w-[900px] h-full  bg-black overflow-hidden md:rounded-[50px] p-5 relative z-10 md:overflow-y-hidden overflow-y-auto bg-opacity-90 md:bg-opacity-100"
       >
         <h2 className="text-white text-2xl font-bold text-center mb-2 block md:hidden">
           Contact Me
