@@ -17,9 +17,11 @@ import {
   YoutubeIcon,
 } from "@/Assets/Svg/Svg";
 import { useParams, useRouter } from "next/navigation";
+import LoaderComponent from "../Loader/LoaderComponent";
 
 const Profile = () => {
-  const [getUserId, { isLoading, data, isSuccess }] = useGetUserByIdMutation();
+  const [getUserId, { isLoading, data, isSuccess, isError }] =
+    useGetUserByIdMutation();
   const router = useRouter();
   const { id } = useParams();
 
@@ -64,8 +66,20 @@ const Profile = () => {
       ]
     : [];
 
-  if (!isSuccess || !user) {
-    return <p>User not found</p>; // Handle the case when user data is not available
+  if (isError) {
+    return (
+      <div className="flex justify-center items-center w-full h-full">
+        <p>User not found</p>
+      </div>
+    ); // Handle the case when user data is not available
+  }
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center w-full h-full ">
+        <LoaderComponent />
+      </div>
+    );
   }
 
   return (
@@ -73,10 +87,10 @@ const Profile = () => {
       <motion.div
         initial={{ opacity: 0, y: "-100vh" }}
         animate={{ opacity: 1, y: 0 }}
-        className="md:h-[370px] md:w-[900px] h-screen z-40 md:z-10 w-full bg-gradient-to-r from-slate-950 to-slate-900 shadow-md border-slate-500 border shadow-slate-700 md:rounded-2xl flex justify-center items-center flex-col overflow-y-auto relative"
+        className="md:h-[370px] md:w-[900px] h-screen z-40 md:z-10 w-full bg-gradient-to-r  border-slate-500 bordermd:rounded-2xl flex justify-center items-center flex-col overflow-y-auto relative"
       >
         <button
-          className="absolute top-2 right-4 text-2xl"
+          className="absolute top-2 right-6 text-2xl"
           onClick={() => router.push("/contact")}
         >
           x
@@ -96,12 +110,14 @@ const Profile = () => {
           </div>
         </div>
         <p className="text-xl font-semibold mt-2">
-          {user.data?.firstName} {user.data?.lastName}
+          {user?.data?.firstName} {user?.data?.lastName}
         </p>
-        <p className="text-[12px] text-slate-300 px-4">{user.data?.jobTitle}</p>
+        <p className="text-[12px] text-slate-300 px-4">
+          {user?.data?.jobTitle}
+        </p>
         <p className="mt-4 font-semibold">About Me</p>
         <p className="md:px-8 px-4 break-all text-xs text-center">
-          {user.data?.bio}
+          {user?.data?.bio}
         </p>
         <div className="mt-3 flex">
           <div className="flex gap-2">

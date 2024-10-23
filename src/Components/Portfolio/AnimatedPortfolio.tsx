@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { RiSearchEyeLine } from "react-icons/ri";
 import { useRouter } from "next/navigation";
-import img from "../../Assets/Logo/logo.png";
 
 interface AnimatedPortfolioProps {
   filterSkill: () => {
@@ -12,11 +11,17 @@ interface AnimatedPortfolioProps {
     thumbnail: string;
     _id: string;
   }[];
+  isLoading: boolean;
+  isError: boolean;
 }
 
 const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
   filterSkill,
+  isLoading,
+  isError,
 }) => {
+  const router = useRouter();
+
   // Animation variants for each item
   const itemVariants = {
     hidden: { opacity: 0, x: 50 },
@@ -34,7 +39,24 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
     },
   };
 
-  const router = useRouter();
+  // If loading, show skeleton loaders
+  if (isLoading) {
+    return (
+      <div className="grid md:grid-cols-3 sm:grid-cols-3 grid-cols-1 md:max-h-[250px] md:scrollbar-hide gap-5 py-2 pr-2 overflow-x-hidden">
+        {[...Array(6)].map((_, index) => (
+          <div
+            key={index}
+            className="w-full h-[250px] bg-slate-700 rounded-2xl animate-pulse"
+          />
+        ))}
+      </div>
+    );
+  }
+
+  // If error, display an error message
+  if (isError) {
+    return <p className="text-red-500 text-center">Check your Internet !!</p>;
+  }
 
   return (
     <motion.div
@@ -51,13 +73,13 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
           transition={{ duration: 0.5, ease: "easeInOut" }}
           onClick={() => router.push(`/project/${value._id}`)}
         >
-          <div className="relative w-full h-full rounded-2xl overflow-hidden group bg-slate-800 border border-slate-700 px-3  pb-3 hover:shadow-lg cursor-pointer">
+          <div className="relative w-full h-full rounded-2xl overflow-hidden group bg-slate-800 border border-slate-700 px-3 pb-3 hover:shadow-lg cursor-pointer">
             <h2 className="font-bold p-1">{value.name}</h2>
-            <div className="md:h-[190px]  ">
+            <div className="md:h-[190px]">
               <Image
-                src={value.thumbnail || img.src}
+                src={value?.thumbnail}
                 alt={`Thumbnail for ${value.name}`}
-                className="w-[100%] md:h-[190px]  object-cover rounded-md"
+                className="w-[100%] md:h-[190px] object-cover rounded-md"
                 priority
                 width={400}
                 height={400}

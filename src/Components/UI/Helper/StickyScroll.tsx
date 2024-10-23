@@ -47,13 +47,8 @@ export const StickyScroll = ({
     }
   });
 
-  const backgroundColors = ["#000000"];
-
   return (
     <motion.div
-      animate={{
-        backgroundColor: backgroundColors[activeCard % backgroundColors.length],
-      }}
       className="md:max-h-[300px] max-h-[520px] overflow-auto md:scrollbar-hide overflow-y-auto flex justify-center relative space-x-10 rounded-md border-white md:border-none"
       ref={ref}
     >

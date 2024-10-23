@@ -11,7 +11,7 @@ const loading = () => {
     color: "black",
     borderWidth: "2px",
   };
-  const [color] = useState("#000000");
+  const [color] = useState("#ffffff");
 
   return (
     <div className=" absolute top-6 right-6 z-40 ">

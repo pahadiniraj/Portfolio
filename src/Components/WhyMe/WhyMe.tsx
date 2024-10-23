@@ -2,15 +2,17 @@
 import React from "react";
 import { StickyScrollRevealDemo } from "../UI/Components/StickyScrollComp";
 import { motion } from "framer-motion";
+import useIsMobile from "../Hooks/UseIsMobile";
 
 const WhyMe = () => {
+  const isMobile = useIsMobile();
   return (
     <>
       <motion.div
-        initial={{ opacity: 0, x: "-100vw" }}
+        initial={{ opacity: 0, x: isMobile ? "-100vw" : "-2vw" }}
         animate={{ opacity: 1, x: 0 }}
-        transition={{ type: "spring", stiffness: 250, damping: 40 }}
-        className="md:h-[390px] md:w-[900px] bg-black w-full h-full overflow-hidden md:rounded-[50px] z-10 "
+        transition={{ type: "spring", stiffness: 250, damping: 30 }}
+        className="md:h-[390px] md:w-[900px]  w-full h-full overflow-hidden md:rounded-[50px] z-10 "
       >
         <div className="text-center mt-5">
           <h3 className="text-2xl font-semibold px-4  ">
