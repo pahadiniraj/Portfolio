@@ -1,8 +1,8 @@
 import { Inter } from "next/font/google";
 import "../globals.css";
 import StarterLoading from "@/Components/StarterLoading/StarterLoading";
-import ParticlesComponent from "@/Components/Particals/Particals";
 import BackgroundComponent from "@/Components/Background/background";
+import Capcha from "@/Components/Capcha/Capcha";
 
 const inter = Inter({ subsets: ["latin"] });
 

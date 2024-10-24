@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import ParticlesComponent from "../Particals/Particals"; // Ensure the path is correct
-import MainLayout from "../RootLayout/MainLayout";
 import Navbar from "../Navbar/Navbar";
 import LoaderComponent from "../Loader/LoaderComponent";
 import { AnimatePresence, motion } from "framer-motion";

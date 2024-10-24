@@ -8,7 +8,7 @@ export function HoverBorderGradientDemo() {
       <HoverBorderGradient
         containerClassName="rounded-full"
         as="button"
-        className="dark:bg-black bg-white text-black dark:text-white flex items-center space-x-2"
+        className="bg-black   text-white flex items-center space-x-2"
       >
         Dashboard
       </HoverBorderGradient>

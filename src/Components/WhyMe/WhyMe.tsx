@@ -16,7 +16,7 @@ const WhyMe = () => {
       >
         <div className="text-center mt-5">
           <h3 className="text-2xl font-semibold px-4  ">
-            <span className="py-1 px-2 rounded-lg bg-gradient-to-r from-indigo-300 to-purple-300 dark:from-indigo-500 dark:to-purple-500">
+            <span className="py-1 px-2 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500">
               Why Me ?
             </span>
           </h3>

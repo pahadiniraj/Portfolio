@@ -28,7 +28,7 @@ export async function getCaptchaToken(): Promise<string | null> {
 }
 
 export async function verifyCaptchaToken(token: string) {
-  const secretKey = process.env.CAPTCHA_SECRET_KEY;
+  const secretKey = process.env.NEXT_CAPTCHA_SECRET_KEY;
   if (!secretKey) {
     throw new Error("No secret key found ");
   }

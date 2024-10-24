@@ -100,7 +100,7 @@ const FloatingDockMobile: React.FC<FloatingDockProps> = ({
       </AnimatePresence>
       <button
         onClick={() => setOpen(!open)}
-        className="h-14 w-14 rounded-full bg-gray-50 dark:bg-neutral-800 flex items-center justify-center"
+        className="h-14 w-14 rounded-full border-gray-600 border bg-black  shadow-inner shadow-white flex items-center justify-center"
       >
         <motion.div
           animate={{ y: [0, -3, 0] }}
@@ -111,7 +111,7 @@ const FloatingDockMobile: React.FC<FloatingDockProps> = ({
             ease: "easeInOut",
           }}
           whileHover={{ y: 0 }}
-          className="text-neutral-500 dark:text-neutral-400"
+          className="text-neutral-500 "
         >
           <TbLayoutNavbarCollapseFilled className="text-white text-3xl" />
         </motion.div>
@@ -132,7 +132,7 @@ const FloatingDockDesktop: React.FC<FloatingDockProps> = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        `mx-auto text-white hidden md:flex h-16 gap-4 items-end rounded-2xl bg-gray-50 dark:bg-neutral-900 px-4 pb-3`,
+        `mx-auto text-white hidden md:flex h-16 gap-4 items-end rounded-2xl bg-neutral-900 px-4 pb-3`,
         className
       )}
     >
@@ -190,7 +190,7 @@ function IconContainer({
         style={{ width, height }}
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
-        className="aspect-square rounded-full bg-gray-200 dark:bg-neutral-800 flex items-center justify-center relative"
+        className="aspect-square rounded-full bg-neutral-800 flex items-center justify-center relative"
       >
         <AnimatePresence>
           {hovered && (
@@ -198,7 +198,7 @@ function IconContainer({
               initial={{ opacity: 0, y: 10, x: "-50%" }}
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 2, x: "-50%" }}
-              className="px-2 py-0.5 whitespace-pre rounded-md bg-gray-100 border dark:bg-neutral-800 dark:border-neutral-900 dark:text-white border-gray-200 text-neutral-700 absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
+              className="px-2 py-0.5 whitespace-pre rounded-md  border bg-neutral-800 border-neutral-900 text-white  absolute left-1/2 -translate-x-1/2 -top-8 w-fit text-xs"
             >
               {title}
             </motion.div>

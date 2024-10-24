@@ -94,7 +94,7 @@ const ProjectComponent = () => {
 
             <div className="text-white md:w-3/5  py-4 flex flex-col gap-4 md:overflow-y-auto  md:h-[300px] md:pr-2">
               <div className="text-2xl w-full mt-1  text-start flex justify-between items-center">
-                <span className="py-1 px-2 rounded-lg bg-gradient-to-r from-indigo-300 to-purple-300 dark:from-indigo-500 dark:to-purple-500 font-semibold ">
+                <span className="py-1 px-2 rounded-lg bg-gradient-to-r  from-indigo-500 to-purple-500 font-semibold ">
                   {data?.data?.title}
                 </span>
               </div>

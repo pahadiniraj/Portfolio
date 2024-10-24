@@ -82,7 +82,7 @@ const Portfolio: React.FC = () => {
       >
         <h2 className="text-2xl font-semibold my-5 text-center">
           Presenting My{" "}
-          <span className="py-1 px-2 rounded-lg bg-gradient-to-r from-indigo-300 to-purple-300 dark:from-indigo-500 dark:to-purple-500">
+          <span className="py-1 px-2 rounded-lg bg-gradient-to-r from-indigo-500 to-purple-500">
             Portfolio
           </span>
         </h2>
