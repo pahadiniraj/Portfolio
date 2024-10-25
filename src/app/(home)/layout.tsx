@@ -47,15 +47,13 @@ export default function RootLayout({
           <LoaderComponent />
         </div>
       ) : (
-        <div className="h-full md:h-screen w-full flex flex-col justify-center items-center md:overflow-x-hidden ">
+        <div className=" h-screen w-full flex flex-col justify-center items-center md:overflow-x-hidden overflow-y-auto">
           <AnimatePresence mode="wait">
             {isMobile ? (
-              // Render a regular div in mobile (no animation)
               <div className="md:h-[390px] md:w-[900px] h-full w-full flex justify-center bg-black z-10 md:rounded-[50px] md:bg-opacity-95 bg-opacity-90">
                 {children}
               </div>
             ) : (
-              // Render with framer-motion animations on larger screens
               <motion.div
                 key={pathname}
                 initial={{ opacity: 0, x: "-100vw" }}
