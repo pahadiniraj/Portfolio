@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:8000/api/auth",
+  baseURL: "https://portfolio-backend-eight-sooty.vercel.app/api/auth",
 });
 
 export const googleAuth = (code: any) => api.get(`/google?code=${code}`);

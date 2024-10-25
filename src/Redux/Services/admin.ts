@@ -66,7 +66,7 @@ interface ResponseTestimonial {
 export const adminApi = createApi({
   reducerPath: "adminApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8000/api/admin/",
+    baseUrl: "https://portfolio-backend-eight-sooty.vercel.app/api/admin/",
     credentials: "include",
   }),
   endpoints: (builder) => ({

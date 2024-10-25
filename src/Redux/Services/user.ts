@@ -59,7 +59,7 @@ interface ApiRes {
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8000/api/users/",
+    baseUrl: "https://portfolio-backend-eight-sooty.vercel.app/api/users/",
     credentials: "include",
   }),
   endpoints: (builder) => ({

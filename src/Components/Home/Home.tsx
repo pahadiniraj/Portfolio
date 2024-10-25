@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import HomeButtons from "./HomeButtons/HomeButtons";
 import SocialLinks from "./SocialLinks/SocialLinks";
 import Image from "next/image";
-import profile from "../../Assets/ProfileImg/dev-1.jpg";
+import profile from "../../Assets/ProfileImg/unnamed.jpg";
 import { ReactTyped } from "react-typed";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";

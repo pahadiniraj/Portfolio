@@ -61,7 +61,7 @@ export interface GetProjectResponse {
 export const projectApi = createApi({
   reducerPath: "projectApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8000/api/projects/",
+    baseUrl: "https://portfolio-backend-eight-sooty.vercel.app/api/projects/",
     credentials: "include",
   }),
   endpoints: (builder) => ({

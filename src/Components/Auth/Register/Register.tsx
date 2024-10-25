@@ -10,7 +10,10 @@ import { IoClose } from "react-icons/io5";
 
 const Register: React.FC = () => {
   const loginGoogle = () => {
-    window.open("http://localhost:8000/auth/google/callback", "_self");
+    window.open(
+      "https://portfolio-backend-eight-sooty.vercel.app/auth/google/callback",
+      "_self"
+    );
   };
 
   const router = useRouter();

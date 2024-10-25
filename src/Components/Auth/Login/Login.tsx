@@ -11,7 +11,10 @@ const Login: React.FC = () => {
   const router = useRouter();
 
   const googleLogin = async () => {
-    window.open(`http://localhost:8000/auth/google`, "_self");
+    window.open(
+      `https://portfolio-backend-eight-sooty.vercel.app/auth/google`,
+      "_self"
+    );
   };
   return (
     <>

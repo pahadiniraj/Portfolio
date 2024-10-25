@@ -1,6 +1,5 @@
 "use client";
 import { Inter } from "next/font/google";
-import Head from "next/head";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import ContainerWrapper from "@/Components/ContainerWrapper";
@@ -19,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
+      <head>
         <title>Niraj Pahadi | Fullstack Developer</title>
         <meta
           name="description"
@@ -44,11 +43,11 @@ export default function RootLayout({
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
-          content="https://res.cloudinary.com/pahadi123/image/upload/v1729750281/dev-1_ttaknd.jpg" // Update this with the correct image path
+          content="https://res.cloudinary.com/pahadi123/image/upload/v1729750281/dev-1_ttaknd.jpg"
         />
         <meta
           property="og:image:alt"
-          content="Niraj Pahadi Fullstack Developer" // Alt description for the image
+          content="Niraj Pahadi Fullstack Developer"
         />
 
         {/* Twitter meta tags */}
@@ -63,7 +62,7 @@ export default function RootLayout({
         />
         <meta
           name="twitter:image"
-          content="https://res.cloudinary.com/pahadi123/image/upload/v1729750281/dev-1_ttaknd.jpg" // Update this with the correct image path
+          content="https://res.cloudinary.com/pahadi123/image/upload/v1729750281/dev-1_ttaknd.jpg"
         />
         <meta
           name="twitter:image:alt"
@@ -71,19 +70,17 @@ export default function RootLayout({
         />
 
         <link rel="icon" href="/logo.png" sizes="any" />
-      </Head>
-      <body className={`${inter.className} `}>
+      </head>
+      <body className={`${inter.className} bg-transparent h-screen`}>
         <Provider store={store}>
-          <main className="bg-transparent h-screen flex justify-center items-center ">
-            <GoogleOAuthProvider
-              clientId={`${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string}`}
-            >
-              <SkeletonTheme baseColor="#000000" highlightColor="#79737d">
-                {children}
-              </SkeletonTheme>
-            </GoogleOAuthProvider>
-            <ContainerWrapper />
-          </main>
+          <GoogleOAuthProvider
+            clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}
+          >
+            <SkeletonTheme baseColor="#000000" highlightColor="#79737d">
+              <main>{children}</main>
+              <ContainerWrapper />
+            </SkeletonTheme>
+          </GoogleOAuthProvider>
         </Provider>
       </body>
     </html>

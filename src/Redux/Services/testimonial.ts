@@ -16,7 +16,7 @@ interface User {
   lastName: string;
   jobTitle: string;
   _id: string;
-  avatar:string;
+  avatar: string;
 }
 
 // Define Data interface
@@ -39,7 +39,8 @@ export interface GetResponse {
 export const testimonialApi = createApi({
   reducerPath: "testimonialApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:8000/api/testimonial/",
+    baseUrl:
+      "https://portfolio-backend-eight-sooty.vercel.app/api/testimonial/",
     credentials: "include",
   }),
   endpoints: (builder) => ({

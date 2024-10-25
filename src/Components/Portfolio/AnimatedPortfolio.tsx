@@ -55,7 +55,7 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
 
   // If error, display an error message
   if (isError) {
-    return <p className="text-red-500 text-center">Check your Internet !!</p>;
+    return <p className="text-red-500 text-center">Server Problem !!</p>;
   }
 
   return (

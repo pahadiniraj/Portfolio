@@ -6,7 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { FaSquareGithub } from "react-icons/fa6";
 import { useGetProjectByIdQuery } from "@/Redux/Services/project";
-import img from "../../Assets/ProfileImg/profile.jpg";
+import img from "../../Assets/ProfileImg/DefaultProfile.jpg";
 import LoaderComponent from "../Loader/LoaderComponent";
 import { TbWorldWww } from "react-icons/tb";
 import { convertISOToDate } from "../ConvertISO/convertDate";
