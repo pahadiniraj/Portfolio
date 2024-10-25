@@ -47,7 +47,7 @@ export default function RootLayout({
           <LoaderComponent />
         </div>
       ) : (
-        <div className="h-screen w-full flex flex-col justify-center items-center md:overflow-x-hidden md:overflow-y-auto">
+        <div className="h-full md:h-screen w-full flex flex-col justify-center items-center md:overflow-x-hidden ">
           <AnimatePresence mode="wait">
             {isMobile ? (
               // Render a regular div in mobile (no animation)
@@ -66,7 +66,7 @@ export default function RootLayout({
                   stiffness: 200,
                   damping: 20,
                 }}
-                className="md:h-[390px] md:w-[900px] h-screen w-full flex justify-center bg-black z-10 md:rounded-[50px] md:bg-opacity-95 bg-opacity-90"
+                className="md:h-[390px] md:w-[900px] h-full w-full flex justify-center bg-black z-10 md:rounded-[50px] md:bg-opacity-95 bg-opacity-90"
               >
                 {children}
               </motion.div>
