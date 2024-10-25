@@ -5,6 +5,7 @@ import Navbar from "../Navbar/Navbar";
 import LoaderComponent from "../Loader/LoaderComponent";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
+import BackgroundComponent from "../Background/background";
 
 const StarterLoading = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
@@ -33,12 +34,14 @@ const StarterLoading = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      {loading ? (
+      <BackgroundComponent />
+      {children}
+      {/* {loading ? (
         <div className="bg-black h-screen w-full z-40 flex justify-center items-center">
           <LoaderComponent />
         </div>
       ) : (
-        <div className="h-screen w-full flex flex-col justify-center items-center md:overflow-x-hidden md:overflow-y-auto">
+        <div className="h-screen w-full flex flex-col justify-center items-center md:overflow-x-hidden md:overflow-y-auto ">
           <AnimatePresence mode="wait">
             {isMobile ? (
               // Render a regular div in mobile (no animation)
@@ -59,7 +62,7 @@ const StarterLoading = ({ children }: { children: React.ReactNode }) => {
                 }}
                 className="md:h-[390px] md:w-[900px] h-screen w-full flex justify-center bg-black z-10 md:rounded-[50px] md:bg-opacity-95 bg-opacity-90"
               >
-                {children}
+                
               </motion.div>
             )}
           </AnimatePresence>
@@ -67,7 +70,7 @@ const StarterLoading = ({ children }: { children: React.ReactNode }) => {
             <Navbar />
           </div>
         </div>
-      )}
+      )} */}
     </>
   );
 };
