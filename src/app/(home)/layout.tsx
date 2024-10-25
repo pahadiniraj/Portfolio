@@ -2,8 +2,6 @@
 import BackgroundComponent from "@/Components/Background/background"; // Only keep this import once
 import { Inter } from "next/font/google";
 import "../globals.css";
-import StarterLoading from "@/Components/StarterLoading/StarterLoading";
-import Capcha from "@/Components/Capcha/Capcha";
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import LoaderComponent from "@/Components/Loader/LoaderComponent";
@@ -50,7 +48,7 @@ export default function RootLayout({
         <div className=" h-screen w-full flex flex-col justify-center items-center md:overflow-x-hidden overflow-y-auto">
           <AnimatePresence mode="wait">
             {isMobile ? (
-              <div className="md:h-[390px] md:w-[900px] h-full w-full flex justify-center bg-black z-10 md:rounded-[50px] md:bg-opacity-95 bg-opacity-90">
+              <div className=" py-2 h-screen w-full flex justify-center bg-black z-10  bg-opacity-90">
                 {children}
               </div>
             ) : (

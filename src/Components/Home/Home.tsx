@@ -124,7 +124,7 @@ const HomeComponent = () => {
             <span className="font-bold ml-1">Software Development</span>
           </p>
         </section>
-        <div className="flex-col gap-5 flex justify-center md:justify-start md:flex-row pb-5">
+        <div className="flex-col gap-5 flex justify-center md:justify-start md:flex-row ">
           <HomeButtons />
           <SocialLinks />
         </div>
