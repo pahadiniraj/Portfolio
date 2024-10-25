@@ -13,6 +13,8 @@
 body {
   color: var(--text-color); /* Use the text color variable */
   background-color: rgb(var(--background-color)); /* White background color */
+  padding: 0;
+  margin: 0;
 }
 
 @layer utilities {
@@ -21,14 +23,8 @@ body {
   }
 }
 
-.scrollbar-container {
-  padding-right: 20px; /* Simulates moving scrollbar inward */
-  height: 400px;
-  overflow-y: scroll;
-}
-
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 3px;
 }
 
 ::-webkit-scrollbar-thumb {

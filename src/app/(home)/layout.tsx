@@ -39,47 +39,44 @@ export default function RootLayout({
   }, []);
 
   return (
-    <>
-      <div className="w-full h-screen relative">
+    <div className="relative h-screen w-full overflow-hidden">
+      <div className="absolute h-screen w-full inset-0 -z-10">
         <BackgroundComponent />
-        {loading ? (
-          <div className="bg-black h-screen w-full z-40 flex justify-center items-center">
-            <LoaderComponent />
-          </div>
-        ) : (
-          <div className="h-screen w-full flex flex-col justify-center items-center md:overflow-x-hidden md:overflow-y-auto">
-            <AnimatePresence mode="wait">
-              {isMobile ? (
-                // Render a regular div in mobile (no animation)
-                <div className="md:h-[390px] md:w-[900px] h-screen w-full flex justify-center bg-black z-10 md:rounded-[50px] md:bg-opacity-95 bg-opacity-90">
-                  {children}
-                </div>
-              ) : (
-                // Render with framer-motion animations on larger screens
-                <motion.div
-                  key={pathname}
-                  initial={{ opacity: 0, x: "-100vw" }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: "100vw", filter: "blur(2px)" }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 200,
-                    damping: 20,
-                  }}
-                  className="md:h-[390px] md:w-[900px] h-screen w-full flex justify-center bg-black z-10 md:rounded-[50px] md:bg-opacity-95 bg-opacity-90"
-                >
-                  {children}
-                </motion.div>
-              )}
-            </AnimatePresence>
-            <div className="z-20 fixed md:static">
-              <Navbar />
-            </div>
-          </div>
-        )}
       </div>
-    </>
+
+      {loading ? (
+        <div className="bg-black h-screen w-full z-40 flex justify-center items-center">
+          <LoaderComponent />
+        </div>
+      ) : (
+        <div className="h-screen w-full flex flex-col justify-center items-center md:overflow-x-hidden md:overflow-y-auto">
+          <AnimatePresence mode="wait">
+            {isMobile ? (
+              <div className="md:h-[390px] md:w-[900px] h-screen w-full flex justify-center bg-black z-10 md:rounded-[50px] md:bg-opacity-95 bg-opacity-90">
+                {children}
+              </div>
+            ) : (
+              <motion.div
+                key={pathname}
+                initial={{ opacity: 0, x: "-100vw" }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: "100vw", filter: "blur(2px)" }}
+                transition={{
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 20,
+                }}
+                className="md:h-[390px] md:w-[900px] h-screen w-full flex justify-center bg-black z-10 md:rounded-[50px] md:bg-opacity-95 bg-opacity-90"
+              >
+                {children}
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <div className="z-20 fixed md:static">
+            <Navbar />
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
-
-<BackgroundComponent />;
