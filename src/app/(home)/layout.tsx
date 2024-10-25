@@ -4,7 +4,6 @@ import "../globals.css";
 import StarterLoading from "@/Components/StarterLoading/StarterLoading";
 import BackgroundComponent from "@/Components/Background/background";
 import React, { useEffect, useState } from "react";
-
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import LoaderComponent from "@/Components/Loader/LoaderComponent";
@@ -40,7 +39,7 @@ export default function RootLayout({
 
   return (
     <div className="relative h-screen w-full overflow-hidden">
-      <div className="absolute h-screen w-full inset-0 -z-10">
+      <div className="absolute inset-0 -z-10">
         <BackgroundComponent />
       </div>
 
