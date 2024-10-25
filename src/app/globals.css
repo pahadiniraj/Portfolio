@@ -9,10 +9,17 @@
   --text-color: rgb(var(--foreground-rgb));
   /* Text color for dark mode */
 }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
   color: var(--text-color); /* Use the text color variable */
-  background-color: rgb(var(--background-color)); /* White background color */
+  background-color: rgb(var(--background-color));
+  height: 100%;
+  overflow-x: hidden;
 }
 
 @layer utilities {
