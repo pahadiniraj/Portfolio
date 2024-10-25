@@ -1,5 +1,5 @@
 "use client";
-import BackgroundComponent from "@/Components/Background/background"; // Only keep this import once
+import BackgroundComponent from "@/Components/Background/background";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import { useEffect, useState } from "react";
@@ -39,16 +39,20 @@ export default function RootLayout({
 
   return (
     <>
-      <BackgroundComponent />
+      {/* Background component positioned behind main content */}
+      <div className="absolute inset-0 z-10">
+        <BackgroundComponent />
+      </div>
+
       {loading ? (
         <div className="bg-black h-screen w-full z-40 flex justify-center items-center">
           <LoaderComponent />
         </div>
       ) : (
-        <div className=" h-screen w-full flex flex-col justify-center items-center md:overflow-x-hidden overflow-y-auto">
+        <div className="relative h-screen w-full flex flex-col justify-center items-center md:overflow-x-hidden overflow-y-auto ">
           <AnimatePresence mode="wait">
             {isMobile ? (
-              <div className=" py-2 h-screen w-full flex justify-center bg-black z-10  bg-opacity-90">
+              <div className="h-screen w-full flex justify-center bg-black z-10 bg-opacity-90">
                 {children}
               </div>
             ) : (
