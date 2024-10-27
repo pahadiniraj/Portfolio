@@ -17,7 +17,7 @@ interface Response {
 export const contactApi = createApi({
   reducerPath: "contactApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://portfolio-backend-eight-sooty.vercel.app/api/contact/",
+    baseUrl:  `${process.env.NEXT_PUBLIC_BACKEND_HOST}/contact/`,
     credentials: "include",
   }),
   endpoints: (builder) => ({

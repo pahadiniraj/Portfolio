@@ -39,8 +39,7 @@ export interface GetResponse {
 export const testimonialApi = createApi({
   reducerPath: "testimonialApi",
   baseQuery: fetchBaseQuery({
-    baseUrl:
-      "https://portfolio-backend-eight-sooty.vercel.app/api/testimonial/",
+    baseUrl: `${process.env.NEXT_PUBLIC_BACKEND_HOST}/testimonial/`,
     credentials: "include",
   }),
   endpoints: (builder) => ({

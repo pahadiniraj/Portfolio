@@ -11,7 +11,7 @@ import { IoClose } from "react-icons/io5";
 const Register: React.FC = () => {
   const loginGoogle = () => {
     window.open(
-      "https://portfolio-backend-eight-sooty.vercel.app/auth/google/callback",
+      "https://portfolio-backend-beige-chi.vercel.app/auth/google",
       "_self"
     );
   };

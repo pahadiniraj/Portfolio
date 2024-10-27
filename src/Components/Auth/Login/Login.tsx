@@ -12,7 +12,7 @@ const Login: React.FC = () => {
 
   const googleLogin = async () => {
     window.open(
-      `https://portfolio-backend-eight-sooty.vercel.app/auth/google`,
+      `https://portfolio-backend-beige-chi.vercel.app/auth/google`,
       "_self"
     );
   };

@@ -19,7 +19,6 @@ export default function RootLayout({
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false); // Track if it's mobile
   const pathname = usePathname();
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -30,6 +29,7 @@ export default function RootLayout({
 
     const timer = setTimeout(() => {
       setLoading(false);
+      console.log("Hello there!");
     }, 2000);
     return () => {
       clearTimeout(timer);
@@ -48,7 +48,7 @@ export default function RootLayout({
           <LoaderComponent />
         </div>
       ) : (
-        <div className="h-screen w-full flex flex-col justify-center items-center md:overflow-x-hidden md:overflow-y-auto">
+        <div className="h-screen w-full flex flex-col justify-center items-center">
           <AnimatePresence mode="wait">
             {isMobile ? (
               <div className="md:h-[390px] md:w-[900px] h-screen w-full flex justify-center bg-black z-10 md:rounded-[50px] md:bg-opacity-95 bg-opacity-90">
