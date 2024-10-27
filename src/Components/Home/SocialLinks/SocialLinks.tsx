@@ -1,13 +1,14 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { FaFacebookSquare, FaLinkedin } from "react-icons/fa";
 import { FaSquareGithub } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import LoginButton from "@/Components/Auth/Login/LoginButton";
-import Cookies from "js-cookie";
 import { HoverBorderGradientDemo } from "@/Components/UI/Components/HoverGradientComp";
 import { useRouter } from "next/navigation";
 import AlertButton from "@/Components/Auth/Login/LoginButton";
+import { useGetUserQuery } from "@/Redux/Services/user";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const iconVariants = {
   hidden: {
@@ -17,10 +18,10 @@ const iconVariants = {
   },
   visible: (index: number) => ({
     opacity: 1,
-    scale: 2, // Increased scale for the pop effect
+    scale: 2,
     y: 0,
     transition: {
-      delay: index * 0.3, // Staggered delay for each icon
+      delay: index * 0.3,
       duration: 0.7,
       ease: "easeOut",
       bounce: 0.3,
@@ -30,18 +31,19 @@ const iconVariants = {
 
 const SocialLinks: React.FC = () => {
   const { ref, inView } = useInView({
-    triggerOnce: true, // Trigger animation only once
-    threshold: 0.1, // Trigger when 10% of the component is visible
+    triggerOnce: true,
+    threshold: 0.1,
   });
 
   const [isVerified, setIsVerified] = useState<boolean | null>(null);
   const router = useRouter();
+  const { isLoading, data: userData } = useGetUserQuery();
 
-  // Check the cookie only on the client side
   useEffect(() => {
-    const verified = Cookies.get("isVerified");
-    setIsVerified(verified === "true");
-  }, []);
+    if (userData) {
+      setIsVerified(userData?.user?.isVerified);
+    }
+  }, [userData]);
 
   const data = [
     {
@@ -58,13 +60,8 @@ const SocialLinks: React.FC = () => {
     },
   ];
 
-  // If the client-side state has not been set yet, don't render until it's ready
-  if (isVerified === null) {
-    return null; // Or a loader if you'd like
-  }
-
   return (
-    <div className="flex items-end mb-1 ml-2 gap-4 ">
+    <div className="flex items-end mb-1 ml-2 gap-4">
       <ul className="flex gap-2" ref={ref}>
         {data.map((item, index) => (
           <li key={index}>
@@ -84,7 +81,9 @@ const SocialLinks: React.FC = () => {
           </li>
         ))}
       </ul>
-      {isVerified ? (
+      {isLoading ? (
+        <ClipLoader color="#FFFFFF" loading={true} size={25} />
+      ) : isVerified ? (
         <div
           className="relative top-1 duration-300 active:scale-90"
           onClick={() => router.push("/dashboard/setting")}
@@ -95,7 +94,7 @@ const SocialLinks: React.FC = () => {
         <AlertButton
           text="Login"
           color1="#FF0000"
-          color2="#cf0000"
+          color2="#261616"
           color3="#088e2c"
         />
       )}

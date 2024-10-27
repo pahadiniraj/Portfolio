@@ -1,3 +1,4 @@
+"use client";
 import { useGetUserQuery } from "@/Redux/Services/user";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";

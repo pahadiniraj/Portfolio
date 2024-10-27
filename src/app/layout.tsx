@@ -7,7 +7,6 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import { Provider } from "react-redux";
 import { store } from "@/Redux/Store";
 import { SkeletonTheme } from "react-loading-skeleton";
-import AuthRedirect from "@/Components/AuthRedirect/AuthRedirect";
 
 const inter = Inter({ subsets: ["latin"] });
 export const runtime = "edge";
@@ -74,7 +73,6 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-transparent h-screen`}>
         <Provider store={store}>
-          <AuthRedirect />
           <GoogleOAuthProvider
             clientId={process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || ""}
           >
