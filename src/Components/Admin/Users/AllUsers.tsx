@@ -21,7 +21,8 @@ const AllUsers = () => {
 
   useEffect(() => {
     if (data && isSuccess) {
-      setUsers(data?.data.reverse() || []); // Reverse users only once here
+      // Create a new array and reverse it to avoid mutating the original data
+      setUsers([...data.data].reverse() || []);
     }
   }, [data, isSuccess]);
 
