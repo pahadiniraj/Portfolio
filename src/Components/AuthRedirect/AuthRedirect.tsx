@@ -8,7 +8,15 @@ const AuthRedirect = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const exemptRoutes = ["/about", "/contact", "/", "/portfolio", "/why-me"];
+  const exemptRoutes = [
+    "/about",
+    "/contact",
+    "/",
+    "/portfolio",
+    "/why-me",
+    "/term-condition",
+  ];
+  const loginRoutes = ["/login", "/otp", "/register"];
 
   useEffect(() => {
     const isExempt =
@@ -18,12 +26,18 @@ const AuthRedirect = () => {
       (data && pathname.startsWith("/dashboard/"));
 
     if (isLoading || isExempt) return;
-    if (!data) {
-      router.push("/");
-    } else {
+
+    if (
+      data &&
+      (loginRoutes.includes(pathname) ||
+        pathname.startsWith("/reset-password-confirm/") ||
+        pathname.startsWith("/reset-password-link"))
+    ) {
       router.push("/dashboard/setting");
+    } else if (!data) {
+      router.push("/");
     }
-  }, [isLoading, data, pathname]);
+  }, [isLoading, data, pathname, router]);
 
   return <div></div>;
 };
