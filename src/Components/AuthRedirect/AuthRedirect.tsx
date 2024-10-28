@@ -14,14 +14,15 @@ const AuthRedirect = () => {
     const isExempt =
       exemptRoutes.includes(pathname) ||
       pathname.startsWith("/user-profile/") ||
-      pathname.startsWith("/project/");
+      pathname.startsWith("/project/") ||
+      (data && pathname.startsWith("/dashboard/"));
 
     if (isLoading || isExempt) return;
     if (!data) {
       router.push("/");
-      return;
+    } else {
+      router.push("/dashboard/setting");
     }
-    router.push("/dashboard/setting");
   }, [isLoading, data, pathname]);
 
   return <div></div>;
