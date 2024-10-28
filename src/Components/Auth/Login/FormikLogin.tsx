@@ -40,7 +40,7 @@ const FormikLogin = () => {
       const response = await loginUser(loginValues);
       if (response.data && response.data.success === true) {
         toast.success(response.data?.message);
-        router.push("/dashboard/setting");
+        window.location.href = "/dashboard/setting";
       }
     } catch (error) {
       console.error("Error:", error);

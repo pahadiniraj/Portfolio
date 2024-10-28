@@ -66,7 +66,7 @@ const SidebarDashboard: React.FC<SidebarProps> = ({ close }) => {
     try {
       const response = await logoutUser().unwrap();
       toast.success(response.data);
-      router.push("/login");
+      window.location.href = "/dashboard/setting";
     } catch (error) {
       console.error("Failed to logout user", error);
     }
