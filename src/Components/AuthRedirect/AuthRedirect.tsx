@@ -34,7 +34,13 @@ const AuthRedirect = () => {
         pathname.startsWith("/reset-password-link"))
     ) {
       router.push("/dashboard/setting");
-    } else if (!data) {
+    } else if (
+      !data &&
+      !isExempt &&
+      !loginRoutes.includes(pathname) &&
+      !pathname.startsWith("/reset-password-confirm/") &&
+      !pathname.startsWith("/reset-password-link")
+    ) {
       router.push("/");
     }
   }, [isLoading, data, pathname, router]);
