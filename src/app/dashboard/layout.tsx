@@ -2,7 +2,6 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import SidebarDashboard from "@/Components/Dashboard/DashboardSidebar/DashboardSidebar";
 import DashboardHead from "@/Components/Dashboard/DashboardHead/DashboardHead";
-import AuthRedirect from "@/Components/AuthRedirect/AuthRedirect";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -13,7 +12,6 @@ export default function RootLayout({
 }) {
   return (
     <div className="w-full  bg-black h-screen flex ">
-      <AuthRedirect />
       <div className="md:w-1/4 hidden md:block ">
         <SidebarDashboard />
       </div>

@@ -66,7 +66,7 @@ interface ResponseTestimonial {
 export const adminApi = createApi({
   reducerPath: "adminApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://portfolio-backend-eight-sooty.vercel.app/api/admin/",
+    baseUrl: `${process.env.NEXT_PUBLIC_BACKEND_HOST}/admin/`,
     credentials: "include",
   }),
   endpoints: (builder) => ({
@@ -145,9 +145,10 @@ export const adminApi = createApi({
     }),
     deleteTestimonial: builder.mutation<ResponseTestimonial, string>({
       query: (_id) => {
+        console.log("redux", _id);
         return {
           url: `delete-testimonial`,
-          method: "DELETE",
+          method: "POST",
           body: { _id },
           credentials: "include",
         };

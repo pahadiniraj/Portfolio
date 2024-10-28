@@ -10,7 +10,7 @@ const AuthRedirect = () => {
   useEffect(() => {
     if (isLoading) return;
     if (!data) {
-      router.push("/login");
+      router.push("/");
       return;
     }
     return router.push("/dashboard/setting");

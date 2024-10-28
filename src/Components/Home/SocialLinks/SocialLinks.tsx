@@ -1,14 +1,14 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import { FaFacebookSquare, FaLinkedin } from "react-icons/fa";
 import { FaSquareGithub } from "react-icons/fa6";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import LoginButton from "@/Components/Auth/Login/LoginButton";
+import Cookies from "js-cookie";
 import { HoverBorderGradientDemo } from "@/Components/UI/Components/HoverGradientComp";
 import { useRouter } from "next/navigation";
 import AlertButton from "@/Components/Auth/Login/LoginButton";
 import { useGetUserQuery } from "@/Redux/Services/user";
-import ClipLoader from "react-spinners/ClipLoader";
 
 const iconVariants = {
   hidden: {
@@ -18,10 +18,10 @@ const iconVariants = {
   },
   visible: (index: number) => ({
     opacity: 1,
-    scale: 2,
+    scale: 2, // Increased scale for the pop effect
     y: 0,
     transition: {
-      delay: index * 0.3,
+      delay: index * 0.3, // Staggered delay for each icon
       duration: 0.7,
       ease: "easeOut",
       bounce: 0.3,
@@ -31,19 +31,13 @@ const iconVariants = {
 
 const SocialLinks: React.FC = () => {
   const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
+    triggerOnce: true, // Trigger animation only once
+    threshold: 0.1, // Trigger when 10% of the component is visible
   });
 
   const [isVerified, setIsVerified] = useState<boolean | null>(null);
   const router = useRouter();
-  const { isLoading, data: userData } = useGetUserQuery();
-
-  useEffect(() => {
-    if (userData) {
-      setIsVerified(userData?.user?.isVerified);
-    }
-  }, [userData]);
+  const { isSuccess } = useGetUserQuery();
 
   const data = [
     {
@@ -61,7 +55,7 @@ const SocialLinks: React.FC = () => {
   ];
 
   return (
-    <div className="flex items-end mb-1 ml-2 gap-4">
+    <div className="flex items-end mb-1 ml-2 gap-4 ">
       <ul className="flex gap-2" ref={ref}>
         {data.map((item, index) => (
           <li key={index}>
@@ -81,9 +75,7 @@ const SocialLinks: React.FC = () => {
           </li>
         ))}
       </ul>
-      {isLoading ? (
-        <ClipLoader color="#FFFFFF" loading={true} size={25} />
-      ) : isVerified ? (
+      {isSuccess ? (
         <div
           className="relative top-1 duration-300 active:scale-90"
           onClick={() => router.push("/dashboard/setting")}
@@ -94,7 +86,7 @@ const SocialLinks: React.FC = () => {
         <AlertButton
           text="Login"
           color1="#FF0000"
-          color2="#261616"
+          color2="#cf0000"
           color3="#088e2c"
         />
       )}

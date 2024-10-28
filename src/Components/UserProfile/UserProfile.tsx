@@ -40,7 +40,7 @@ const Profile = () => {
           icon: <LinkedInIcon />,
         },
         {
-          href: user.data?.socialLinks?.linkedin,
+          href: user.data?.socialLinks?.facebook,
           icon: <FacebookIcon />,
         },
         {
