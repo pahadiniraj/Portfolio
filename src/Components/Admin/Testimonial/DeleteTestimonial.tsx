@@ -14,7 +14,6 @@ const DeleteTestimonial = () => {
   const handleDelete = async (_id: string) => {
     try {
       const response = await deleteTestimonial(_id).unwrap();
-      console.log(response);
 
       // Use unwrap to handle fulfilled/rejected directly
       if (response.success === true) {

@@ -145,7 +145,6 @@ export const adminApi = createApi({
     }),
     deleteTestimonial: builder.mutation<ResponseTestimonial, string>({
       query: (_id) => {
-        console.log("redux", _id);
         return {
           url: `delete-testimonial`,
           method: "POST",
