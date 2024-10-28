@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "../globals.css";
 import Script from "next/script";
+import Capcha from "@/Components/Capcha/Capcha";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +17,7 @@ export default function RootLayout({
         strategy="beforeInteractive"
       />
       {children}
+      <Capcha />
     </div>
   );
 }

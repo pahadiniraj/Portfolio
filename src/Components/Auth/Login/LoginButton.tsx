@@ -23,7 +23,7 @@ const AlertButton: React.FC<AlertButtonProps> = ({
       <div className="mt-2">
         <button
           className={` font-bold   text-white right-2 `}
-          onClick={() => router.push("/login")}
+          onClick={() => (window.location.href = "/login")}
         >
           <motion.div
             animate={{

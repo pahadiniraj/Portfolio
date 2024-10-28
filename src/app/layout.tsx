@@ -8,7 +8,6 @@ import { Provider } from "react-redux";
 import { store } from "@/Redux/Store";
 import { SkeletonTheme } from "react-loading-skeleton";
 import AuthRedirect from "@/Components/AuthRedirect/AuthRedirect";
-import Capcha from "@/Components/Capcha/Capcha";
 
 const inter = Inter({ subsets: ["latin"] });
 export const runtime = "edge";
@@ -82,7 +81,6 @@ export default function RootLayout({
             <SkeletonTheme baseColor="#000000" highlightColor="#79737d">
               <main>{children}</main>
               <ContainerWrapper />
-              <Capcha />
             </SkeletonTheme>
           </GoogleOAuthProvider>
         </Provider>
