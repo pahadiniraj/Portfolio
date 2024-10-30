@@ -66,7 +66,7 @@ const Portfolio: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="w-full h-screen flex justify-center items-center md:hidden">
+      <div className="w-full h-screen flex justify-center md:h-[390px] items-center z-30">
         <LoaderComponent />
       </div>
     );
