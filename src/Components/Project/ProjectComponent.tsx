@@ -19,7 +19,7 @@ const ProjectComponent = () => {
 
   if (isLoading) {
     return (
-      <div className="w-full h-screen flex justify-center items-center md:hidden ">
+      <div className="w-full h-screen md:h-[390px] md:w-[900px] flex justify-center items-center z-20 ">
         <LoaderComponent />
       </div>
     );

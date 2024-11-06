@@ -37,7 +37,7 @@ const SocialLinks: React.FC = () => {
 
   const [isVerified, setIsVerified] = useState<boolean | null>(null);
   const router = useRouter();
-  const { isSuccess } = useGetUserQuery();
+  const { isSuccess, isLoading } = useGetUserQuery();
 
   const data = [
     {
@@ -75,20 +75,26 @@ const SocialLinks: React.FC = () => {
           </li>
         ))}
       </ul>
-      {isSuccess ? (
-        <div
-          className="relative top-1 duration-300 active:scale-90"
-          onClick={() => router.push("/dashboard/setting")}
-        >
-          <HoverBorderGradientDemo />
-        </div>
+      {isLoading ? (
+        "loading"
       ) : (
-        <AlertButton
-          text="Login"
-          color1="#FF0000"
-          color2="#cf0000"
-          color3="#088e2c"
-        />
+        <>
+          {isSuccess ? (
+            <div
+              className="relative top-1 duration-300 active:scale-90"
+              onClick={() => router.push("/dashboard/setting")}
+            >
+              <HoverBorderGradientDemo />
+            </div>
+          ) : (
+            <AlertButton
+              text="Login"
+              color1="#FF0000"
+              color2="#cf0000"
+              color3="#088e2c"
+            />
+          )}
+        </>
       )}
     </div>
   );
