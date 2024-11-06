@@ -32,7 +32,7 @@ const ProjectComponent = () => {
           initial={{ opacity: 0, scale: 0.2 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
-          className="flex flex-col md:px-12 px-5 md:h-[390px] md:w-[900px] overflow-hidden md:rounded-[50px] bg-opacity-90 md:bg-opacity-100 h-screen w-full overflow-y-auto md:overflow-visible z-20 relative  "
+          className="flex flex-col md:px-12 px-5 md:h-[390px] md:w-[900px] overflow-hidden md:rounded-[50px] bg-opacity-90 md:bg-opacity-100 h-screen w-full overflow-y-auto md:overflow-visible z-20 relative"
         >
           <button
             onClick={() => router.push("/portfolio")}
@@ -142,26 +142,23 @@ const ProjectComponent = () => {
                 <div className="right-6 top-5 flex justify-start items-center gap-3">
                   <div className="font-semibold text-base">Links:</div>
 
-                  {data?.data?.category === "music"
-                    ? data?.data?.liveDemoLink && (
-                        <a
-                          href={data?.data?.liveDemoLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="rounded-md mb-2"
-                        >
-                          <AlertButton
-                            text="Subscribe"
-                            color1="#cf0000"
-                            color2="#cf0000"
-                            color3="#cf0000"
-                          />
-                        </a>
-                      )
-                    : // Check for both githubLink and liveDemoLink before rendering the links
-                      data?.data?.githubLink?.trim() &&
-                      data?.data?.liveDemoLink?.trim() && (
-                        <div className="flex gap-3">
+                  {data?.data?.category === "music" ? (
+                    data?.data?.liveDemoLink && (
+                      <a
+                        href={data?.data?.liveDemoLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-md mb-2"
+                      >
+                        <button className="bg-red-600 text-white p-1 text-xs rounded-lg hover:scale-95  duration-200">
+                          Subscribe
+                        </button>
+                      </a>
+                    )
+                  ) : (
+                    <div className="flex gap-3">
+                      {data?.data?.githubLink?.trim() &&
+                        !data?.data?.liveDemoLink?.trim() && (
                           <a
                             href={data?.data?.githubLink}
                             target="_blank"
@@ -169,7 +166,10 @@ const ProjectComponent = () => {
                           >
                             <FaSquareGithub className="text-2xl" />
                           </a>
+                        )}
 
+                      {data?.data?.liveDemoLink?.trim() &&
+                        !data?.data?.githubLink?.trim() && (
                           <a
                             href={data?.data?.liveDemoLink}
                             target="_blank"
@@ -177,10 +177,32 @@ const ProjectComponent = () => {
                           >
                             <TbWorldWww className="text-2xl" />
                           </a>
-                        </div>
-                      )}
+                        )}
+
+                      {data?.data?.githubLink?.trim() &&
+                        data?.data?.liveDemoLink?.trim() && (
+                          <>
+                            <a
+                              href={data?.data?.githubLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <FaSquareGithub className="text-2xl" />
+                            </a>
+                            <a
+                              href={data?.data?.liveDemoLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <TbWorldWww className="text-2xl" />
+                            </a>
+                          </>
+                        )}
+                    </div>
+                  )}
                 </div>
               )}
+
               <div className="flex  justify-start items-start w-full ">
                 <div className="flex justify-start gap-2 items-center">
                   <p className="text-sm font-semibold">Created At:</p>
