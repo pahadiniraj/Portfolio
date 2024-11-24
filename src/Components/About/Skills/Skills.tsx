@@ -27,6 +27,7 @@ import {
   SiFigma,
   SiAdobexd,
 } from "react-icons/si";
+import { FaServer } from "react-icons/fa";
 
 const Skills: React.FC = () => {
   const categories = [
@@ -90,9 +91,9 @@ const Skills: React.FC = () => {
       description: "State management with Redux Toolkit",
     },
     {
-      skill: "GraphQL",
-      icon: <SiGraphql />,
-      description: "Flexible API query language",
+      skill: "REST API",
+      icon: <FaServer />, // Replace this with the appropriate icon for REST API
+      description: "Standardized architecture for web services",
     },
     {
       skill: "Jest",
