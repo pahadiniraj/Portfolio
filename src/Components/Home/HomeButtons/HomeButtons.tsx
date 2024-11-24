@@ -8,7 +8,12 @@ const HomeButtons = () => {
   const router = useRouter();
   return (
     <div className="flex gap-3">
-      <a href="/Pdf/resume.pdf" download="NirajPahadiResume">
+      <a
+        href="/Pdf/resume.pdf"
+        target="_blank"
+        download="NirajPahadiResume"
+        rel="noopener noreferrer"
+      >
         <Button
           className="py-2 px-3 rounded-md border font-semibold flex justify-center items-center gap-2 "
           text="Resume"

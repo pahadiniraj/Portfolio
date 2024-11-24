@@ -30,7 +30,7 @@ import {
 
 const Skills: React.FC = () => {
   const categories = [
-    { name: "Main Skills", category: "skills" },
+    // { name: "Main Skills", category: "skills" },
     { name: "Knowledge-On", category: "education" },
   ];
 
@@ -131,7 +131,7 @@ const Skills: React.FC = () => {
     },
   ];
 
-  const [activeCategory, setActiveCategory] = useState("skills");
+  const [activeCategory, setActiveCategory] = useState("education");
   const [showAll, setShowAll] = useState(false);
 
   const renderSkills = () => {
@@ -162,7 +162,7 @@ const Skills: React.FC = () => {
 
   return (
     <div className="flex flex-col gap-3 p-2 md:p-0">
-      <div className="flex gap-3 justify-center items-center md:items-start md:justify-start mb-2">
+      <div className="flex gap-3  items-start justify-start mb-2">
         {categories.map((value, index) => (
           <Button
             key={index}
@@ -179,8 +179,8 @@ const Skills: React.FC = () => {
       </div>
 
       <div>
-        {activeCategory === "skills" && renderSkills()}
-        {activeCategory === "skills" && skillsData.length > 2 && (
+        {/* {activeCategory === "skills" && renderSkills()} */}
+        {/* {activeCategory === "skills" && skillsData.length > 2 && (
           <button
             onClick={() => setShowAll(!showAll)}
             className={`text-xs font-bold mt-2 transition duration-300 ease-linear active:scale-90 ${
@@ -189,7 +189,7 @@ const Skills: React.FC = () => {
           >
             {showAll ? "Show Less" : "Show More"}
           </button>
-        )}
+        )} */}
 
         {activeCategory === "education" && renderEducation()}
       </div>
