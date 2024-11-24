@@ -103,6 +103,13 @@ const Portfolio: React.FC = () => {
           isLoading={isLoading}
           isError={isError}
         />
+        <div className="flex justify-center items-center">
+          {!projectData && (
+            <p className="text-red-500 text-xl justify-center items-center">
+              No Data!
+            </p>
+          )}
+        </div>
         <div className="flex justify-start md:justify-end w-full mt-2 md:hidden ">
           <p className="text-sm md:text-xs font-serif italic text-gray-600 border-l-4 border-blue-500 pl-2 ml-2 mb-5 mr-2 mt-2 md:mt-0 ">
             "Let's talk on something great together."
