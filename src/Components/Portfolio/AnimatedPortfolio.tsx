@@ -61,35 +61,38 @@ const AnimatedPortfolio: React.FC<AnimatedPortfolioProps> = ({
       initial="hidden"
       animate="visible"
     >
-      {filterSkill().map((value, index) => (
-        <motion.div
-          key={index}
-          className="rounded-2xl flex justify-center items-center"
-          variants={itemVariants}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          onClick={() => router.push(`/project/${value._id}`)}
-        >
-          <div className="relative w-full h-full rounded-2xl overflow-hidden group bg-slate-800 border border-slate-700 px-3 pb-3 hover:shadow-lg cursor-pointer">
-            <h2 className="font-bold p-1">{value.name}</h2>
-            <div className="md:h-[190px]">
-              <Image
-                src={value?.thumbnail}
-                alt={`Thumbnail for ${value.name}`}
-                className="w-[100%] md:h-[190px] object-cover rounded-md"
-                priority
-                width={400}
-                height={400}
-              />
-            </div>
-            <div className="absolute inset-0 flex justify-center items-center bg-black text-white opacity-0 group-hover:opacity-90 transition-opacity duration-300">
-              <div className="flex flex-col justify-center items-center gap-4 px-4 py-2">
-                <RiSearchEyeLine className="text-4xl" />
-                <p>View Details</p>
+      {filterSkill()
+        .concat()
+        .reverse()
+        .map((value, index) => (
+          <motion.div
+            key={index}
+            className="rounded-2xl flex justify-center items-center"
+            variants={itemVariants}
+            transition={{ duration: 0.5, ease: "easeInOut" }}
+            onClick={() => router.push(`/project/${value._id}`)}
+          >
+            <div className="relative w-full h-full rounded-2xl overflow-hidden group bg-slate-800 border border-slate-700 px-3 pb-3 hover:shadow-lg cursor-pointer">
+              <h2 className="font-bold p-1">{value.name}</h2>
+              <div className="md:h-[190px]">
+                <Image
+                  src={value?.thumbnail}
+                  alt={`Thumbnail for ${value.name}`}
+                  className="w-[100%] md:h-[190px] object-cover rounded-md"
+                  priority
+                  width={400}
+                  height={400}
+                />
+              </div>
+              <div className="absolute inset-0 flex justify-center items-center bg-black text-white opacity-0 group-hover:opacity-90 transition-opacity duration-300">
+                <div className="flex flex-col justify-center items-center gap-4 px-4 py-2">
+                  <RiSearchEyeLine className="text-4xl" />
+                  <p>View Details</p>
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
-      ))}
+          </motion.div>
+        ))}
     </motion.div>
   );
 };
