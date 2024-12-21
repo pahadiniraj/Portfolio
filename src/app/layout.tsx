@@ -1,4 +1,3 @@
-"use client";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -16,7 +15,7 @@ export const runtime = "edge";
 // SEO Component
 const SEO = () => (
   <>
-    <title>Niraj Pahadi | Fullstack Developer</title>
+    <title>Niraj Pahadi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
@@ -24,12 +23,12 @@ const SEO = () => (
     />
     <meta
       name="keywords"
-      content="Niraj Pahadi, Web Developer, Fullstack Developer, Projects, Blog"
+      content="Niraj Pahadi, Web Developer, Fullstack Developer, nepal"
     />
     <meta name="robots" content="index, follow" />
 
     {/* Open Graph meta tags for SEO and social media */}
-    <meta property="og:title" content="Niraj Pahadi | Fullstack Developer" />
+    <meta property="og:title" content="Niraj Pahadi" />
     <meta
       property="og:description"
       content="Official website of Niraj Pahadi, showcasing projects and blog posts related to web development, coding, and more."
@@ -44,16 +43,16 @@ const SEO = () => (
 
     {/* Twitter meta tags */}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Niraj Pahadi | Fullstack Developer" />
+    <meta name="twitter:title" content="Niraj Pahadi" />
     <meta
       name="twitter:description"
-      content="Official website of Niraj Pahadi, showcasing projects and blog posts related to web development, coding, and more."
+      content="Official website of Niraj Pahadi, showcasing projects and blog posts related to web development, coding and more."
     />
     <meta
       name="twitter:image"
       content="https://res.cloudinary.com/pahadi123/image/upload/v1729750281/dev-1_ttaknd.jpg"
     />
-    <meta name="twitter:image:alt" content="Niraj Pahadi Fullstack Developer" />
+    <meta name="twitter:image:alt" content="Niraj Pahadi " />
     <link rel="icon" href="/logo.png" sizes="any" />
   </>
 );
@@ -87,7 +86,20 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} bg-transparent h-screen`}>
         <Providers>
-          <main>{children}</main>
+          <main className="flex">
+            {/* Sidebar with image */}
+            <aside className="w-1/4 p-4">
+              <img
+                src="https://res.cloudinary.com/pahadi123/image/upload/v1729750281/dev-1_ttaknd.jpg"
+                alt="Niraj Pahadi Fullstack Developer"
+                className="w-full h-auto rounded-lg shadow-lg"
+                loading="lazy"
+                width={300}
+                height={400}
+              />
+            </aside>
+            <section className="w-3/4 p-6">{children}</section>
+          </main>
           <ContainerWrapper />
         </Providers>
       </body>
