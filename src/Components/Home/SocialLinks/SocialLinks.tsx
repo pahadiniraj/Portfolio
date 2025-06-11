@@ -37,7 +37,9 @@ const SocialLinks: React.FC = () => {
 
   const [isVerified, setIsVerified] = useState<boolean | null>(null);
   const router = useRouter();
-  const { isSuccess, isLoading } = useGetUserQuery();
+  const { isSuccess, isLoading, data: userData } = useGetUserQuery();
+
+  console.log()
 
   const data = [
     {
