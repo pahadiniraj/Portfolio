@@ -29,15 +29,11 @@ const About = () => {
       </div>
       <div className="md:w-3/5 order-1 pl-4 md:pl-0 flex flex-col  md:py-5 py-4  md:max-h-[400px] md:overflow-y-hidden  pr-5 ">
         <section>
-          <p className="text-sm font-semibold">About me</p>
-          <h1 className="md:text-3xl font-bold text-2xl mb-1 md:mb-3">
-            A Year of Experience,
-          </h1>
-          <HeroHighlightDemo text="on FullStack Development" />
+          <p className="text-sm font-semibold mb-4">About me</p>
+          <HeroHighlightDemo text="FullStack Developer" />
           <p className="text-sm mt-4">
             Hello there! I'm Niraj. I specialize in Web development. I'm deeply
-            committed to my craft. With a years of experience, I'm profound in
-            what I do.
+            committed to my craft.
           </p>
         </section>
         <div className="hidden md:block order-3 py-4 overflow-y-auto">

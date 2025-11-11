@@ -1,7 +1,6 @@
 "use client";
 import { Inter } from "next/font/google";
 import "../globals.css";
-import StarterLoading from "@/Components/StarterLoading/StarterLoading";
 import BackgroundComponent from "@/Components/Background/background";
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -9,7 +8,6 @@ import { usePathname } from "next/navigation";
 import LoaderComponent from "@/Components/Loader/LoaderComponent";
 import Navbar from "@/Components/Navbar/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
   children,

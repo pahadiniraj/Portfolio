@@ -10,7 +10,7 @@ import img from "../../Assets/ProfileImg/DefaultProfile.jpg";
 import LoaderComponent from "../Loader/LoaderComponent";
 import { TbWorldWww } from "react-icons/tb";
 import { convertISOToDate } from "../ConvertISO/convertDate";
-import AlertButton from "../Auth/Login/LoginButton";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 const ProjectComponent = () => {
   const router = useRouter();
@@ -140,7 +140,7 @@ const ProjectComponent = () => {
               {(data?.data?.githubLink?.trim() ||
                 data?.data?.liveDemoLink?.trim()) && (
                 <div className="right-6 top-5 flex justify-start items-center gap-3">
-                  <div className="font-semibold text-base">Links:</div>
+                  <div className="font-semibold text-base">Link:</div>
 
                   {data?.data?.category === "music" ? (
                     data?.data?.liveDemoLink && (
@@ -175,7 +175,7 @@ const ProjectComponent = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            <TbWorldWww className="text-2xl" />
+                            <FaExternalLinkAlt />
                           </a>
                         )}
 
@@ -183,18 +183,11 @@ const ProjectComponent = () => {
                         data?.data?.liveDemoLink?.trim() && (
                           <>
                             <a
-                              href={data?.data?.githubLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <FaSquareGithub className="text-2xl" />
-                            </a>
-                            <a
                               href={data?.data?.liveDemoLink}
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              <TbWorldWww className="text-2xl" />
+                              <FaExternalLinkAlt />
                             </a>
                           </>
                         )}

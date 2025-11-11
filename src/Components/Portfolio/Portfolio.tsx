@@ -1,9 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { WebDev } from "./PortfolioData";
 import Button from "../Button/Button";
 import AnimatedPortfolio from "./AnimatedPortfolio";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useGetAllProjectQuery } from "@/Redux/Services/project";
 import LoaderComponent from "../Loader/LoaderComponent";
 
@@ -25,13 +24,11 @@ const Portfolio: React.FC = () => {
   }, [data]);
 
   const categories = [
-    { name: "All", category: "all" },
-    { name: "Web", category: "webdevelopment" },
-    { name: "Mobile", category: "appdevelopment" },
+    { name: "Development", category: "webdevelopment" },
     { name: "Music", category: "music" },
   ];
 
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = useState("webdevelopment");
 
   const filterSkill = (): {
     category: string;
@@ -41,17 +38,6 @@ const Portfolio: React.FC = () => {
   }[] => {
     if (!projectData) {
       return [];
-    }
-
-    if (activeCategory === "all") {
-      return projectData
-        .filter((item) => item.category !== "music")
-        .map(({ category, title: name, thumbnail, _id }) => ({
-          category,
-          name,
-          thumbnail,
-          _id,
-        }));
     }
 
     return projectData
@@ -86,13 +72,13 @@ const Portfolio: React.FC = () => {
             Portfolio
           </span>
         </h2>
-        <div className="md:grid  grid grid-cols-4 md:grid-cols-4 gap-2 mb-5 w-full">
+        <div className="md:grid  grid grid-cols-2 md:grid-cols-2  gap-2 mb-5 w-full">
           {categories.map((value, index) => (
             <Button
               key={index}
               text={value.name}
               onClick={() => setActiveCategory(value.category)}
-              className={`border text-xs md:text-xs py-1 rounded-[5px] font-semibold  ${
+              className={`border text-xs md:text-xs py-1 rounded-[5px] font-semibold   ${
                 activeCategory === value.category ? "bg-white text-black" : ""
               }`}
             />

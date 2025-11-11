@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import HomeButtons from "./HomeButtons/HomeButtons";
-import SocialLinks from "./SocialLinks/SocialLinks";
 import Image from "next/image";
 import profile from "../../Assets/ProfileImg/unnamed.jpg";
 import { ReactTyped } from "react-typed";
@@ -125,7 +124,6 @@ const HomeComponent = () => {
         </section>
         <div className="flex-col gap-5 flex justify-center md:justify-start md:flex-row pb-5">
           <HomeButtons />
-          <SocialLinks />
         </div>
       </div>
     </motion.div>
