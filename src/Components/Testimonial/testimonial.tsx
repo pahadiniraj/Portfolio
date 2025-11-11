@@ -10,6 +10,7 @@ const Testimonial = () => {
       <p className="text-xs text-center  font-thin ">
         Empowering business with Technology
       </p>
+      
       <CarouselComp />
     </div>
   );

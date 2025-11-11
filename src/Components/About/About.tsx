@@ -29,7 +29,7 @@ const About = () => {
       </div>
       <div className="md:w-3/5 order-1 pl-4 md:pl-0 flex flex-col  md:py-5 py-4  md:max-h-[400px] md:overflow-y-hidden  pr-5 ">
         <section>
-          <p className="text-sm font-semibold mb-4">About me</p>
+          <p className="text-sm font-semibold mb-3">About me</p>
           <HeroHighlightDemo text="FullStack Developer" />
           <p className="text-sm mt-4">
             Hello there! I'm Niraj. I specialize in Web development. I'm deeply
